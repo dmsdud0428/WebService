@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <style>
-#center
-{
+#center {
 	position:absolute;
 	top:0;right:0;bottom:0;left:0;
 	display:-webkit-box;
@@ -31,8 +30,7 @@
 </style>
 </head>
 <body bgcolor="#e0e3da">
-	<div id="center">
-	<center>
+	<div id="center" align=center>
 		<div style="line-height:300%">
 		<img src="img/logo.png" />
 		<br>
@@ -42,9 +40,9 @@
 				<tr>
 					<td>
 						<div style="line-height:250%">
-							<input name=id size=40 placeholder="ID" style="border:none;width:380px;height:31px;background: transparent;background-image: url('img/id_box.png');padding:0px 0px 0px 10px" />
+							<input name=id size=40 placeholder="ID" style="border:none; width:380px; height:31px; background:transparent; background-image: url('img/id_box.png'); padding:0px 0px 0px 10px" />
 							<br>
-							<input name=pw size=40 placeholder="Password" style="border:none;width:380px;height:31px;background: transparent;background-image: url('img/id_box.png');padding:0px 0px 0px 10px" />
+							<input name=pw size=40 placeholder="Password" style="border:none; width:380px; height:31px; background:transparent; background-image: url('img/id_box.png'); padding:0px 0px 0px 10px" />
 						</div>
 					</td>
 					<td>
@@ -53,11 +51,10 @@
 				</tr>
 			</table>
 			<img src="img/line.png" />
-		</div>
 		<br>
 		<font color="#566270" style="font-size:10pt">© Kyonggi University, P2P</font>
+		</div>
 		<p><br></p>
-	</center>
 	</div>
 </body>
 </html>

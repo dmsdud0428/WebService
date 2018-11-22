@@ -40,9 +40,9 @@ html {height:100%;}
 </head>
 <body>
 <nav id=nav>
-	<div class=div1><image src="image/logo.png" id="img1"></div>
-	<div class=div2><image src="image/menu.png" id="img2"></div>
-	<div class=div3><image src="image/link.png" id="img3"></div>
+	<div class=div1><image src="img/logo.png" id="img1"></div>
+	<div class=div2><image src="img/MENU.png" id="img2"></div>
+	<div class=div3><image src="img/LINK.png" id="img3"></div>
 </nav>
 <div id=div34>ff</div>
 </body>
