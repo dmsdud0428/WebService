@@ -79,6 +79,21 @@ a:hover {
 	background: #9686cc;
 	text-decoration: none;
 }
+
+.title {
+	background-image: url('img/title_bar.png');
+	background-size: 770px auto;
+	height: 56px;
+	padding: 0px 0px 0px 16px;
+	overflow: hidden;
+}
+
+.article {
+	margin-top: 15px;
+	background-color: blue;
+	width: 770px;
+	height: 500px;
+}
 </style>
 </head>
 <body>
@@ -87,16 +102,16 @@ a:hover {
 		</div>
 		<div class="center-box">
 			<div id="logo" style="margin-top:30px">
-				<img src="img/logo.png" style="width:152px;height:80px"/>
+				<a href="main.jsp"><img src="img/logo.png" style="width:152px;height:80px"/></a>
 			</div>
 			<div id="menu">
 				<div class="side_text">
-					<a href="#">·&nbsp;&nbsp;총/전공평점평균</a><br>
-					<a href="#">·&nbsp;&nbsp;졸업요건진단</a><br>
-					<a href="#">·&nbsp;&nbsp;자기소개서</a><br>
-					<a href="#">·&nbsp;&nbsp;취업신상정보</a><br>
-					<a href="#">·&nbsp;&nbsp;자격정보/시험일정</a><br>
-					<a href="#">·&nbsp;&nbsp;면접/입사후기</a>
+					<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
+					<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
+					<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
+					<a href="information.jsp">·&nbsp;&nbsp;취업신상정보</a><br>
+					<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
+					<a href="review.jsp">·&nbsp;&nbsp;면접/입사후기</a>
 				</div>
 			</div>
 			<div id="link">
@@ -111,7 +126,7 @@ a:hover {
 			</p>
 		</div>
 		<div class="right-box" style="line-height:50%">
-			<div id="content" style="width:800px;text-align:right;">
+			<div id="header" style="width:800px;text-align:right;">
 				<div class="head_text" style="margin-top:30px">
 					<b>· 소속 : </b>컴퓨터과학과&nbsp;&nbsp;&nbsp;
 					<b>· 학번 : </b>201800000&nbsp;&nbsp;&nbsp;
@@ -121,6 +136,16 @@ a:hover {
 				</div>
 			</div>
 			<img src="img/line.png" style="width:100%;height:4px" />
+			<div id="content" style="width:770px;padding:15px 15px 15px 15px">
+				<div class="title">
+					<h1>
+						자기소개서
+						<img src="img/question.png" title="설명을 작성해주세요." />
+					</h1>
+				</div>
+				<div class="article">
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

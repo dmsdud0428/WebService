@@ -139,7 +139,7 @@ a:hover {
 			<div id="content" style="width:770px;padding:15px 15px 15px 15px">
 				<div class="title">
 					<h1>
-						대시보드
+						총 / 전공 평점평균
 						<img src="img/question.png" title="설명을 작성해주세요." />
 					</h1>
 				</div>
