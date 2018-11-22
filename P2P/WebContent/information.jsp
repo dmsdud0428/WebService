@@ -82,8 +82,8 @@ a:hover {
 
 .title {
 	background-image: url('img/title_bar.png');
-	background-size: 770px auto;
-	height: 56px;
+	background-size: 785px auto;
+	height: 15.02mm;
 	padding: 0px 0px 0px 16px;
 	overflow: hidden;
 }
@@ -91,7 +91,7 @@ a:hover {
 .article {
 	margin-top: 15px;
 	background-color: blue;
-	width: 770px;
+	width: 785px;
 	height: 500px;
 }
 </style>
@@ -136,7 +136,7 @@ a:hover {
 				</div>
 			</div>
 			<img src="img/line.png" style="width:100%;height:4px" />
-			<div id="content" style="width:770px;padding:15px 15px 15px 15px">
+			<div id="content" style="width:785px;padding:15px 15px 15px 15px">
 				<div class="title">
 					<h1>
 						취업신상정보
