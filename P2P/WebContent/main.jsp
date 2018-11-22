@@ -3,47 +3,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-
-#nav
-{
-	background-color:#9686cc;
-	width:20%;
-	height:100%;
-	float:left;
-	text-align:center;
-}
-
-#img1 {
-	max-width:70%;
-	max-hegiht:auto;
-	margin-top:30px;
-	margin-bottom:30px;
-}
-
-#img2 {
-	max-width:30%;
-	max-hegiht:auto;
-}
-
-#img3 {
-	max-width:30%;
-	max-hegiht:auto;
-}
-
-
-body {height:100%;}
-html {height:100%;}
-</style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Main</title>
+<style>
+body {
+	margin: 0%;
+}
+
+.container {
+	display: flex;
+}
+
+.container .left-box {
+	background-color: #9686cc;
+	flex: 1;
+	height: 100vh;
+}
+
+.container .center-box {
+	background-color: #9686cc;
+	flex-basis: 234px;
+	text-align: center;
+	height: 100vh;
+}
+
+.container .right-box {
+	background-color: #ffffff;
+	flex: 5;
+}
+
+#menu {
+	margin-top: 40px;
+	background-image: url('img/menu.png');
+	width: 234px;
+	height: 314px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#link {
+	margin-top: 20px;
+	background-image: url('img/link.png');
+	width: 234px;
+	height: 194px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.side_text {
+	text-align: left;
+	padding: 55px 0px 0px 40px;
+	line-height: 40px;
+	color: #566270;
+	font-family: 나눔고딕;
+}
+
+.head_text {
+	font-size: 10pt;
+	color: #000000;
+	font-family: 나눔고딕;
+}
+
+a:link {
+	color: #566270;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #566270;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffffff;
+	background: #9686cc;
+	text-decoration: none;
+}
+</style>
 </head>
 <body>
-<nav id=nav>
-	<div class=div1><image src="img/logo.png" id="img1"></div>
-	<div class=div2><image src="img/MENU.png" id="img2"></div>
-	<div class=div3><image src="img/LINK.png" id="img3"></div>
-</nav>
-<div id=div34>ff</div>
+	<div class="container">
+		<div class="left-box">
+		</div>
+		<div class="center-box">
+			<div id="logo" style="margin-top:30px">
+				<img src="img/logo.png" style="width:152px;height:80px"/>
+			</div>
+			<div id="menu">
+				<div class="side_text">
+					<a href="#">·&nbsp;&nbsp;총/전공평점평균</a><br>
+					<a href="#">·&nbsp;&nbsp;졸업요건진단</a><br>
+					<a href="#">·&nbsp;&nbsp;자기소개서</a><br>
+					<a href="#">·&nbsp;&nbsp;취업신상정보</a><br>
+					<a href="#">·&nbsp;&nbsp;자격정보/시험일정</a><br>
+					<a href="#">·&nbsp;&nbsp;면접/입사후기</a>
+				</div>
+			</div>
+			<div id="link">
+				<div class="side_text">
+					<a href="http://www.kyonggi.ac.kr/KyonggiUp.kgu" target="_blank">·&nbsp;&nbsp;경기대학교</a>&nbsp;&nbsp;&nbsp;<img src="img/link_m.png" /><br>
+					<a href="http://kutis.kyonggi.ac.kr/webkutis/" target="_blank">·&nbsp;&nbsp;KUTIS</a>&nbsp;&nbsp;&nbsp;<img src="img/link_m.png" /><br>
+					<a href="http://cs.kyonggi.ac.kr" target="_blank">·&nbsp;&nbsp;컴퓨터과학과</a>&nbsp;&nbsp;&nbsp;<img src="img/link_m.png" />
+				</div>
+			</div>
+			<p>
+				<font color="#566270" style="font-size:8pt">© Kyonggi University, P2P</font>
+			</p>
+		</div>
+		<div class="right-box" style="line-height:50%">
+			<div id="content" style="width:800px;text-align:right;">
+				<div class="head_text" style="margin-top:30px">
+					<b>· 소속 : </b>컴퓨터과학과&nbsp;&nbsp;&nbsp;
+					<b>· 학번 : </b>201800000&nbsp;&nbsp;&nbsp;
+					<b>· 사용자 : </b>ㅇㅇㅇ&nbsp;&nbsp;&nbsp;
+					<b>· 구분 : </b>학생&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<img src="img/logout_button.png" style="width:60px;height:auto;vertical-align:middle"/>
+				</div>
+			</div>
+			<img src="img/line.png" style="width:100%;height:4px" />
+		</div>
+	</div>
 </body>
 </html>
