@@ -56,17 +56,17 @@ body {
 	font-family: 나눔고딕;
 }
 
-a:link {
+.side_text a:link {
 	color: #566270;
 	text-decoration: none;
 }
 
-a:visited {
+.side_text a:visited {
 	color: #566270;
 	text-decoration: none;
 }
 
-a:hover {
+.side_text a:hover {
 	color: #ffffff;
 	background: #9686cc;
 	text-decoration: none;

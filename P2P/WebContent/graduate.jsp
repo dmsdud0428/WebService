@@ -45,15 +45,15 @@
 					<b>· 학번 : </b>201800000&nbsp;&nbsp;&nbsp;
 					<b>· 사용자 : </b>ㅇㅇㅇ&nbsp;&nbsp;&nbsp;
 					<b>· 구분 : </b>학생&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<img src="img/logout_button.png" style="width:60px;height:auto;vertical-align:middle"/>
+					<img src="Resources/img/logout_button.png" style="width:60px;height:auto;vertical-align:middle"/>
 				</div>
 			</div>
-			<img src="img/line.png" style="width:100%;height:4px" />
+			<img src="Resources/img/line.png" style="width:100%;height:4px" />
 			<div id="content" style="width:785px;padding:15px 15px 15px 15px">
 				<div class="title">
 					<h1>
 						졸업요건진단
-						<img src="img/question.png" title="설명을 작성해주세요." />
+						<img src="Resources/img/question.png" title="설명을 작성해주세요." />
 					</h1>
 				</div>
 				<div class="article">
