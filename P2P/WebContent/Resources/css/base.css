@@ -1,5 +1,6 @@
 body {
 	margin: 0%;
+	background-color: #9686cc;
 }
 
 .layout {
@@ -7,21 +8,26 @@ body {
 }
 
 .layout .left-box {
-	background-color: #9686cc;
 	flex: 1;
 	height: 100vh;
 }
 
-.layout .center-box {
+.layout2 {
+	background-color: #ffffff;
+	flex: 7;
+}
+
+.layout2 .center-box {
 	background-color: #9686cc;
 	flex-basis: 234px;
 	text-align: center;
 	height: 100vh;
+	position: fixed;
 }
 
-.layout .right-box {
+.layout2 .right-box {
+	margin-left: 234px;
 	background-color: #ffffff;
-	flex: 5;
 }
 
 #menu {
@@ -82,7 +88,6 @@ body {
 
 .article {
 	margin-top: 15px;
-	background-color: blue;
 	width: 785px;
 	height: 500px;
 }
