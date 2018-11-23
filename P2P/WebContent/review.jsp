@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="Resources/css/bootstrap-iso.css" rel="stylesheet">
 <link href="Resources/css/base.css" rel="stylesheet">
 <title>Main</title>
 <style>
@@ -58,60 +59,43 @@
 					</h1>
 				</div>
 				<div class="article">
-					<div class="container">
-						<form id="boardForm" name="boardForm" method="post">
-							<table class="table table-striped table-hover">
-								<thead>
-									<tr>
-										<th>번호</th>
-										<th>제목</th>
-										<th>작성자</th>
-										<th>날짜</th>
-										<th>조회수</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="result" items="${list }" varStatus="status">
-									<tr>
-										<td><c:out value="${result.code }"/></td>
-										<td><a href='#' onClick='fn_view(${result.code})'><c:out value="${result.title }"/></a></td>
-										<td><c:out value="${result.writer }"/></td>
-										<td><c:out value="${result.reg_datetime }"/></td>
-										<td></td>
-									</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-							<div>            
-								<a href='#' onClick='fn_write()' class="btn btn-success">글쓰기</a>            
-							</div>
-						</form>
+					<div class="bootstrap-iso">
+						<table class="table table-striped" style="text-align:center; border:1px; solid #dddddd">
+		 					<thead>
+								<tr>
+									<th style="background-color:#eeeeee; text-align: center;">번호</th>
+									<th style="background-color:#eeeeee; text-align: center;">제목</th>
+									<th style="background-color:#eeeeee; text-align: center;">작성자</th>
+									<th style="background-color:#eeeeee; text-align: center;">작성일</th>
+								</tr>		 		
+					 		</thead>
+					 		<tbody>
+					 			<%--
+					 			<%
+					 				BbsDAO bbsDAO = new BbsDAO();
+					 				ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+					 				for(int i=0; i < list.size(); i++){
+					 			%>
+					 			 --%>
+					 			<tr>
+					 				<%--
+					 				<td><%= list.get(i).getBbsID() %></td>
+					 				<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
+					 				<td><%= list.get(i).getUserID() %></td>
+					 				<td><%=list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11, 13) + "시" + list.get(i).getBbsDate().substring(14, 16) +  "분" %></td>
+					 				 --%>
+					 			</tr>
+					 			<%--
+					 			<%		
+					 				}
+					 			%>
+					 			--%>
+					 		</tbody>
+					 	</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-<script>
-//글쓰기
-function fn_write(){
-    
-    var form = document.getElementById("boardForm");
-    
-    form.action = "<c:url value='/board/writeForm.do'/>";
-    form.submit();
-    
-}
- 
-//글조회
-function fn_view(code){
-    
-    var form = document.getElementById("boardForm");
-    var url = "<c:url value='/board/viewContent.do'/>";
-    url = url + "?code=" + code;
-    
-    form.action = url;    
-    form.submit(); 
-}
-</script>
 </body>
 </html>
