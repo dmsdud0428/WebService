@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <link href="Resources/css/bootstrap-iso.css" rel="stylesheet">
 <link href="Resources/css/base.css" rel="stylesheet">
 <title>Main</title>
@@ -44,7 +45,7 @@
 					<font color="#566270" style="font-size:8pt">© Kyonggi University, P2P</font>
 				</p>
 			</div>
-			<div class="right-box" style="line-height:50%">
+			<div class="right-box" style="line-height:50%;overflow:auto">
 				<div id="header" style="width:800px;text-align:right;">
 					<div class="head_text" style="margin-top:30px">
 						<b>· 소속 : </b>컴퓨터과학과&nbsp;&nbsp;&nbsp;
