@@ -4,105 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="Resources/css/base.css" rel="stylesheet">
 <title>Main</title>
 <style>
-body {
-	margin: 0%;
-}
-
-.container {
-	display: flex;
-}
-
-.container .left-box {
-	background-color: #9686cc;
-	flex: 1;
-	height: 100vh;
-}
-
-.container .center-box {
-	background-color: #9686cc;
-	flex-basis: 234px;
-	text-align: center;
-	height: 100vh;
-}
-
-.container .right-box {
-	background-color: #ffffff;
-	flex: 5;
-}
-
-#menu {
-	margin-top: 40px;
-	background-image: url('img/menu.png');
-	width: 234px;
-	height: 314px;
-	background-repeat: no-repeat;
-	background-position: center center;
-}
-
-#link {
-	margin-top: 20px;
-	background-image: url('img/link.png');
-	width: 234px;
-	height: 194px;
-	background-repeat: no-repeat;
-	background-position: center center;
-}
-
-.side_text {
-	text-align: left;
-	padding: 55px 0px 0px 40px;
-	line-height: 40px;
-	color: #566270;
-	font-family: 나눔고딕;
-}
-
-.head_text {
-	font-size: 10pt;
-	color: #000000;
-	font-family: 나눔고딕;
-}
-
-a:link {
-	color: #566270;
-	text-decoration: none;
-}
-
-a:visited {
-	color: #566270;
-	text-decoration: none;
-}
-
-a:hover {
-	color: #ffffff;
-	background: #9686cc;
-	text-decoration: none;
-}
-
-.title {
-	background-image: url('img/title_bar.png');
-	background-size: 785px auto;
-	height: 15.02mm;
-	padding: 0px 0px 0px 16px;
-	overflow: hidden;
-}
-
-.article {
-	margin-top: 15px;
-	background-color: blue;
-	width: 785px;
-	height: 500px;
-}
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="layout">
 		<div class="left-box">
 		</div>
 		<div class="center-box">
 			<div id="logo" style="margin-top:30px">
-				<a href="main.jsp"><img src="img/logo.png" style="width:152px;height:80px"/></a>
+				<a href="main.jsp"><img src="Resources/img/logo.png" style="width:152px;height:80px"/></a>
 			</div>
 			<div id="menu">
 				<div class="side_text">
@@ -144,9 +57,60 @@ a:hover {
 					</h1>
 				</div>
 				<div class="article">
+					<div class="container">
+						<form id="boardForm" name="boardForm" method="post">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th>번호</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>날짜</th>
+										<th>조회수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="result" items="${list }" varStatus="status">
+									<tr>
+										<td><c:out value="${result.code }"/></td>
+										<td><a href='#' onClick='fn_view(${result.code})'><c:out value="${result.title }"/></a></td>
+										<td><c:out value="${result.writer }"/></td>
+										<td><c:out value="${result.reg_datetime }"/></td>
+										<td></td>
+									</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<div>            
+								<a href='#' onClick='fn_write()' class="btn btn-success">글쓰기</a>            
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+<script>
+//글쓰기
+function fn_write(){
+    
+    var form = document.getElementById("boardForm");
+    
+    form.action = "<c:url value='/board/writeForm.do'/>";
+    form.submit();
+    
+}
+ 
+//글조회
+function fn_view(code){
+    
+    var form = document.getElementById("boardForm");
+    var url = "<c:url value='/board/viewContent.do'/>";
+    url = url + "?code=" + code;
+    
+    form.action = url;    
+    form.submit(); 
+}
+</script>
 </body>
 </html>

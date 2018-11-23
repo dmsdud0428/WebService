@@ -32,25 +32,25 @@
 <body bgcolor="#e0e3da">
 	<div id="center" align=center>
 		<div style="line-height:300%">
-		<img src="img/logo.png" />
+		<img src="Resources/img/logo.png" />
 		<br>
-			<img src="img/line.png" />
+			<img src="Resources/img/line.png" />
 			<br>
-			<table width="540px">
+			<table style="width:540px">
 				<tr>
 					<td>
 						<div style="line-height:250%">
-							<input name=id size=40 placeholder="ID" style="border:none; width:380px; height:31px; background:transparent; background-image: url('img/id_box.png'); padding:0px 0px 0px 10px" />
+							<input name=id size=40 placeholder="ID" style="border:none; width:380px; height:31px; background:transparent; background-image: url('Resources/img/id_box.png'); padding:0px 0px 0px 10px" />
 							<br>
-							<input name=pw size=40 placeholder="Password" style="border:none; width:380px; height:31px; background:transparent; background-image: url('img/id_box.png'); padding:0px 0px 0px 10px" />
+							<input name=pw size=40 placeholder="Password" style="border:none; width:380px; height:31px; background:transparent; background-image: url('Resources/img/id_box.png'); padding:0px 0px 0px 10px" />
 						</div>
 					</td>
 					<td>
-						<img src="img/login_button.png" style="vertical-align:middle" />
+						<img src="Resources/img/login_button.png" style="vertical-align:middle" />
 					</td>
 				</tr>
 			</table>
-			<img src="img/line.png" />
+			<img src="Resources/img/line.png" />
 		<br>
 		<font color="#566270" style="font-size:10pt">© Kyonggi University, P2P</font>
 		</div>
