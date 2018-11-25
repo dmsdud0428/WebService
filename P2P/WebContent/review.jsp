@@ -4,14 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/bootstrap-iso.css" rel="stylesheet">
 <link href="Resources/css/base.css" rel="stylesheet">
-<title>Main</title>
+<title>면접/입사후기</title>
 <style>
 #page_number a{
 	font-size: 10pt;
 	color: #566270;
 	text-decoration: none;
+}
+
+#_tr {
+	background-color: #ffffff;
+}
+
+#_tr:hover {
+	background-color: rgba(150,134,204,0.5);
+	cursor: pointer;
 }
 </style>
 </head>
@@ -45,7 +55,7 @@
 					<font color="#566270" style="font-size:8pt">© Kyonggi University, P2P</font>
 				</p>
 			</div>
-			<div class="right-box" style="line-height:50%;overflow:auto">
+			<div class="right-box" style="line-height:50%">
 				<div id="header" style="width:800px;text-align:right">
 					<div class="head_text" style="margin-top:30px">
 						<b>· 소속 : </b>컴퓨터과학과&nbsp;&nbsp;&nbsp;
@@ -65,13 +75,12 @@
 					</div>
 					<div class="article" style="text-align:center">
 						<div class="bootstrap-iso">
-							<table class="table table-striped" style="text-align:center;border:1px;solid: #dddddd;margin-bottom:10px;font-size:10pt">
+							<table class="table table-striped" style="text-align:center;border:1px;solid:#dddddd;margin-bottom:10px;font-size:10pt">
 			 					<thead style="background-color:#f9f9f9">
 									<tr>
-										<th style="text-align: center">응시년도</th>
-										<th style="text-align: center">기업</th>
-										<th style="text-align: center">스펙</th>
-										<th style="text-align: center">후기</th>
+										<th style="text-align: center;width:155px">응시년도</th>
+										<th style="text-align: center;width:230px">기업</th>
+										<th style="text-align: center;width:400px">스펙</th>
 									</tr>		 		
 						 		</thead>
 						 		<tbody>
@@ -85,11 +94,10 @@
 						 			<%
 						 				for(int i = 0; i < 15; i++) {
 						 			%>
-						 			<tr style="background-color:#ffffff">
+						 			<tr id="_tr" onClick="location.href='review_view.jsp'">
 						 				<td>test</td>
 						 				<td>test</td>
 						 				<td>test</td>
-						 				<td>후기보기</td>
 						 				<%--
 						 				<td><%= list.get(i).getBbsID() %></td>
 						 				<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
@@ -104,7 +112,7 @@
 						 	</table>
 						</div>
 						<div id="write_button" style="height:22.28px;margin-bottom:20px">
-							<img src="Resources/img/write_button.png" style="width:60px;height:auto;float:right"/>
+							<a href="review_write.jsp"><img src="Resources/img/write_button.png" style="width:60px;height:auto;float:right"/></a>
 						</div>
 						<div id="page_number" style="margin-bottom:30px">
 							<%

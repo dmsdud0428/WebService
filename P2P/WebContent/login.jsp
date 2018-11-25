@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<link rel="shortcut icon" href="Resources/img/p2p.ico">
+<title>P2P</title>
 <style>
 #center {
 	position:absolute;

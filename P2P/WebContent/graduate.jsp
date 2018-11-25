@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/base.css" rel="stylesheet">
-<title>Main</title>
+<title>졸업요건진단</title>
 <style>
 </style>
 </head>
