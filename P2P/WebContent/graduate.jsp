@@ -5,8 +5,58 @@
 <head>
 <meta charset="UTF-8">
 <link href="Resources/css/base.css" rel="stylesheet">
-<title>Main</title>
+<title>졸업요건진단</title>
 <style>
+.pw {
+	margin-top: 30px;
+	background-image: url('Resources/img/curriculum.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 50px;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+}
+input[name=pwbox] {
+	border: none;
+	width: 130px;
+	height: 26px;
+	background-repeat: no-repeat;
+	background: #F9F9F9;
+	background-image: url('Resources/img/pw_box.png');
+	background-size: 140px 26px;
+	padding: 0px 0px 0px 10px;
+}
+
+.table {
+	display: flex;
+	align-items: center;
+    justify-content: center;
+}
+
+table.content {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
+}
+table.content th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #efefef;
+}
+table.content td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
 </style>
 </head>
 <body>
@@ -58,6 +108,34 @@
 						</h1>
 					</div>
 					<div class="article">
+						<div class="pw">
+							<form action="graduate.jsp" method="post">
+								<span style="margin-right:15px;"><input type="password" name=pwbox size=40 placeholder="Password"/></span>
+								<span><input type="image" name=checkbox src="Resources/img/check_button.png" style="vertical-align:middle"/></span>
+							</form>
+						</div>
+						<div class="table">
+							<table class="content">
+								<%! int num; %>
+								<%
+									if (request.getParameter("pwbox") != null) {
+										if (Integer.parseInt(request.getParameter("pwbox")) < 2016) num=10;
+										else if (Integer.parseInt(request.getParameter("pwbox")) == 2016) num=6;
+										else if (Integer.parseInt(request.getParameter("pwbox")) == 2017) num=8;
+										else if (Integer.parseInt(request.getParameter("pwbox")) >= 2018) num=4;
+										else num=5;
+										
+										for(int i=1;i<num;i++) { %>
+										<tr>
+											<th>예제제목</th>
+											<td>예제내용</td>
+										</tr>
+										<%
+										}
+									}
+								%>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
