@@ -5,9 +5,42 @@
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="Resources/img/p2p.ico">
+<link href="Resources/css/bootstrap-iso.css" rel="stylesheet">
 <link href="Resources/css/base.css" rel="stylesheet">
-<title>자격정보/시험일정</title>
+<title>자기소개서</title>
 <style>
+#page_number a {
+	font-size: 10pt;
+	color: #566270;
+	text-decoration: none;
+}
+
+.view_table table {
+	width: 785px;
+	text-align: center;
+	border-top: 5px solid #dddddd;
+	border-bottom: 5px solid #dddddd;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+	font-size: 10pt;
+}
+
+.view_table .td_head {
+	width: 100px;
+	padding: 15px;
+	background-color: #f9f9f9;
+	text-align: center;
+}
+
+.view_table .td_body {
+	padding: 15px;
+	text-align: left;
+}
+
+.buttons img {
+	height: 22px;
+	width: auto;
+}
 </style>
 </head>
 <body>
@@ -41,7 +74,7 @@
 				</p>
 			</div>
 			<div class="right-box" style="line-height:50%">
-				<div id="header" style="width:800px;text-align:right;">
+				<div id="header" style="width:800px;text-align:right">
 					<div class="head_text" style="margin-top:30px">
 						<b>· 소속 : </b>컴퓨터과학과&nbsp;&nbsp;&nbsp;
 						<b>· 학번 : </b>201800000&nbsp;&nbsp;&nbsp;
@@ -54,15 +87,52 @@
 				<div id="content" style="width:785px;padding:15px 15px 15px 15px">
 					<div class="title">
 						<h1>
-							자격정보 / 시험일정
+							자기소개서
 							<img src="Resources/img/question.png" title="설명을 작성해주세요." />
 						</h1>
 					</div>
-					<div class="article">
+					<div class="article" style="text-align:center">
+						<div class="view_table">
+							<table>
+								<tr style="border-bottom: 1px solid #dddddd;">
+									<td class="td_head">상태</td>
+									<td class="td_body">작성중</td>
+								</tr>
+								<tr style="border-bottom: 1px solid #dddddd;">
+									<td class="td_head">작성일</td>
+									<td class="td_body">2018. 11. 25.</td>
+								</tr>
+								<tr style="border-bottom: 1px solid #dddddd;">
+									<td class="td_head">회사명</td>
+									<td class="td_body">삼성</td>
+								</tr>
+								<tr style="border-bottom: 1px solid #dddddd;">
+									<td class="td_head">직무</td>
+									<td class="td_body">마케팅</td>
+								</tr>
+								<tr style="border-bottom: 1px solid #dddddd;">
+									<td class="td_head">형태</td>
+									<td class="td_body">인턴</td>
+								</tr>
+								<tr style="border-bottom: 1px solid #dddddd;">
+									<td class="td_head">질문 1</td>
+									<td class="td_body">어디에서 오셨나요?</td>
+								</tr>
+								<tr>
+									<td class="td_head">답변 1</td>
+									<td class="td_body" valign="top" style="height:400px">우리집이요</td>
+								</tr>
+							</table>
+						</div>
+						<div class="buttons" style="height:22.28px;float:right;margin-bottom:80px">
+							<a href="introduce_modify.jsp"><img src="Resources/img/modify_button.png"/></a>
+							<img src="Resources/img/delete_button.png"/>
+							<a href="introduce.jsp"><img src="Resources/img/list_button.png"/></a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+</div>
 </body>
 </html>

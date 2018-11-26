@@ -4,14 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/bootstrap-iso.css" rel="stylesheet">
 <link href="Resources/css/base.css" rel="stylesheet">
-<title>Main</title>
+<title>자기소개서</title>
 <style>
 #page_number a{
 	font-size: 10pt;
 	color: #566270;
 	text-decoration: none;
+}
+
+#_tr {
+	background-color: #ffffff;
+}
+
+#_tr:hover {
+	background-color: rgba(150,134,204,0.5);
+	cursor: pointer;
 }
 </style>
 </head>
@@ -45,7 +55,7 @@
 					<font color="#566270" style="font-size:8pt">© Kyonggi University, P2P</font>
 				</p>
 			</div>
-			<div class="right-box" style="line-height:50%;overflow:auto">
+			<div class="right-box" style="line-height:50%">
 				<div id="header" style="width:800px;text-align:right;">
 					<div class="head_text" style="margin-top:30px">
 						<b>· 소속 : </b>컴퓨터과학과&nbsp;&nbsp;&nbsp;
@@ -86,7 +96,7 @@
 						 			<%
 						 				for(int i = 0; i < 15; i++) {
 						 			%>
-						 			<tr style="background-color:#ffffff">
+						 			<tr id="_tr" onClick="location.href='introduce_view.jsp'">
 						 				<td>test</td>
 						 				<td>test</td>
 						 				<td>test</td>
@@ -106,7 +116,7 @@
 						 	</table>
 						</div>
 						<div id="write_button" style="height:22.28px;margin-bottom:20px">
-							<img src="Resources/img/write_button.png" style="width:60px;height:auto;float:right"/>
+							<a href="introduce_write.jsp"><img src="Resources/img/write_button.png" style="width:60px;height:auto;float:right"/></a>
 						</div>
 						<div id="page_number" style="margin-bottom:30px">
 							<%
@@ -128,18 +138,18 @@
 										endPage = pageCount;
 									}
 									if(startPage > pageBlock) {
-										%><a href="review.jsp?page=<%=startPage - pageBlock%>">◀ 이전&nbsp;&nbsp;</a><%
+										%><a href="introduce.jsp?page=<%=startPage - pageBlock%>">◀ 이전&nbsp;&nbsp;</a><%
 									}
 									for(int i = startPage; i<= endPage; i++) {
 										if(i == currentPage) {
-											%>&nbsp;<a href="review.jsp?page=<%=i%>" style="color:#9686cc;text-decoration:underline"><%=i%></a>&nbsp;<%
+											%>&nbsp;<a href="introduce.jsp?page=<%=i%>" style="color:#9686cc;text-decoration:underline"><%=i%></a>&nbsp;<%
 										}
 										else {
-											%>&nbsp;<a href="review.jsp?page=<%=i%>"><%=i%></a>&nbsp;<%
+											%>&nbsp;<a href="introduce.jsp?page=<%=i%>"><%=i%></a>&nbsp;<%
 										}
 									}
 									if(endPage < pageCount) {
-										%><a href="review.jsp?page=<%=startPage + pageBlock%>">&nbsp;&nbsp;다음 ▶</a><%		
+										%><a href="introduce.jsp?page=<%=startPage + pageBlock%>">&nbsp;&nbsp;다음 ▶</a><%		
 									}
 								}
 							%>
