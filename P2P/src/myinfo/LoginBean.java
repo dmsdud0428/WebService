@@ -22,11 +22,6 @@ import org.apache.http.util.EntityUtils;
 public class LoginBean {
 	private String userid;
 	private String passwd;
-	private String major;
-	private String schoolID;
-	private String name;
-	private String type;
-	private String error;
 	
 	public String getUserid() {
 		return userid;
@@ -39,36 +34,6 @@ public class LoginBean {
 	}
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
-	}
-	public String getMajor() {
-		return major;
-	}
-	public void setMajor(String major) {
-		this.major = major;
-	}
-	public String getSchoolID() {
-		return schoolID;
-	}
-	public void setSchoolID(String schoolID) {
-		this.schoolID = schoolID;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getError() {
-		return error;
-	}
-	public void setError(String error) {
-		this.error = error;
 	}
 	
 	public boolean connKutis() {
@@ -105,7 +70,7 @@ public class LoginBean {
         	return false;
     }
 	
-	public void setKutisScore() {
+	public ArrayList<String> setKutis() {
         String url = "http://kutis.kyonggi.ac.kr/webkutis/view/hs/wslogin/loginCheck.jsp";
         HttpClient httpclient = null;
         CookieStore httpCookieStore = new BasicCookieStore();
@@ -160,10 +125,7 @@ public class LoginBean {
         	}
         }
         
-        major = info.get(0);
-    	schoolID = info.get(1);
-    	name = info.get(2);
-    	type = info.get(3);
+        return info;
     }
 	
 	public boolean checkUser()

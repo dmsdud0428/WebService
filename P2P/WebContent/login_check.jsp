@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<jsp:useBean id="login" class="myinfo.LoginBean" scope="session" />
+<jsp:useBean id="login" class="myinfo.LoginBean" scope="request" />
 <jsp:setProperty name="login" property="*" />
+<jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
 
 <html>
 <head>
@@ -12,8 +13,8 @@
 </head>
 <body>
 	<%
-		if (login.connKutis()) { 
-			login.setKutisScore();
+		if (login.checkUser()) { 
+			info.setInfo(login.setKutis());
 			out.println("<script>location.href='main.jsp';</script>");
 		}
 		else { 
