@@ -28,6 +28,19 @@
 	-ms-box-pack:center;
 	-ms-box-align:center;
 }
+
+input[type=text], input[type=password] {
+	border: none;
+	width: 380px;
+	height: 31px;
+	background: transparent;
+	background-image: url('Resources/img/id_box.png');
+	padding: 0px 0px 0px 10px;
+}
+
+#login {
+	cursor: pointer;
+}
 </style>
 </head>
 <body bgcolor="#e0e3da">
@@ -41,13 +54,13 @@
 				<tr>
 					<td>
 						<div style="line-height:250%">
-							<input name=id size=40 placeholder="ID" style="border:none; width:380px; height:31px; background:transparent; background-image: url('Resources/img/id_box.png'); padding:0px 0px 0px 10px" />
+							<input type="text" name="id" size=40 placeholder="ID" />
 							<br>
-							<input name=pw size=40 placeholder="Password" style="border:none; width:380px; height:31px; background:transparent; background-image: url('Resources/img/id_box.png'); padding:0px 0px 0px 10px" />
+							<input type="password" name="pw" size=40 placeholder="Password" />
 						</div>
 					</td>
 					<td>
-						<img src="Resources/img/login_button.png" style="vertical-align:middle" />
+						<img src="Resources/img/login_button.png" id="login" style="vertical-align:middle" />
 					</td>
 				</tr>
 			</table>

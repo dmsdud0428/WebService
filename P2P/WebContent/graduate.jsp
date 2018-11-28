@@ -6,59 +6,8 @@
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/base.css" rel="stylesheet">
+<link href="Resources/css/graduate.css" rel="stylesheet">
 <title>졸업요건진단</title>
-<style>
-.pw {
-	margin-top: 30px;
-	background-image: url('Resources/img/curriculum.png');
-	background-repeat: no-repeat;
-	background-position: center center;
-	height: 50px;
-	display: flex;
-	align-items: center;
-    justify-content: center;
-}
-input[name=pwbox] {
-	border: none;
-	width: 130px;
-	height: 26px;
-	background-repeat: no-repeat;
-	background: #F9F9F9;
-	background-image: url('Resources/img/pw_box.png');
-	background-size: 140px 26px;
-	padding: 0px 0px 0px 10px;
-}
-
-.table {
-	display: flex;
-	align-items: center;
-    justify-content: center;
-}
-
-table.content {
-    border-collapse: separate;
-    border-spacing: 1px;
-    text-align: left;
-    line-height: 1.5;
-    border-top: 1px solid #ccc;
-    margin-top: 30px;
-}
-table.content th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #efefef;
-}
-table.content td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-}
-
-</style>
 </head>
 <body>
 	<div class="layout">

@@ -1,0 +1,118 @@
+#popup1, #popup2, #popup3, #popup4, #popup5, #popup6 {
+	position: fixed;
+	width: 372px;
+	height: 300px;
+	background: url('../img/plus_background.png');
+	top: 50%;
+	left: 50%;
+	margin-left: -186px;
+	margin-top: -150px;
+	padding: 15px 25px 15px 25px;
+	background-repeat: no-repeat;
+	z-index: 9999;
+}
+
+#mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:#000;
+  opacity:.8; 
+  filter:alpha(opacity:30);
+  z-index: 1;
+}
+
+.popup_content {
+	display: flex;
+	align-items: center;
+	padding-bottom: 10px;
+}
+
+input[name=checkbox] {
+	 vertical-align: middle;
+	 float: right;
+}
+
+input[name=closebox] {
+	width: 54px;
+	height: 26px;
+	background: url('../img/cancle_button.png');
+	border: none;
+}
+
+input[name=text] {
+	width: 214px;
+	height: 25px;
+	background: #F9F9F9;
+	background-image: url('../img/id_box.png');
+	background-size: 214px 25px;
+	background-repeat: no-repeat;
+	border: none;
+}
+.language, .award, .service{
+	width: 380px;
+	height: 200px;
+	margin-bottom: 15px;
+	flex-basis: 380px;
+	float: left;
+}
+
+.license, .career, .etc {
+	width: 380px;
+	height: 200px;
+	background-image: url('../img/english_table.png');
+	background-size: 380px 150px;
+	margin-bottom: 15px;
+	flex-basis: 380px;
+	float: right;
+}
+
+.table_title {
+	width:348px;
+	height: 50px;
+	background-image: url('../img/top_table.png');
+	background-size: 380px 50px;
+	float: left;
+	display: flex;
+	align-items: center;
+	padding : 0px 16px 0px 16px;
+}
+
+input[name=openbox] {
+	background: url('../img/plus.png');
+	width: 18px;
+	height: 19px;
+	border: none;
+}
+
+input[name=editbox] {
+	background: url('../img/modify_button.png');
+	width: 48px;
+	height: 22px;
+	border: none;
+}
+
+.pencil {
+	flex-basis: 21px;
+}
+.title_name {
+	flex-basis: 341px;
+	padding-left: 16px;
+}
+.plus {
+	flex-basis: 18px;
+}
+
+.table_content {
+	width: 355px;
+	height: 135px;
+	background-image: url('../img/body_table.png');
+	background-size: 380px 150px;
+	flex-basis: 380px;
+	float: left;
+	padding : 15px 0px 0px 25px;
+	overflow: auto;
+	line-height: 150%;
+}
