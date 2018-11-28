@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
- <script language="JavaScript"><!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script language="JavaScript">
  		function displayLineChart(){
 	 
 	 		var ctx=document.getElementById("average_chart").getContext("2d");
@@ -40,8 +40,7 @@
 	 		});
 	
  		}		
-
-		--></script>
+</script>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/bootstrap-iso.css" rel="stylesheet">
@@ -50,7 +49,7 @@
 <style>
 	#all_score_average_graph{
 		
-		background-image:url('./Resources/img/basic_table.png');
+		background-image:url('./Resources/img/mgraph_table.png');
 		width: 545px;
 		height:400px;
 		background-repeat: no-repeat;
@@ -60,7 +59,7 @@
 		
 	}
 	#new_information{
-		background-image:url('./Resources/img/basic_table.png');
+		background-image:url('./Resources/img/info_table.png');
 		width: 223px;
 		height:400px;
 		background-repeat: no-repeat;
@@ -69,12 +68,11 @@
 		
 	}
 	#interview_review_border{
-		background-image:url('./Resources/img/basic_table.png');
+		background-image: url('./Resources/img/board_table.png');
 		width: 785px;
-		height:350px;
+		height: 270px;
 		background-repeat: no-repeat;
-		background-size:785px 350px; 
-		margin-right:10px;
+		background-size: 785px 270px; 
 	}
 	
 	
@@ -105,7 +103,7 @@
 	#all_average_graph{
 		width: 500px;
 		height:300px;
-		padding:25px 10px 14px 25px;
+		padding:20px 10px 14px 25px;
 	
 	}
 	#information_view{
@@ -119,9 +117,10 @@
 	}
 	#interview_table{
 		width: 770px;
-		height:320px;
-		word-spacing:2px;
-		padding:5px 10px 5px 13px;
+		height: 320px;
+		word-spacing: 2px;
+		padding: 5px 0px 5px 0px;
+		margin-top: 5px;
 	}
 	
 	#logout {
@@ -131,7 +130,13 @@
 		cursor: pointer;
 	}
 	#_tr {
-	background-color: #ffffff;
+		background-color: #ffffff;
+	}
+
+	#_tr:hover {
+		background-color: rgba(150,134,204,0.5);
+		cursor: pointer;
+	}
 }
 	
 </style>
@@ -257,7 +262,7 @@
 								</div>
 								<div id="interview_table">			
 									<div class="bootstrap-iso">
-										<table class="table table-striped" style="text-align:center;height:280px;border:1px;solid:#dddddd;margin-bottom:10px 10px 5px 10px;font-size:15pt">
+										<table class="table table-striped" style="text-align:center;height:200px;border:1px;solid:#dddddd;margin:0px 0px 0px 10px;font-size:10pt">
 			 								<thead style="background-color:#f9f9f9">		 		
 										 		</thead>
 						 						<tbody>
@@ -265,9 +270,9 @@
 											 				for(int i = 0; i < 5; i++) {
 											 			%>
 						 							<tr id="_tr" onClick="location.href='review_view.jsp'">
-											 			<td style="weight:100px;height:50px;text-align:center;">test</td>
-											 			<td style="weight:100px;height:50px;text-align:center;">test</td>
-											 			<td style="weight:100px;height:50px;text-align:center;">test</td>
+											 			<td style="text-align:center;">test</td>
+											 			<td style="text-align:center;">test</td>
+											 			<td style="text-align:center;">test</td>
 										 				<%--
 										 				<td><%= list.get(i).getBbsID() %></td>
 										 				<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
