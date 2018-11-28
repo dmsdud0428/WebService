@@ -17,6 +17,7 @@
 			out.println("<script>location.href='main.jsp';</script>");
 		}
 		else { 
+			//session.invalidate();
 			out.println("<script>alert('로그인을 실패하였습니다.\\nKutis 아이디와 비밀번호를 확인해주세요.'); location.href='login.jsp';</script>");
 		}
 	%>
