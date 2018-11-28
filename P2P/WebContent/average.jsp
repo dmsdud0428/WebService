@@ -4,75 +4,79 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/base.css" rel="stylesheet">
-<title>Main</title>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<title>총 평점 평균</title>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
  <script language="JavaScript"><!--
- 		function displayLineChart(){
-			var data={
-				labels:["1학년 1학기","1학년 2학기","2학년 1학기","2학년 2학기","3학년 1학기","3학년 2학기","4학년 1학기","4학년 2학기"],
-				datasets:[
-					{	
-							label:"우리 학과 평균",
-							fillColor: "rgba(220,220,220,0)",
-							strockColor:"#fbc658",
-							pointColor:"#fbc658",
-							pointStrokeColor:"#fbc658",
-							pointHighlightFill:"#fbc658",
-							pointHighlightStroke:"#fbc658",
-							data:[3.5,3.2,2.24,2.6,2.7,2.4,2.3,2.6]
-													
-					},
-					{
-							label:"나의 총 평점 평균",
-							fillColor: "rgba(220,220,220,0)",
-							strockColor:"#51cacf",
-							pointColor:"#51cacf",
-							pointStrokeColor:"#51cacf",
-							pointHighlightFill:"#51cacf",
-							pointHighlightStroke:"#51cacf",
-							data:[1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4]
-					}
-												
-				]
-			};
-			var ctx=document.getElementById("average_chart").getContext("2d");
-			var options={};
-			var average_chart=new Chart(ctx).Line(data,options);
- 		}	
  
- 		function displayLineChart2(){
-			var data={
+ 		function displayLineChart(){
+	 
+			var ctx=document.getElementById("average_chart").getContext("2d");
+			var average_chart=new Chart(ctx, {
+				
+				type:'line',
+				data:{
 					labels:["1학년 1학기","1학년 2학기","2학년 1학기","2학년 2학기","3학년 1학기","3학년 2학기","4학년 1학기","4학년 2학기"],
-					datasets:[
-						{	
-								label:"우리 학과 평균",
-								fillColor: "rgba(220,220,220,0)",
-								strockColor:"#fbc658",
-								pointColor:"#fbc658",
-								pointStrokeColor:"#fbc658",
-								pointHighlightFill:"#fbc658",
-								pointHighlightStroke:"#fbc658",
-								data:[1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4]
-														
-						},
-						{
-								label:"나의 총 평점 평균",
-								fillColor: "rgba(220,220,220,0)",
-								strockColor:"#51cacf",
-								pointColor:"#51cacf",
-								pointStrokeColor:"#51cacf",
-								pointHighlightFill:"#51cacf",
-								pointHighlightStroke:"#51cacf",
-								data:[3.5,3.2,2.24,2.6,2.7,2.4,2.3,2.6]
-						}
-													
-					]
-				};
-				var ctx=document.getElementById("major_chart").getContext("2d");
-				var options={};
-				var major_chart=new Chart(ctx).Line(data,options);
+					datasets:[{
+						
+						label:"우리학과 평균",
+						backgroundColor:"#ffffff",
+						borderColor:"#fbc658",
+						fill:false,
+						pointBackgroundColor:"#fbc658",
+						pointBorderColor:"#fbc658",
+						pointRadius:5,
+						data:[3.5,3.2,2.24,2.6,2.7,2.4,2.3,2.6]
+						
+					},{
+						
+						label:"나의 총 평점 평균",
+						backgroundColor:"#ffffff",
+						borderColor:"#51cacf",
+						fill:false,			
+						pointBackgroundColor:"#51cacf",
+						pointBorderColor:"#51cacf",
+						pointRadius:5,
+						data:[1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4]	
+					}]	
+				}
+			});
 	
+		}		
+
+ 		function displayLineChart2(){
+ 			
+ 			var ctx=document.getElementById("major_chart").getContext("2d");
+			var major_chart=new Chart(ctx, {
+				
+				type:'line',
+				data:{
+					labels:["1학년 1학기","1학년 2학기","2학년 1학기","2학년 2학기","3학년 1학기","3학년 2학기","4학년 1학기","4학년 2학기"],
+					datasets:[{
+						
+						label:"우리학과 평균",
+						backgroundColor:"#ffffff",
+						borderColor:"#fbc658",
+						fill:false,
+						pointBackgroundColor:"#fbc658",
+						pointBorderColor:"#fbc658",
+						pointRadius:5,
+						data:[1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4]
+						
+					},{
+						
+						label:"나의 총 평점 평균",
+						backgroundColor:"#ffffff",
+						borderColor:"#51cacf",
+						fill:false,			
+						pointBackgroundColor:"#51cacf",
+						pointBorderColor:"#51cacf",
+						pointRadius:5,
+						data:[3.5,3.2,2.24,2.6,2.7,2.4,2.3,2.6]
+					}]	
+				}
+			});
  		}
 		--></script>
 <style>
@@ -87,14 +91,14 @@
 		
 	}
 	#average_graph{
-		width: 735px;
+		width: 740px;
 		height:240px;
-		padding:14px 10px 14px 10px;
+		padding:14px 10px 14px 18px;
 	}
 	#major_graph{
-		width: 735px;
+		width: 740px;
 		height:240px;
-		padding:14px 10px 14px 10px;
+		padding:14px 10px 14px 18px;
 	}
 	#goal_number{
 		width: 140px;
@@ -225,7 +229,7 @@
 									<img src="Resources/img/pencil.png" /> 총 평점 평균 그래프
 								</div>
 								<div id="average_graph">
-									<canvas id="average_chart" width="735px" height="220px"></canvas>
+									<canvas id="average_chart" width="740px" height="240px"></canvas>
 								</div>
 						</div>
 						<div id="major_average_graph_table">
@@ -233,7 +237,7 @@
 									<img src="Resources/img/pencil.png" /> 전공 평점 평균 그래프
 								</div>
 								<div id="major_graph">
-									<canvas id="major_chart" width="735px" height="220px"></canvas>
+									<canvas id="major_chart" width="740px" height="240px"></canvas>
 								</div>
 						</div>
 						<table>

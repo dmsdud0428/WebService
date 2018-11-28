@@ -4,45 +4,49 @@
 <!DOCTYPE html>
 <html>
 <head>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
  <script language="JavaScript"><!--
  		function displayLineChart(){
-			var data={
-				labels:["1-1","1-2","2- 1","2-2","3-1","3- 2","4-1","4-2"],
-				datasets:[
-					{	
-							label:"우리학과 평균",
-							fillColor: "rgba(220,220,220,0)",
-							strockColor:"#fbc658",
-							pointColor:"#fbc658",
-							pointStrokeColor:"#fbc658",
-							pointHighlightFill:"#fbc658",
-							pointHighlightStroke:"#fbc658",
-							data:[3.5,3.2,2.24,2.6,2.7,2.4,2.3,2.6]
-													
-					},
-					{
-							label:"나의 총 평점 평균",
-							fillColor: "rgba(220,220,220,0)",
-							strockColor:"#51cacf",
-							pointColor:"#51cacf",
-							pointStrokeColor:"#51cacf",
-							pointHighlightFill:"#51cacf",
-							pointHighlightStroke:"#51cacf",
-							data:[1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4]
-					}
-												
-				]
-			};
-			var ctx=document.getElementById("average_chart").getContext("2d");
-			var options={};
-			var average_chart=new Chart(ctx).Line(data,options);
- 		}	
- 
+	 
+	 		var ctx=document.getElementById("average_chart").getContext("2d");
+	 		var average_chart=new Chart(ctx, {
+	 			
+	 			type:'line',
+	 			data:{
+	 				labels:["1-1","1-2","2- 1","2-2","3-1","3- 2","4-1","4-2"],
+	 				datasets:[{
+	 					
+						label:"우리학과 평균",
+						backgroundColor:"#ffffff",
+						borderColor:"#fbc658",
+						fill:false,
+						pointBackgroundColor:"#fbc658",
+						pointBorderColor:"#fbc658",
+						pointRadius:5,
+						data:[3.5,3.2,2.24,2.6,2.7,2.4,2.3,2.6]
+						
+	 				},{
+	 					
+						label:"나의 총 평점 평균",
+						backgroundColor:"#ffffff",
+						borderColor:"#51cacf",
+						pointBackgroundColor:"#51cacf",
+						pointBorderColor:"#51cacf",
+						pointRadius:5,
+						fill:false,			
+						data:[1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4]	
+	 				}]	
+	 			}
+	 		});
+	
+ 		}		
+
 		--></script>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="Resources/img/p2p.ico">
+<link href="Resources/css/bootstrap-iso.css" rel="stylesheet">
 <link href="Resources/css/base.css" rel="stylesheet">
-<title>Main</title>
+<title>대시보드</title>
 <style>
 	#all_score_average_graph{
 		
@@ -99,9 +103,9 @@
 		overflow:hidden;
 	}
 	#all_average_graph{
-		width: 480px;
+		width: 500px;
 		height:300px;
-		padding:14px 10px 14px 18px;
+		padding:25px 10px 14px 25px;
 	
 	}
 	#information_view{
@@ -117,15 +121,19 @@
 		width: 770px;
 		height:320px;
 		word-spacing:2px;
-		padding:0px 10px 5px 13px;
+		padding:5px 10px 5px 13px;
 	}
 	
-#logout {
-	width: 60px;
-	height: auto;
-	vertical-align: middle;
-	cursor: pointer;
+	#logout {
+		width: 60px;
+		height: auto;
+		vertical-align: middle;
+		cursor: pointer;
+	}
+	#_tr {
+	background-color: #ffffff;
 }
+	
 </style>
 </head>
 <body onload="displayLineChart();">
@@ -185,7 +193,7 @@
 												<img src="Resources/img/pencil.png" /> 총 평점 평균 그래프
 										</div>
 										<div id="all_average_graph">
-												<canvas id="average_chart" width="500px" height="250px"></canvas>
+												<canvas id="average_chart" width="500px" height="300px"></canvas>
 										</div>
 									</div>
 								</td>
@@ -248,106 +256,31 @@
 									<img src="Resources/img/pencil.png" /> 면접/후기 게시판
 								</div>
 								<div id="interview_table">			
-									<table style="border-collapse:collapse;">
-										<tr style="height:41px;width:770px;border-bottom:1px solid #F2F2F2;">
-											<td style="width:470px;"> 	
-												&nbsp;· 톨비포탑 실사  
-											</td>
-											<td style="width:120px;">
-												정형돈
-											</td>
-											<td style="text-align:center;">
-												11:24
-											</td>										
-											<td style="text-align:right;width:70px;">
-												246
-											</td>										
-										</tr>
-										<tr style="height:41px;width:770px;border-bottom:1px solid #F2F2F2;">
-											<td style="width:470px;"> 	
-												&nbsp;· 오버워치 경기 일정  
-											</td>
-											<td style="width:120px;">
-												검정 팬더
-											</td>
-											<td style="text-align:center;">
-												09:44
-											</td>									
-											<td style="text-align:right;width:70px;">
-												412
-											</td>										
-										</tr>
-										<tr style="height:41px;width:770px;border-bottom:1px solid #F2F2F2;">
-											<td style="width:470px;"> 	
-												&nbsp;· 아 진짜 플미 너무 화나요  
-											</td>
-											<td  style="width:120px;">
-												쏘울
-											</td>
-											<td style="text-align:center;">
-												09:36
-											</td>										
-											<td style="text-align:right;width:70px;'">
-												396
-											</td>										
-										</tr>
-										<tr style="height:41px;width:770px;border-bottom:1px solid #F2F2F2;">
-											<td  style="width:470px;"> 	
-												&nbsp;· 자퇴각이다 
-											</td>
-											<td style="width:120px;">
-												누군가
-											</td>
-											<td style="text-align:center;">
-												1:39
-											</td>										
-											<td style="text-align:right;width:70px;">
-												250
-											</td>										
-										</tr>
-										<tr style="height:41px;width:770px;border-bottom:1px solid #F2F2F2;">
-											<td  style="width:470px;"> 	
-												&nbsp;· 너무 길어서 다른 제목 친다..  
-											</td>
-											<td style="width:120px;">
-												페이니
-											</td>
-											<td style="text-align:center;">
-												1:35
-											</td>										
-											<td style="text-align:right;width:70px;">
-												250
-											</td>										
-										</tr>
-										<tr style="height:41px;width:770px;border-bottom:1px solid #F2F2F2;">
-											<td  style="width:470px;"> 	
-												&nbsp;· 자고 싶다.   
-											</td>
-											<td style="width:120px;">
-												이쁜 아이
-											</td>
-											<td style="text-align:center;">
-												2018/11/19
-											</td>										
-											<td style="text-align:right;width:70px;">
-												550
-											</td>										
-										</tr>
-										<tr style="height:41px;width:770px;">
-											<td  style="width:470px;"> 	
-												&nbsp;· 피카츄 좋아
-											</td>
-											<td style="width:120px;">
-												전기맨
-											</td>
-											<td style="text-align:center;">
-												2018/11/19
-											</td>										
-											<td style="text-align:right;width:50px;">
-												412
-											</td>										
-										</tr>
-									</table>
+									<div class="bootstrap-iso">
+										<table class="table table-striped" style="text-align:center;height:280px;border:1px;solid:#dddddd;margin-bottom:10px 10px 5px 10px;font-size:15pt">
+			 								<thead style="background-color:#f9f9f9">		 		
+										 		</thead>
+						 						<tbody>
+											 			<%
+											 				for(int i = 0; i < 5; i++) {
+											 			%>
+						 							<tr id="_tr" onClick="location.href='review_view.jsp'">
+											 			<td style="weight:100px;height:50px;text-align:center;">test</td>
+											 			<td style="weight:100px;height:50px;text-align:center;">test</td>
+											 			<td style="weight:100px;height:50px;text-align:center;">test</td>
+										 				<%--
+										 				<td><%= list.get(i).getBbsID() %></td>
+										 				<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
+										 				<td><%= list.get(i).getUserID() %></td>
+										 				<td><%=list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11, 13) + "시" + list.get(i).getBbsDate().substring(14, 16) +  "분" %></td>
+										 				 --%>
+									 				</tr>
+									 					<%		
+										 					}
+										 				%>
+									 		</tbody>
+									 	</table>
+									</div>
 								</div>
 						</div>
 					</div>
