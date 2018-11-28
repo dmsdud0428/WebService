@@ -38,8 +38,16 @@ input[type=text], input[type=password] {
 	padding: 0px 0px 0px 10px;
 }
 
-#login {
-	cursor: pointer;
+input[type=submit] {
+	background-image: url('Resources/img/login_button.png');
+	width: 117px;
+	height: 115px;
+	vertical-align: middle;
+	background-position: 0px 0px;
+    background-repeat: no-repeat;
+    border: 0px;
+    outline: 0;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -50,20 +58,22 @@ input[type=text], input[type=password] {
 		<br>
 			<img src="Resources/img/line.png" />
 			<br>
-			<table style="width:540px">
-				<tr>
-					<td>
-						<div style="line-height:250%">
-							<input type="text" name="id" size=40 placeholder="ID" />
-							<br>
-							<input type="password" name="pw" size=40 placeholder="Password" />
-						</div>
-					</td>
-					<td>
-						<img src="Resources/img/login_button.png" id="login" style="vertical-align:middle" />
-					</td>
-				</tr>
-			</table>
+			<form method="post" action="login_check.jsp">
+				<table style="width:540px">
+					<tr>
+						<td>
+							<div style="line-height:250%">
+								<input type="text" name="userid" size=40 placeholder="ID" />
+								<br>
+								<input type="password" name="passwd" size=40 placeholder="Password" />
+							</div>
+						</td>
+						<td>
+							<input type="submit" name="Submit" value="" />
+						</td>
+					</tr>
+				</table>
+			</form>
 			<img src="Resources/img/line.png" />
 		<br>
 		<font color="#566270" style="font-size:10pt">© Kyonggi University, P2P</font>

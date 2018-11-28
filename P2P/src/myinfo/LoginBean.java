@@ -1,13 +1,12 @@
-package connection;
+package myinfo;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -20,15 +19,59 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
-public class connKutis {
-
-    public static void main(String[] args) {
-    	connKutis c = new connKutis();
-    	//c.conKutis();
-    	c.setKutisScore();
-    }
-    
-    public void conKutis() {
+public class LoginBean {
+	private String userid;
+	private String passwd;
+	private String major;
+	private String schoolID;
+	private String name;
+	private String type;
+	private String error;
+	
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	public String getSchoolID() {
+		return schoolID;
+	}
+	public void setSchoolID(String schoolID) {
+		this.schoolID = schoolID;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getError() {
+		return error;
+	}
+	public void setError(String error) {
+		this.error = error;
+	}
+	
+	public boolean connKutis() {
         String url = "http://kutis.kyonggi.ac.kr/webkutis/view/hs/wslogin/loginCheck.jsp";
         HttpClient httpclient = null;
         CookieStore httpCookieStore = new BasicCookieStore();
@@ -40,8 +83,8 @@ public class connKutis {
         List <NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("idChk2", "on"));
         /* input your KUTIS id & password */
-        nvps.add(new BasicNameValuePair("pw", "tet"));
-        nvps.add(new BasicNameValuePair("id", "tet"));
+        nvps.add(new BasicNameValuePair("pw", passwd));
+        nvps.add(new BasicNameValuePair("id", userid));
 
         // set the encoding
         httpPost.setEntity(new UrlEncodedFormEntity(nvps, Consts.UTF_8));
@@ -56,11 +99,10 @@ public class connKutis {
             e.printStackTrace();
         }
         
-        System.out.println(buf.indexOf("show_message"));
         if(buf.indexOf("show_message") == -1)
-        	System.out.println("로그인 성공!");
+        	return true;
         else
-        	System.out.println("로그인 실패!");
+        	return false;
     }
 	
 	public void setKutisScore() {
@@ -75,8 +117,8 @@ public class connKutis {
         List <NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("idChk2", "on"));
         /* input your KUTIS id & password */
-        nvps.add(new BasicNameValuePair("pw", "971007"));
-        nvps.add(new BasicNameValuePair("id", "201611800"));
+        nvps.add(new BasicNameValuePair("pw", passwd));
+        nvps.add(new BasicNameValuePair("id", userid));
 
         // set the encoding
         httpPost.setEntity(new UrlEncodedFormEntity(nvps, Consts.UTF_8));
@@ -118,9 +160,17 @@ public class connKutis {
         	}
         }
         
-        System.out.println(info.get(0));
-        System.out.println(info.get(1));
-        System.out.println(info.get(2));
-        System.out.println(info.get(3));
+        major = info.get(0);
+    	schoolID = info.get(1);
+    	name = info.get(2);
+    	type = info.get(3);
     }
+	
+	public boolean checkUser()
+	{
+		if(!connKutis())
+			return false;
+		
+		return true;
+	}
 }
