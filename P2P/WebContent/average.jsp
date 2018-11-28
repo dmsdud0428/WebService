@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
+<jsp:useBean id="score" class="myinfo.ScoreBean" scope="session" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,21 @@
  		function displayLineChart(){
 	 
 			var ctx=document.getElementById("average_chart").getContext("2d");
+			
+			var datas = new Array();
+	 		var index = 0;
+	 		
+	 		<%
+	 			float[] average_array = score.get_average();
+	 			float buf;
+	 			if(average_array.length == 0) { %>
+	 				datas = [1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4];
+	 		<%	}
+	 			for(int i = 0; i < average_array.length; i++) {
+		 			buf = average_array[i]; %>
+	 				datas[index++] = <%= buf %>;
+	 		<%	} %>
+	 		
 			var average_chart=new Chart(ctx, {
 				
 				type:'line',
@@ -27,7 +43,7 @@
 						pointBackgroundColor:"#fbc658",
 						pointBorderColor:"#fbc658",
 						pointRadius:5,
-						data:[3.5,3.2,2.24,2.6,2.7,2.4,2.3,2.6]
+						data:[2.92,2.92,2.92,2.92,2.92,2.92,2.92,2.92]
 						
 					},{
 						
@@ -38,7 +54,7 @@
 						pointBackgroundColor:"#51cacf",
 						pointBorderColor:"#51cacf",
 						pointRadius:5,
-						data:[1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4]	
+						data:datas
 					}]	
 				}
 			});
@@ -54,17 +70,6 @@
 				data:{
 					labels:["1학년 1학기","1학년 2학기","2학년 1학기","2학년 2학기","3학년 1학기","3학년 2학기","4학년 1학기","4학년 2학기"],
 					datasets:[{
-						
-						label:"우리학과 평균",
-						backgroundColor:"#ffffff",
-						borderColor:"#fbc658",
-						fill:false,
-						pointBackgroundColor:"#fbc658",
-						pointBorderColor:"#fbc658",
-						pointRadius:5,
-						data:[1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4]
-						
-					},{
 						
 						label:"나의 총 평점 평균",
 						backgroundColor:"#ffffff",

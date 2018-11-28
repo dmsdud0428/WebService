@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 
 <jsp:useBean id="login" class="myinfo.LoginBean" scope="request" />
 <jsp:setProperty name="login" property="*" />
 <jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
+<jsp:useBean id="score" class="myinfo.ScoreBean" scope="session" />
 
 <html>
 <head>
@@ -14,7 +16,15 @@
 <body>
 	<%
 		if (login.checkUser()) { 
-			info.setInfo(login.setKutis());
+			ArrayList<String> userInfo = new ArrayList<>();
+			ArrayList<String> buf = new ArrayList<>();
+			buf = login.setKutis();
+			for(int i = 0; i < 4; i++) {
+				userInfo.add(buf.get(0));
+				buf.remove(0);
+			}
+			info.setInfo(userInfo);
+			score.setScore(buf);
 			out.println("<script>location.href='main.jsp';</script>");
 		}
 		else { 

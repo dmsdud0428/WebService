@@ -112,13 +112,29 @@ public class LoginBean {
         
         String[] res = buf.split("\\n");
         ArrayList<String> info = new ArrayList<>();
-        for(int i = 0; i < res.length; i++) {
-        	if(res[i].indexOf("<section id=\"memInfo\">") != -1) {
-        		while(res[i].indexOf("</dl>") == -1) {
+        int i;
+        for (i = 0; i < res.length; i++) {
+        	if (res[i].indexOf("<section id=\"memInfo\">") != -1) {
+        		while (res[i].indexOf("</dl>") == -1) {
         			int dd = res[i].indexOf("<dd>: ");
-        			if(dd != -1) {
+        			if (dd != -1) {
         				info.add(res[i].substring(dd + 6, res[i].indexOf("</dd>")));
         			}
+        			i++;
+        		}
+        		break;
+        	}
+        }
+
+        for (; i < res.length; i++) {
+        	if (res[i].indexOf("<table class=\"list06\">") != -1) {
+        		while (res[i].indexOf("</thead>") == -1) {
+        			if (res[i].indexOf("<td") != -1 && res[i].indexOf("bgcolor='#727272'") == -1) {
+        				if(res[i].indexOf("<font") == -1)
+        					info.add(res[i].substring(res[i].indexOf(">") + 1, res[i].indexOf("</td>")));
+        				else
+        					info.add(res[i].substring(res[i].indexOf("'#004080'>") + 10, res[i].indexOf("<br>")));
+                	}
         			i++;
         		}
         		break;
