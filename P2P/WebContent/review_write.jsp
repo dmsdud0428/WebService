@@ -48,7 +48,7 @@
 	resize: none;
 }
 
-.buttons img {
+.buttons img, input[type=Image] {
 	height: 22px;
 	width: auto;
 }
@@ -70,7 +70,7 @@
 						<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
 						<a href="information.jsp">·&nbsp;&nbsp;취업신상정보</a><br>
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
-						<a href="review.jsp">·&nbsp;&nbsp;면접/입사후기</a>
+						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
 					</div>
 				</div>
 				<div id="link">
@@ -103,14 +103,13 @@
 						</h1>
 					</div>
 					<div class="article" style="text-align:center">
-						<form action="/P2P/Review" method="post">
 							<div class="view_table">
 								<table>
 									<tr style="border-bottom: 1px solid #dddddd;">
 										<td class="td_head">응시년도</td>
 										<td class="td_body">
 											<select name="year">
-												<% for(int i = 1980; i <= 2018; i++) { %>
+												<% for(int i = 2018; i >= 1980; i--) { %>
 												<option value="<%=i%>"><%= i %></option>
 												<% } %>
 											</select>
@@ -131,8 +130,8 @@
 								</table>
 							</div>
 							<div class="buttons" style="height:22.28px;float:right;margin-bottom:80px">
-								<input type="Image" src="Resources/img/check_button.png" name="Submit" value="Submit"/>
-								<a href="review.jsp"><img src="Resources/img/cancle_button.png"/></a>
+								<img src="Resources/img/check_button.png" onclick="move()" style="cursor:pointer" />
+								<a href="Review"><img src="Resources/img/cancle_button.png"/></a>
 							</div>
 						</form>
 					</div>
@@ -140,5 +139,52 @@
 			</div>
 		</div>
 </div>
+<% session.setAttribute("id", info.getSchoolID()); %>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	function move() {
+		var form = document.createElement("form");
+        form.setAttribute("charset", "UTF-8");
+        form.setAttribute("method", "Post");
+        form.setAttribute("action", "Review");
+        var year = $('select[name=year]').val();
+		var enterprise = $('input[name=enterprise]').val();
+		var spec = $('input[name=spec]').val();
+		var content = $('textarea[name=content]').val();
+		
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "action");
+        hiddenField.setAttribute("value", "add");
+        form.appendChild(hiddenField);
+        
+        var input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'year';
+		input.value = year;
+		form.appendChild(input);
+		
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'enterprise';
+		input.value = enterprise;
+		form.appendChild(input);
+		
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'spec';
+		input.value = spec;
+		form.appendChild(input);
+		
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'content';
+		input.value = content;
+		form.appendChild(input);
+		
+        document.body.appendChild(form);
+        form.submit();
+	}
+</script>
 </body>
 </html>

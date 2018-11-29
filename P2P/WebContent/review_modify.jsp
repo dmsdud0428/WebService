@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
+<jsp:useBean id="review" class="myinfo.ReviewBean" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +71,7 @@
 						<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
 						<a href="information.jsp">·&nbsp;&nbsp;취업신상정보</a><br>
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
-						<a href="review.jsp">·&nbsp;&nbsp;면접/입사후기</a>
+						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
 					</div>
 				</div>
 				<div id="link">
@@ -108,35 +109,87 @@
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">응시년도</td>
 									<td class="td_body">
-										<select>
-											<% for(int i = 1980; i <= 2018; i++) { %>
-											<option><%= i %></option>
+										<select name="year">
+											<% for(int i = 2018; i >= 1980; i--) { %>
+												<option value="<%=i%>"><%= i %></option>
 											<% } %>
 										</select>
 									</td>
 								</tr>
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">기업</td>
-									<td class="td_body"><input type="text" name="enterprise" /></td>
+									<td class="td_body"><input type="text" name="enterprise" value="<%=review.getEnterprise() %>" /></td>
 								</tr>
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">스펙</td>
-									<td class="td_body"><input type="text" name="spec" /></td>
+									<td class="td_body"><input type="text" name="spec" value="<%=review.getSpec() %>" /></td>
 								</tr>
 								<tr>
 									<td class="td_head">후기</td>
-									<td class="td_body" valign="top" style="height:400px"><textarea name="content"></textarea></td>
+									<td class="td_body" valign="top" style="height:400px"><textarea name="content"><%=review.getContent() %></textarea></td>
 								</tr>
 							</table>
 						</div>
 						<div class="buttons" style="height:22.28px;float:right;margin-bottom:80px">
-							<img src="Resources/img/modify_button.png"/>
-							<a href="review.jsp"><img src="Resources/img/cancle_button.png"/></a>
+							<img src="Resources/img/modify_button.png" onclick="move()" style="cursor:pointer" />
+							<a href="Review"><img src="Resources/img/cancle_button.png"/></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 </div>
+<% session.setAttribute("id", info.getSchoolID()); %>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	function move() {
+		var form = document.createElement("form");
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", "Review");
+		var year = $('select[name=year]').val();
+		var enterprise = $('input[name=enterprise]').val();
+		var spec = $('input[name=spec]').val();
+		var content = $('textarea[name=content]').val();
+		
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "num");
+		hiddenField.setAttribute("value", <%=review.getNum() %>);
+		form.appendChild(hiddenField);
+		hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "action");
+		hiddenField.setAttribute("value", "modify_check");
+		form.appendChild(hiddenField);
+		
+		var input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'year';
+		input.value = year;
+		form.appendChild(input);
+		
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'enterprise';
+		input.value = enterprise;
+		form.appendChild(input);
+		
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'spec';
+		input.value = spec;
+		form.appendChild(input);
+		
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'content';
+		input.value = content;
+		form.appendChild(input);
+		
+		document.body.appendChild(form);
+		form.submit();
+	}
+</script>
 </body>
 </html>
