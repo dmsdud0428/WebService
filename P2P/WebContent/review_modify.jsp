@@ -103,36 +103,38 @@
 						</h1>
 					</div>
 					<div class="article" style="text-align:center">
-						<div class="view_table">
-							<table>
-								<tr style="border-bottom: 1px solid #dddddd;">
-									<td class="td_head">응시년도</td>
-									<td class="td_body">
-										<select>
-											<% for(int i = 1980; i <= 2018; i++) { %>
-											<option><%= i %></option>
-											<% } %>
-										</select>
-									</td>
-								</tr>
-								<tr style="border-bottom: 1px solid #dddddd;">
-									<td class="td_head">기업</td>
-									<td class="td_body"><input type="text" name="enterprise" /></td>
-								</tr>
-								<tr style="border-bottom: 1px solid #dddddd;">
-									<td class="td_head">스펙</td>
-									<td class="td_body"><input type="text" name="spec" /></td>
-								</tr>
-								<tr>
-									<td class="td_head">후기</td>
-									<td class="td_body" valign="top" style="height:400px"><textarea name="content"></textarea></td>
-								</tr>
-							</table>
-						</div>
-						<div class="buttons" style="height:22.28px;float:right;margin-bottom:80px">
-							<img src="Resources/img/modify_button.png"/>
-							<a href="review.jsp"><img src="Resources/img/cancle_button.png"/></a>
-						</div>
+						<form action="/P2P/Review" method="post">
+							<div class="view_table">
+								<table>
+									<tr style="border-bottom: 1px solid #dddddd;">
+										<td class="td_head">응시년도</td>
+										<td class="td_body">
+											<select name="year">
+												<% for(int i = 1980; i <= 2018; i++) { %>
+												<option value="<%=i%>"><%= i %></option>
+												<% } %>
+											</select>
+										</td>
+									</tr>
+									<tr style="border-bottom: 1px solid #dddddd;">
+										<td class="td_head">기업</td>
+										<td class="td_body"><input type="text" name="enterprise" /></td>
+									</tr>
+									<tr style="border-bottom: 1px solid #dddddd;">
+										<td class="td_head">스펙</td>
+										<td class="td_body"><input type="text" name="spec" /></td>
+									</tr>
+									<tr>
+										<td class="td_head">후기</td>
+										<td class="td_body" valign="top" style="height:400px"><textarea name="content"></textarea></td>
+									</tr>
+								</table>
+							</div>
+							<div class="buttons" style="height:22.28px;float:right;margin-bottom:80px">
+								<img src="Resources/img/modify_button.png"/>
+								<a href="review.jsp"><img src="Resources/img/cancle_button.png"/></a>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
