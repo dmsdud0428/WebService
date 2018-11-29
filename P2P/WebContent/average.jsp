@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
+<jsp:useBean id="score" class="myinfo.ScoreBean" scope="session" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +10,25 @@
 <link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/base.css" rel="stylesheet">
 <title>총 평점 평균</title>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
- <script language="JavaScript"><!--
- 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script language="JavaScript">
  		function displayLineChart(){
 	 
 			var ctx=document.getElementById("average_chart").getContext("2d");
+			
+			var datas = new Array();
+	 		var index = 0;
+	 		
+	 		<%
+	 			ArrayList<Float> average_array = score.getAverage();
+	 			float buf;
+	 			if(average_array.size() == 0) { %>
+	 				datas = [1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4];
+	 		<%	}
+	 			for(int i = 0; i < average_array.size(); i++) { %>
+	 				datas[index++] = <%= average_array.get(i) %>;
+	 		<%	} %>
+	 		
 			var average_chart=new Chart(ctx, {
 				
 				type:'line',
@@ -27,7 +43,7 @@
 						pointBackgroundColor:"#fbc658",
 						pointBorderColor:"#fbc658",
 						pointRadius:5,
-						data:[3.5,3.2,2.24,2.6,2.7,2.4,2.3,2.6]
+						data:[2.92,2.92,2.92,2.92,2.92,2.92,2.92,2.92]
 						
 					},{
 						
@@ -38,7 +54,7 @@
 						pointBackgroundColor:"#51cacf",
 						pointBorderColor:"#51cacf",
 						pointRadius:5,
-						data:[1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4]	
+						data:datas
 					}]	
 				}
 			});
@@ -55,17 +71,6 @@
 					labels:["1학년 1학기","1학년 2학기","2학년 1학기","2학년 2학기","3학년 1학기","3학년 2학기","4학년 1학기","4학년 2학기"],
 					datasets:[{
 						
-						label:"우리학과 평균",
-						backgroundColor:"#ffffff",
-						borderColor:"#fbc658",
-						fill:false,
-						pointBackgroundColor:"#fbc658",
-						pointBorderColor:"#fbc658",
-						pointRadius:5,
-						data:[1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4]
-						
-					},{
-						
 						label:"나의 총 평점 평균",
 						backgroundColor:"#ffffff",
 						borderColor:"#51cacf",
@@ -78,7 +83,7 @@
 				}
 			});
  		}
-		--></script>
+</script>
 <style>
 	#all_average_graph_table{
 		
@@ -208,11 +213,11 @@
 			<div class="right-box" style="line-height:50%">
 				<div id="header" style="width:800px;text-align:right;">
 					<div class="head_text" style="margin-top:30px">
-						<b>· 소속 : </b>컴퓨터과학과&nbsp;&nbsp;&nbsp;
-						<b>· 학번 : </b>201800000&nbsp;&nbsp;&nbsp;
-						<b>· 사용자 : </b>ㅇㅇㅇ&nbsp;&nbsp;&nbsp;
-						<b>· 구분 : </b>학생&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<img src="Resources/img/logout_button.png" style="width:60px;height:auto;vertical-align:middle"/>
+						<b>· 소속 : </b><jsp:getProperty property="major" name="info" />&nbsp;&nbsp;&nbsp;
+						<b>· 학번 : </b><jsp:getProperty property="schoolID" name="info" />&nbsp;&nbsp;&nbsp;
+						<b>· 사용자 : </b><jsp:getProperty property="name" name="info" />&nbsp;&nbsp;&nbsp;
+						<b>· 구분 : </b><jsp:getProperty property="type" name="info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="logout.jsp"><img id="logout" src="Resources/img/logout_button.png"/></a>
 					</div>
 				</div>
 				<img src="Resources/img/line.png" style="width:100%;height:4px" />

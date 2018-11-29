@@ -22,11 +22,6 @@ import org.apache.http.util.EntityUtils;
 public class LoginBean {
 	private String userid;
 	private String passwd;
-	private String major;
-	private String schoolID;
-	private String name;
-	private String type;
-	private String error;
 	
 	public String getUserid() {
 		return userid;
@@ -39,36 +34,6 @@ public class LoginBean {
 	}
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
-	}
-	public String getMajor() {
-		return major;
-	}
-	public void setMajor(String major) {
-		this.major = major;
-	}
-	public String getSchoolID() {
-		return schoolID;
-	}
-	public void setSchoolID(String schoolID) {
-		this.schoolID = schoolID;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getError() {
-		return error;
-	}
-	public void setError(String error) {
-		this.error = error;
 	}
 	
 	public boolean connKutis() {
@@ -105,7 +70,7 @@ public class LoginBean {
         	return false;
     }
 	
-	public void setKutisScore() {
+	public ArrayList<String> setKutis() {
         String url = "http://kutis.kyonggi.ac.kr/webkutis/view/hs/wslogin/loginCheck.jsp";
         HttpClient httpclient = null;
         CookieStore httpCookieStore = new BasicCookieStore();
@@ -147,11 +112,12 @@ public class LoginBean {
         
         String[] res = buf.split("\\n");
         ArrayList<String> info = new ArrayList<>();
-        for(int i = 0; i < res.length; i++) {
-        	if(res[i].indexOf("<section id=\"memInfo\">") != -1) {
-        		while(res[i].indexOf("</dl>") == -1) {
+        int i;
+        for (i = 0; i < res.length; i++) {
+        	if (res[i].indexOf("<section id=\"memInfo\">") != -1) {
+        		while (res[i].indexOf("</dl>") == -1) {
         			int dd = res[i].indexOf("<dd>: ");
-        			if(dd != -1) {
+        			if (dd != -1) {
         				info.add(res[i].substring(dd + 6, res[i].indexOf("</dd>")));
         			}
         			i++;
@@ -159,11 +125,23 @@ public class LoginBean {
         		break;
         	}
         }
+
+        for (; i < res.length; i++) {
+        	if (res[i].indexOf("<table class=\"list06\">") != -1) {
+        		while (res[i].indexOf("</thead>") == -1) {
+        			if (res[i].indexOf("<td") != -1 && res[i].indexOf("bgcolor='#727272'") == -1) {
+        				if(res[i].indexOf("<font") == -1)
+        					info.add(res[i].substring(res[i].indexOf(">") + 1, res[i].indexOf("</td>")));
+        				else
+        					info.add(res[i].substring(res[i].indexOf("'#004080'>") + 10, res[i].indexOf("<br>")));
+                	}
+        			i++;
+        		}
+        		break;
+        	}
+        }
         
-        major = info.get(0);
-    	schoolID = info.get(1);
-    	name = info.get(2);
-    	type = info.get(3);
+        return info;
     }
 	
 	public boolean checkUser()

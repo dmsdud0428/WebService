@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,11 +102,11 @@
 			<div class="right-box" style="line-height:50%">
 				<div id="header" style="width:800px;text-align:right">
 					<div class="head_text" style="margin-top:30px">
-						<b>· 소속 : </b>컴퓨터과학과&nbsp;&nbsp;&nbsp;
-						<b>· 학번 : </b>201800000&nbsp;&nbsp;&nbsp;
-						<b>· 사용자 : </b>ㅇㅇㅇ&nbsp;&nbsp;&nbsp;
-						<b>· 구분 : </b>학생&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<img src="Resources/img/logout_button.png" style="width:60px;height:auto;vertical-align:middle"/>
+						<b>· 소속 : </b><jsp:getProperty property="major" name="info" />&nbsp;&nbsp;&nbsp;
+						<b>· 학번 : </b><jsp:getProperty property="schoolID" name="info" />&nbsp;&nbsp;&nbsp;
+						<b>· 사용자 : </b><jsp:getProperty property="name" name="info" />&nbsp;&nbsp;&nbsp;
+						<b>· 구분 : </b><jsp:getProperty property="type" name="info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="logout.jsp"><img id="logout" src="Resources/img/logout_button.png"/></a>
 					</div>
 				</div>
 				<img src="Resources/img/line.png" style="width:100%;height:4px" />

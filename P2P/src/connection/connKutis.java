@@ -75,8 +75,8 @@ public class connKutis {
         List <NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("idChk2", "on"));
         /* input your KUTIS id & password */
-        nvps.add(new BasicNameValuePair("pw", "971007"));
-        nvps.add(new BasicNameValuePair("id", "201611800"));
+        nvps.add(new BasicNameValuePair("pw", "test"));
+        nvps.add(new BasicNameValuePair("id", "test"));
 
         // set the encoding
         httpPost.setEntity(new UrlEncodedFormEntity(nvps, Consts.UTF_8));
@@ -104,12 +104,19 @@ public class connKutis {
 		}
         
         String[] res = buf.split("\\n");
+        
+        /*
+        for(String s : res)
+        	System.out.println(s);
+        */
+        
         ArrayList<String> info = new ArrayList<>();
-        for(int i = 0; i < res.length; i++) {
-        	if(res[i].indexOf("<section id=\"memInfo\">") != -1) {
-        		while(res[i].indexOf("</dl>") == -1) {
+        int i;
+        for (i = 0; i < res.length; i++) {
+        	if (res[i].indexOf("<section id=\"memInfo\">") != -1) {
+        		while (res[i].indexOf("</dl>") == -1) {
         			int dd = res[i].indexOf("<dd>: ");
-        			if(dd != -1) {
+        			if (dd != -1) {
         				info.add(res[i].substring(dd + 6, res[i].indexOf("</dd>")));
         			}
         			i++;
@@ -118,9 +125,31 @@ public class connKutis {
         	}
         }
         
+        /*
         System.out.println(info.get(0));
         System.out.println(info.get(1));
         System.out.println(info.get(2));
         System.out.println(info.get(3));
+        */
+        
+        
+        for (; i < res.length; i++) {
+        	if (res[i].indexOf("<table class=\"list06\">") != -1) {
+        		while (res[i].indexOf("</thead>") == -1) {
+        			if (res[i].indexOf("<td") != -1 && res[i].indexOf("bgcolor='#727272'") == -1) {
+        				if(res[i].indexOf("<font") == -1)
+        					info.add(res[i].substring(res[i].indexOf(">") + 1, res[i].indexOf("</td>")));
+        				else
+        					info.add(res[i].substring(res[i].indexOf("'#004080'>") + 10, res[i].indexOf("<br>")));
+                	}
+        			i++;
+        		}
+        		break;
+        	}
+        }
+        
+        
+        for (String s : info)
+        	System.out.println(s);
     }
 }
