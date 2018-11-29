@@ -1,38 +1,10 @@
-create table member (
-	id char(9) primary key,
-	name varchar(10)
-);
-
-create table year16 (
-	id char(9) primary key,
-	total int,
-	major int,
-	culture int,
-	major_e int,
-	culture_e int,
-	msc int,
-	design int,
-	culture_p int,
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-create table temp (
-	num int auto_increment primary key,
-	id char(9),
-	subject varchar(100),
-	kind varchar(10),
-	grade int,
-	design int,
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
 
 create table language (
 	id char(9) primary key,
 	title varchar(100),
 	rating varchar(1),
 	score double,
-	day date,
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
+	day date
 );
 
 create table license (
@@ -40,8 +12,7 @@ create table license (
 	title varchar(100),
 	organization varchar(100),
 	rating varchar(1),
-	day date,
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
+	day date
 );
 
 create table award (
@@ -49,8 +20,7 @@ create table award (
 	title varchar(100),
 	organization varchar(100),
 	rating varchar(1),
-	day date,
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
+	day date
 );
 
 create table career (
@@ -59,8 +29,7 @@ create table career (
 	compandy varchar(100),
 	business varchar(100),
 	s_day date,
-	e_day date,
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
+	e_day date
 );
 
 create table service (
@@ -69,8 +38,7 @@ create table service (
 	organization varchar(100),
 	kind varchar(100),
 	s_day date,
-	e_day date,
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
+	e_day date
 );
 
 create table etc (
@@ -78,48 +46,34 @@ create table etc (
 	title varchar(100),
 	organization varchar(100),
 	s_day date,
-	e_day date,
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-create table grade (
-	id char(9) primary key,
-	one_f double,
-	one_s double,
-	two_f double,
-	two_s double,
-	three_f double,
-	three_s double,
-	four_f double,
-	four_s double,
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
+	e_day date
 );
 
 create table introduction (
-	id char(9) primary key,
+	num int auto_increment primary key,
+	id char(9),
 	state varchar(10),
 	day date,
 	company varchar(100),
 	business varchar(100),
 	kind varchar(10),
 	question_1 varchar(500),
-	answer_1 varchar(5000),
+	answer_1 varchar(3000),
 	question_2 varchar(500),
-	answer_2 varchar(5000),
+	answer_2 varchar(3000),
 	question_3 varchar(500),
-	answer_3 varchar(5000),
+	answer_3 varchar(3000),
 	question_4 varchar(500),
-	answer_4 varchar(5000),
+	answer_4 varchar(3000),
 	question_5 varchar(500),
-	answer_5 varchar(5000),
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
+	answer_5 varchar(3000)
 );
 
 create table interview (
-	id char(9) primary key,
+	num int auto_increment primary key,
+	id char(9),
 	year char(4),
 	company varchar(100),
 	spec varchar(100),
-	review varchar(5000),
-	FOREIGN KEY(id) REFERENCES member(id) ON UPDATE CASCADE ON DELETE CASCADE
+	review varchar(5000)
 );
