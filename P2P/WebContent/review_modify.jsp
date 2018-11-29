@@ -91,7 +91,7 @@
 						<b>· 학번 : </b><jsp:getProperty property="schoolID" name="info" />&nbsp;&nbsp;&nbsp;
 						<b>· 사용자 : </b><jsp:getProperty property="name" name="info" />&nbsp;&nbsp;&nbsp;
 						<b>· 구분 : </b><jsp:getProperty property="type" name="info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<img src="Resources/img/logout_button.png" style="width:60px;height:auto;vertical-align:middle"/>
+						<a href="logout.jsp"><img id="logout" src="Resources/img/logout_button.png"/></a>
 					</div>
 				</div>
 				<img src="Resources/img/line.png" style="width:100%;height:4px" />

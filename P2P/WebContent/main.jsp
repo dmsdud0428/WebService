@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
 <jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
 <jsp:useBean id="score" class="myinfo.ScoreBean" scope="session" />
 <!DOCTYPE html>
@@ -15,14 +16,13 @@
 	 		var index = 0;
 	 		
 	 		<%
-	 			float[] average_array = score.get_average();
+	 			ArrayList<Float> average_array = score.getAverage();
 	 			float buf;
-	 			if(average_array.length == 0) { %>
+	 			if(average_array.size() == 0) { %>
 	 				datas = [1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4];
 	 		<%	}
-	 			for(int i = 0; i < average_array.length; i++) {
-		 			buf = average_array[i]; %>
-	 				datas[index++] = <%= buf %>;
+	 			for(int i = 0; i < average_array.size(); i++) { %>
+	 				datas[index++] = <%= average_array.get(i) %>;
 	 		<%	} %>
 	 		
 	 		var average_chart=new Chart(ctx, {
@@ -139,19 +139,18 @@
 		padding: 5px 0px 5px 0px;
 		margin-top: 5px;
 	}
-	
-	#logout {
-		width: 60px;
-		height: auto;
-		vertical-align: middle;
-		cursor: pointer;
-	}
 	#_tr {
 		background-color: #ffffff;
 	}
 
 	#_tr:hover {
 		background-color: rgba(150,134,204,0.5);
+		cursor: pointer;
+	}
+	#logout {
+		width: 60px;
+		height: auto;
+		vertical-align: middle;
 		cursor: pointer;
 	}
 }

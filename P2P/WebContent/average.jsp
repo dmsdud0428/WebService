@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
 <jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
 <jsp:useBean id="score" class="myinfo.ScoreBean" scope="session" />
 <!DOCTYPE html>
@@ -19,14 +20,13 @@
 	 		var index = 0;
 	 		
 	 		<%
-	 			float[] average_array = score.get_average();
+	 			ArrayList<Float> average_array = score.getAverage();
 	 			float buf;
-	 			if(average_array.length == 0) { %>
+	 			if(average_array.size() == 0) { %>
 	 				datas = [1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4];
 	 		<%	}
-	 			for(int i = 0; i < average_array.length; i++) {
-		 			buf = average_array[i]; %>
-	 				datas[index++] = <%= buf %>;
+	 			for(int i = 0; i < average_array.size(); i++) { %>
+	 				datas[index++] = <%= average_array.get(i) %>;
 	 		<%	} %>
 	 		
 			var average_chart=new Chart(ctx, {
@@ -217,7 +217,7 @@
 						<b>· 학번 : </b><jsp:getProperty property="schoolID" name="info" />&nbsp;&nbsp;&nbsp;
 						<b>· 사용자 : </b><jsp:getProperty property="name" name="info" />&nbsp;&nbsp;&nbsp;
 						<b>· 구분 : </b><jsp:getProperty property="type" name="info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<img src="Resources/img/logout_button.png" style="width:60px;height:auto;vertical-align:middle"/>
+						<a href="logout.jsp"><img id="logout" src="Resources/img/logout_button.png"/></a>
 					</div>
 				</div>
 				<img src="Resources/img/line.png" style="width:100%;height:4px" />

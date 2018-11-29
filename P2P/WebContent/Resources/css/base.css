@@ -99,3 +99,10 @@ body {
 	color: #000000;
 	text-decoration: none;
 }
+
+#logout {
+		width: 60px;
+		height: auto;
+		vertical-align: middle;
+		cursor: pointer;
+}

@@ -10,30 +10,15 @@ public class ScoreBean {
 	private int design_score;			// 설계학점
 	private String grade;				// 등급
 	private float average;				// 평점평균
-	Score[] score_array;
-	float[] average_array;
+	ArrayList<Score> score_array = new ArrayList<>();
+	ArrayList<Float> average_array = new ArrayList<>();
 	
 	
 	public String getSemester() {
 		return semester;
 	}
 	
-	public void setScore(ArrayList<String> buf) {
-		int score_cnt = 0;
-		int average_cnt = 0;
-		
-		for(String s : buf) {
-			if(s.indexOf("확인용") != -1)
-				average_cnt++;
-			else if(s.indexOf("&nbsp;") != -1)
-				score_cnt++;
-		}
-		
-		score_array = new Score[score_cnt];
-		average_array = new float[average_cnt];
-		score_cnt = 0;
-		average_cnt = 0;
-		
+	public void setScore(ArrayList<String> buf) {	
 		for(int i = 0; i < buf.size(); i++) {
 			if(buf.get(i).indexOf("학기") != -1) {
 				semester = buf.get(i);
@@ -41,7 +26,7 @@ public class ScoreBean {
 			}
 			else if(buf.get(i).indexOf("평점평균") != -1) {
 				average = Float.parseFloat(buf.get(i).substring(buf.get(i).indexOf("평점평균") + 17));
-				average_array[average_cnt++] = average;
+				average_array.add(average);
 				continue;
 			}
 			subject = buf.get(i + 1);
@@ -52,12 +37,16 @@ public class ScoreBean {
 			else
 				design_score = Integer.parseInt(buf.get(i + 5));
 			grade = buf.get(i + 6).substring(6);
-			score_array[score_cnt++] = new Score(semester, subject, complete_type, score, design_score, grade);
+			score_array.add(new Score(semester, subject, complete_type, score, design_score, grade));
 			i += 7;
 		}
 	}
 	
-	public float[] get_average() {
+	public ArrayList<Score> get_Score() {
+		return score_array;
+	}
+	
+	public ArrayList<Float> getAverage() {
 		return average_array;
 	}
 }
