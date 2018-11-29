@@ -33,6 +33,7 @@
 input[name=checkbox] {
 	 vertical-align: middle;
 	 float: right;
+	 cursor: pointer;
 }
 
 input[name=closebox] {
@@ -40,6 +41,7 @@ input[name=closebox] {
 	height: 26px;
 	background: url('../img/cancle_button.png');
 	border: none;
+	cursor: pointer;
 }
 
 input[name=text] {
@@ -62,8 +64,6 @@ input[name=text] {
 .license, .career, .etc {
 	width: 380px;
 	height: 200px;
-	background-image: url('../img/english_table.png');
-	background-size: 380px 150px;
 	margin-bottom: 15px;
 	flex-basis: 380px;
 	float: right;
@@ -85,6 +85,7 @@ input[name=openbox] {
 	width: 18px;
 	height: 19px;
 	border: none;
+	cursor: pointer;
 }
 
 input[name=editbox] {
@@ -93,6 +94,7 @@ input[name=editbox] {
 	width: 48px;
 	height: 22px;
 	border: none;
+	cursor: pointer;
 }
 
 .pencil {
