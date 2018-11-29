@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="myinfo.*"%>
 <jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
 <jsp:useBean id="score" class="myinfo.ScoreBean" scope="session" />
 <!DOCTYPE html>
@@ -10,80 +11,6 @@
 <link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/base.css" rel="stylesheet">
 <title>총 평점 평균</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<script language="JavaScript">
- 		function displayLineChart(){
-	 
-			var ctx=document.getElementById("average_chart").getContext("2d");
-			
-			var datas = new Array();
-	 		var index = 0;
-	 		
-	 		<%
-	 			ArrayList<Float> average_array = score.getAverage();
-	 			float buf;
-	 			if(average_array.size() == 0) { %>
-	 				datas = [1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4];
-	 		<%	}
-	 			for(int i = 0; i < average_array.size(); i++) { %>
-	 				datas[index++] = <%= average_array.get(i) %>;
-	 		<%	} %>
-	 		
-			var average_chart=new Chart(ctx, {
-				
-				type:'line',
-				data:{
-					labels:["1학년 1학기","1학년 2학기","2학년 1학기","2학년 2학기","3학년 1학기","3학년 2학기","4학년 1학기","4학년 2학기"],
-					datasets:[{
-						
-						label:"우리학과 평균",
-						backgroundColor:"#ffffff",
-						borderColor:"#fbc658",
-						fill:false,
-						pointBackgroundColor:"#fbc658",
-						pointBorderColor:"#fbc658",
-						pointRadius:5,
-						data:[2.92,2.92,2.92,2.92,2.92,2.92,2.92,2.92]
-						
-					},{
-						
-						label:"나의 총 평점 평균",
-						backgroundColor:"#ffffff",
-						borderColor:"#51cacf",
-						fill:false,			
-						pointBackgroundColor:"#51cacf",
-						pointBorderColor:"#51cacf",
-						pointRadius:5,
-						data:datas
-					}]	
-				}
-			});
-	
-		}		
-
- 		function displayLineChart2(){
- 			
- 			var ctx=document.getElementById("major_chart").getContext("2d");
-			var major_chart=new Chart(ctx, {
-				
-				type:'line',
-				data:{
-					labels:["1학년 1학기","1학년 2학기","2학년 1학기","2학년 2학기","3학년 1학기","3학년 2학기","4학년 1학기","4학년 2학기"],
-					datasets:[{
-						
-						label:"나의 총 평점 평균",
-						backgroundColor:"#ffffff",
-						borderColor:"#51cacf",
-						fill:false,			
-						pointBackgroundColor:"#51cacf",
-						pointBorderColor:"#51cacf",
-						pointRadius:5,
-						data:[3.5,3.2,2.24,2.6,2.7,2.4,2.3,2.6]
-					}]	
-				}
-			});
- 		}
-</script>
 <style>
 	#all_average_graph_table{
 		
@@ -106,22 +33,17 @@
 		padding:14px 10px 14px 18px;
 	}
 	#goal_number{
-		width: 140px;
-		height:120px;
-		padding:45px 10px 10px 24px;
-
-
+		height: 120px;
+		padding: 42px 0px 0px 0px;
+		text-align: center;
 	}
 	#goal_sentence{
-	
 		width:230px;
 		height:140px;
-		padding:30px 15px 15px 15px;
+		padding: 17px 15px 15px 15px;
 		text-align:center;
-		line-height:2.3em;
+		line-height: 30px;
 		letter-spacing:1px;
-		
-	
 	}
 	#major_average_graph_table{
 		
@@ -155,7 +77,6 @@
 		margin-right:10px;
 	}
 	#goal_average{
-		
 		background-image:url('./Resources/img/goal_background.png');
 		width:260px;
 		height:160px;
@@ -176,6 +97,68 @@
 		font-size:18px;
 		padding:17px 2px 0px 7px;
 		overflow:hidden;	
+	}
+	
+	#goal_button {
+		background-image: url('./Resources/img/goal_button.png');
+		background-color: rgba(0, 0, 0, 0);
+		width: 75px;
+		height: 22px;
+		border: none;
+		margin-top: 10px;
+		cursor: pointer;
+	}
+	
+	#popup1 {
+		position: fixed;
+		width: 322px;
+		height: 220px;
+		background: url('./Resources/img/plus_background.png');
+		top: 50%;
+		left: 50%;
+		margin-left: -186px;
+		margin-top: -150px;
+		padding: 15px 25px 15px 25px;
+		background-repeat: no-repeat;
+		z-index: 9999;
+	}
+	
+	#mask{
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  background:#000;
+	  opacity:.8; 
+	  filter:alpha(opacity:30);
+	  z-index: 1;
+	}
+	
+	.popup_content {
+		display: block;
+		text-align: center;
+		align-items: center;
+		padding-bottom: 10px;
+	}
+	
+	#closebox {
+		width: 54px;
+		height: 26px;
+		vertical-align: middle;
+		background: url('./Resources/img/cancle_button.png');
+		border: none;
+		cursor: pointer;
+	}
+	
+	#checkbox {
+		width: 54px;
+		height: 26px;
+		vertical-align: middle;
+		background: url('./Resources/img/check_button.png');
+		border: none;
+		margin-right: 20px;
+		cursor: pointer;
 	}
 
 </style>
@@ -253,7 +236,9 @@
 											<img src="Resources/img/pencil.png" /> 목표 평점 평균
 										</div>
 										<div id="goal_number">
-											<font color="#ff4e4e" style="font-weight:bold;font-size:80px;">4.5</font>
+											<font color="#ff4e4e" style="font-weight:bold;font-size:60px;">
+												<jsp:getProperty property="goal" name="score" />
+											</font>
 										</div>
 									</div>
 								</td>
@@ -263,7 +248,9 @@
 											<img src="Resources/img/pencil.png" />  총 평점 평균
 										</div>
 										<div id="goal_number">
-											<font color="#51cacf" style="font-weight:bold;font-size:80px;">4.5</font>
+											<font color="#51cacf" style="font-weight:bold;font-size:60px;">
+												<jsp:getProperty property="total_ave" name="score" />
+											</font>
 										</div>
 									</div>
 								</td>
@@ -273,16 +260,33 @@
 												<img src="Resources/img/pencil.png" /> 전공 평점 평균
 										</div>
 										<div id="goal_number">
-											<font color="#fbc658" style="font-weight:bold;font-size:80px;">4.5</font>
+											<font color="#fbc658" style="font-weight:bold;font-size:60px;">
+												<jsp:getProperty property="major_ave" name="score" />
+											</font>
 										</div>
 									</div>
 								</td>
 								<td>
+									<div id="mask" style="display: none"></div>
+									<div id="popup1" style="display: none">
+										<form method="post" action="goal_check.jsp">
+											<div style="padding-bottom: 15px"><h1>목표 평점 평균 설정</h1></div>
+											<div class="popup_content" style="margin:30px 0px 40px 0px">
+												· 목표 점수 : 
+												<input name="input_goal" type="number" max="4.5" min="0" step="0.01" style="width:100px" />
+											</div>
+											<div class="popup_content">
+												<input type="submit" id="checkbox" value="" />
+												<img id="closebox" onclick="popup_close(1)" />
+											</div>
+										</form>
+									</div>
 									<div id="goal_average">
 										<div id="goal_sentence">
 												목표 학점까지 남은 학기동안<br>
 												OO 이수학점 기준<br>
-												평균 OO학점 필요
+												평균 OO학점 필요<br>
+												<input id="goal_button" type="button" onclick="popup_open(1)" />
 										</div>
 									</div>
 								
@@ -295,5 +299,92 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript" src="Resources/js/popup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script language="JavaScript">
+ 		function displayLineChart(){
+	 
+			var ctx=document.getElementById("average_chart").getContext("2d");
+			
+			var datas = new Array();
+	 		var index = 0;
+	 		
+	 		<%
+	 			ArrayList<Double> average_array = score.getAverage();
+	 			if(average_array.size() == 0) { %>
+	 				datas = [1.42, 2.42, 3.42, 4.42, 4.1, 4.2, 4.3, 4.4];
+	 		<%	}
+	 			for(int i = 0; i < average_array.size(); i++) { %>
+	 				datas[index++] = <%= average_array.get(i) %>;
+	 		<%	} %>
+	 		
+			var average_chart=new Chart(ctx, {
+				
+				type:'line',
+				data:{
+					labels:["1학년 1학기","1학년 2학기","2학년 1학기","2학년 2학기","3학년 1학기","3학년 2학기","4학년 1학기","4학년 2학기"],
+					datasets:[{
+						
+						label:"우리학과 평균",
+						backgroundColor:"#ffffff",
+						borderColor:"#fbc658",
+						fill:false,
+						pointBackgroundColor:"#fbc658",
+						pointBorderColor:"#fbc658",
+						pointRadius:5,
+						data:[2.92, 2.92, 2.92, 2.92, 2.92, 2.92, 2.92, 2.92]
+						
+					},{
+						
+						label:"나의 총 평점 평균",
+						backgroundColor:"#ffffff",
+						borderColor:"#51cacf",
+						fill:false,			
+						pointBackgroundColor:"#51cacf",
+						pointBorderColor:"#51cacf",
+						pointRadius:5,
+						data:datas
+					}]	
+				}
+			});
+	
+		}
+
+ 		function displayLineChart2(){
+ 			
+ 			var ctx=document.getElementById("major_chart").getContext("2d");
+ 			
+ 			var datas = new Array();
+ 			var index = 0;
+ 			
+ 			<%
+	 			ArrayList<Major> maverage_array = score.getMAverage();
+	 			if(maverage_array.size() == 0) { %>
+	 				datas = [3.5, 3.2, 2.24, 2.6, 2.7, 2.4, 2.3, 2.6];
+	 		<%	}
+	 			for(int i = 0; i < maverage_array.size(); i++) { %>
+	 				datas[index++] = <%= maverage_array.get(i).getAverage() %>;
+	 		<%	} %>
+ 			
+			var major_chart=new Chart(ctx, {
+				
+				type:'line',
+				data:{
+					labels:["1학년 1학기","1학년 2학기","2학년 1학기","2학년 2학기","3학년 1학기","3학년 2학기","4학년 1학기","4학년 2학기"],
+					datasets:[{
+						
+						label:"나의 총 평점 평균",
+						backgroundColor:"#ffffff",
+						borderColor:"#51cacf",
+						fill:false,			
+						pointBackgroundColor:"#51cacf",
+						pointBorderColor:"#51cacf",
+						pointRadius:5,
+						data: datas
+					}]	
+				}
+			});
+ 		}
+</script>
 </body>
 </html>
