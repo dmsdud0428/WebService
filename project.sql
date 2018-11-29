@@ -237,6 +237,38 @@ LOCK TABLES `service` WRITE;
 /*!40000 ALTER TABLE `service` DISABLE KEYS */;
 /*!40000 ALTER TABLE `service` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `subject`
+--
+
+DROP TABLE IF EXISTS `subject`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `subject` (
+  `code` char(9) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `score` int(11) DEFAULT NULL,
+  `m` tinyint(1) DEFAULT '0',
+  `bsm` tinyint(1) DEFAULT '0',
+  `engineeringMajor` tinyint(1) DEFAULT '0',
+  `engineeringR` tinyint(1) DEFAULT '0',
+  `major` tinyint(1) DEFAULT '0',
+  `majorNecessary` tinyint(1) DEFAULT '0',
+  `necessaryR` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subject`
+--
+
+LOCK TABLES `subject` WRITE;
+/*!40000 ALTER TABLE `subject` DISABLE KEYS */;
+INSERT INTO `subject` VALUES ('AS044','인간심리의이해',3,0,0,0,1,0,0,0),('AS659','일반확률론',3,0,1,0,0,0,0,0),('AS705','컴퓨터네트워크',3,0,0,1,0,1,0,0),('AS711','수리논리',3,1,1,0,0,0,0,0),('AS775','일반통계학',3,0,1,0,0,0,0,0),('AS794','글쓰기',3,0,0,0,0,0,0,1),('AS916','공학윤리',3,0,0,0,1,0,0,0),('AS928','미분적분학1',3,1,1,0,0,0,0,0),('AS929','미분적분학2',3,1,1,0,0,0,0,0),('AS955','일반물리학및실험Ⅰ',3,1,1,0,0,0,0,0),('AS956','일반물리학및실험Ⅱ',3,1,1,0,0,0,0,0),('AS957','일반화학및실험Ⅰ',3,1,1,0,0,0,0,0),('AS958','일반화학및실험Ⅱ',3,1,1,0,0,0,0,0),('CS343','자료구조론',3,0,0,1,0,1,0,0),('DD013','컴퓨터과학개론',3,1,1,0,0,0,0,0),('DD017','이산수학',3,1,0,1,0,1,0,0),('DD298','컴퓨터과학전공및진로탐색',1,0,0,1,0,1,1,0),('DD703','프로그래밍언어론',3,0,0,1,0,1,0,0),('DD724','운영체제',3,0,0,1,0,1,0,0),('DD726','네트워크프로그래밍',3,0,0,1,0,1,0,0),('DD727','데이터베이스',3,0,0,1,0,1,0,0),('DD746','창의기초설계',3,0,0,0,0,1,1,0),('DD747','수치계산',3,1,0,1,0,1,0,0),('DD748','시스템소프트웨어',3,0,0,1,0,1,0,0),('DD771','계산이론',3,0,0,1,0,1,0,0),('DD801','C프로그래밍',3,0,0,0,0,1,1,0),('DD802','자바프로그래밍1',3,0,0,1,0,1,0,0),('DD803','자료구조설계',3,0,0,1,0,1,0,0),('DD804','자바프로그래밍2',3,0,0,1,0,1,0,0),('DD805','워크플로우관리시스템',3,0,0,1,0,1,0,0),('EF624','컴퓨터구조',3,0,0,1,0,1,0,0),('YA029','창의적문제해결전략',3,0,0,0,1,0,0,0);
+/*!40000 ALTER TABLE `subject` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -247,4 +279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-29 15:11:01
+-- Dump completed on 2018-11-29 22:13:48
