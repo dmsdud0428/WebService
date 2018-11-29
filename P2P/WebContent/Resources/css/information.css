@@ -62,8 +62,6 @@ input[name=text] {
 .license, .career, .etc {
 	width: 380px;
 	height: 200px;
-	background-image: url('../img/english_table.png');
-	background-size: 380px 150px;
 	margin-bottom: 15px;
 	flex-basis: 380px;
 	float: right;
