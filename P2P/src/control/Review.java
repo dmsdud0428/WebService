@@ -39,16 +39,16 @@ public class Review extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		EventDAO dao=new DBEventDAO();
+		EventDAO dao = new DBEventDAO();
 		request.setCharacterEncoding("utf-8");
 		
-		String year=request.getParameter("year");
-		String enterprise=request.getParameter("enterprise");
-		String spec=request.getParameter("spec");
-		String content=request.getParameter("content");
-		dao.addInformation("201611803",year,enterprise,spec,content);
+		String year = request.getParameter("year");
+		String enterprise = request.getParameter("enterprise");
+		String spec = request.getParameter("spec");
+		String content = request.getParameter("content");
+		dao.addInformation("201611803", year, enterprise, spec, content);
 		
-		RequestDispatcher dispatcher=request.getRequestDispatcher("/review.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/review.jsp");
 		dispatcher.forward(request, response);
 	}
 
