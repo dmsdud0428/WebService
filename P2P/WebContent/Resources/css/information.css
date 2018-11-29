@@ -33,6 +33,7 @@
 input[name=checkbox] {
 	 vertical-align: middle;
 	 float: right;
+	 cursor: pointer;
 }
 
 input[name=closebox] {
@@ -40,6 +41,7 @@ input[name=closebox] {
 	height: 26px;
 	background: url('../img/cancle_button.png');
 	border: none;
+	cursor: pointer;
 }
 
 input[name=text] {
@@ -85,6 +87,7 @@ input[name=openbox] {
 	width: 18px;
 	height: 19px;
 	border: none;
+	cursor: pointer;
 }
 
 input[name=editbox] {
@@ -93,6 +96,7 @@ input[name=editbox] {
 	width: 48px;
 	height: 22px;
 	border: none;
+	cursor: pointer;
 }
 
 .pencil {
