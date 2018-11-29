@@ -16,7 +16,7 @@
 	 		var index = 0;
 	 		
 	 		<%
-	 			ArrayList<Float> average_array = score.getAverage();
+	 			ArrayList<Double> average_array = score.getAverage();
 	 			float buf;
 	 			if(average_array.size() == 0) { %>
 	 				datas = [1.42,2.42,3.42,4.42,4.1,4.2,4.3,4.4];

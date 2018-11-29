@@ -12,7 +12,6 @@
 </head>
 <body>
 	<%
-		System.out.println(request.getParameter("input_goal"));
 		double goal = Double.parseDouble(request.getParameter("input_goal"));
 		if(goal >= 0.0 && goal <= 4.5) { 
 			score.setGoal(goal);
