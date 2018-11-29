@@ -18,7 +18,7 @@ public class DBEventDAO implements EventDAO{
 		private void connect() {
 			try {
 				Class.forName(jdbc_driver);
-				conn=DriverManager.getConnection(jdbc_ur1,"root","dmsdud970428");
+				conn=DriverManager.getConnection(jdbc_ur1,"user_id","p2pproject");
 				stmt=conn.createStatement();
 			}catch(Exception e){
 				e.printStackTrace();
