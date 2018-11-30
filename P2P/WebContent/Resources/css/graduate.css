@@ -1,24 +1,3 @@
-.pw {
-	margin-top: 30px;
-	background-image: url('Resources/img/curriculum.png');
-	background-repeat: no-repeat;
-	background-position: center center;
-	height: 50px;
-	display: flex;
-	align-items: center;
-    justify-content: center;
-}
-input[name=pwbox] {
-	border: none;
-	width: 130px;
-	height: 26px;
-	background-repeat: no-repeat;
-	background: #F9F9F9;
-	background-image: url('Resources/img/pw_box.png');
-	background-size: 140px 26px;
-	padding: 0px 0px 0px 10px;
-}
-
 .table {
 	display: flex;
 	align-items: center;

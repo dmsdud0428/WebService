@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="myinfo.*"%>
 <jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
+<jsp:useBean id="score" class="myinfo.ScoreBean" scope="session" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,32 +62,52 @@
 						</h1>
 					</div>
 					<div class="article">
-						<div class="pw">
-							<form action="graduate.jsp" method="post">
-								<span style="margin-right:15px;"><input type="password" name=pwbox size=40 placeholder="Password"/></span>
-								<span><input type="image" name=checkbox src="Resources/img/check_button.png" style="vertical-align:middle"/></span>
-							</form>
-						</div>
 						<div class="table">
 							<table class="content">
-								<%! int num; %>
-								<%
-									if (request.getParameter("pwbox") != null) {
-										if (Integer.parseInt(request.getParameter("pwbox")) < 2016) num=10;
-										else if (Integer.parseInt(request.getParameter("pwbox")) == 2016) num=6;
-										else if (Integer.parseInt(request.getParameter("pwbox")) == 2017) num=8;
-										else if (Integer.parseInt(request.getParameter("pwbox")) >= 2018) num=4;
-										else num=5;
-										
-										for(int i=1;i<num;i++) { %>
-										<tr>
-											<th>예제제목</th>
-											<td>예제내용</td>
-										</tr>
-										<%
-										}
-									}
-								%>
+								<tr>
+									<th>총 학점</th>
+									<td><%=score.getTotal_sco()%> / 136</td>
+								</tr>
+								<tr>
+									<th>전공 학점</th>
+									<td><%=score.getMajor_sco()%> / 67</td>
+								</tr>
+								<tr>
+									<th>교양 학점</th>
+									<td><%=score.getNecessary_sco()%> / 46</td>
+								</tr>
+								<tr>
+									<th>필수 교양</th>
+									<td><%=score.getCultureE_sco()%> / 1</td>
+								</tr>
+								<tr>
+									<th>필수 전공</th>
+									<td><%=score.getMajorE_sco()%> / 4</td>
+								</tr>
+								<tr>
+									<th>msc 교양</th>
+									<td><%=score.getMsc_sco()%> / 24</td>
+								</tr>
+								<tr>
+									<th>공학 인증</th>
+									<td>공학 인증</td>
+								</tr>
+								<tr>
+									<th>bsm 교양</th>
+									<td><%=score.getBsm_sco() %> / 18</td>
+								</tr>
+								<tr>
+									<th>전문 교양</th>
+									<td><%=score.getDesignC_sco() %> / 3</td>
+								</tr>
+								<tr>
+									<th>설계 학점</th>
+									<td><%=score.getDesign_sco() %> / 12</td>
+								</tr>
+								<tr>
+									<th>전공 학점</th>
+									<td><%=score.getDesignM_sco() %> / 60</td>
+								</tr>
 							</table>
 						</div>
 					</div>
