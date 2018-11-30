@@ -83,6 +83,8 @@ public class Review extends HttpServlet {
 				out.println("alert('수정할 수 없습니다.');");
 				out.println("history.back();");
 				out.println("</script>");
+				
+				return;
 			}
 		} else if(action.equals("modify_check")) {
 			String num = request.getParameter("num");
@@ -102,6 +104,8 @@ public class Review extends HttpServlet {
 				out.println("alert('수정할 수 없습니다.');");
 				out.println("history.back();");
 				out.println("</script>");
+				
+				return;
 			}
 		} else if(action.equals("delete")) {
 			String num = request.getParameter("num");
@@ -116,6 +120,8 @@ public class Review extends HttpServlet {
 				out.println("alert('삭제할 수 없습니다.');");
 				out.println("history.back();");
 				out.println("</script>");
+				
+				return;
 			}
 		}
 		
