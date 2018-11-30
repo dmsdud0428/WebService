@@ -234,4 +234,108 @@ public class DBIntroDAO implements IntroDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public ArrayList<IntroBean> getSearchIntro(int currentPage, int option, String word) {
+		int count = countSearchIntro(option, word);
+		int pageSize = 15;
+		int startRow = count - (pageSize * (currentPage - 1));
+		int endRow = count - (pageSize * currentPage) + 1;
+		String opt = "";
+		switch(option) {
+			case 0:
+				opt = "state";
+				if("작성".indexOf("word") != -1)
+					word = "false%' or state like '%true";
+				else if("작성중".indexOf("word") == -1)
+					word = "false";
+				else
+					word = "true";
+				break;
+			case 1:
+				opt = "company";
+				break;
+			case 2:
+				opt = "business";
+				break;
+			case 3:
+				opt = "kind";
+				break;
+		}
+		String sql = "SELECT * from introduction WHERE(" + opt + " LIKE '%" + word + "%') ORDER BY num DESC limit "
+					+ ((currentPage - 1) * 15) + ", 15";
+		ArrayList<IntroBean> list = new ArrayList<IntroBean>();
+		
+		try {
+			connect();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				IntroBean intro = new IntroBean();
+				intro.setNum(rs.getInt("num"));
+				intro.setId(rs.getString("id"));
+				intro.setState(rs.getBoolean("state"));
+				DateFormat df = new SimpleDateFormat("yyyyMMdd");
+				intro.setDay(df.format((rs.getDate("day"))));
+				intro.setCompany(rs.getString("company"));
+				intro.setBusiness(rs.getString("business"));
+				intro.setKind(rs.getString("kind"));
+				intro.setQuestion_1(rs.getString("question_1"));
+				intro.setAnswer_1(rs.getString("answer_1"));
+				intro.setQuestion_2(rs.getString("question_2"));
+				intro.setAnswer_2(rs.getString("answer_2"));
+				intro.setQuestion_3(rs.getString("question_3"));
+				intro.setAnswer_3(rs.getString("answer_3"));
+				intro.setQuestion_4(rs.getString("question_4"));
+				intro.setAnswer_4(rs.getString("answer_4"));
+				intro.setQuestion_5(rs.getString("question_5"));
+				intro.setAnswer_5(rs.getString("answer_5"));
+				list.add(intro);
+			}
+			rs.close();
+			disconnect();
+		} catch(Exception e) {
+			System.out.println(sql);
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	public int countSearchIntro(int option, String word) {
+		int total_count = 0;
+		String opt = "";
+		switch(option) {
+			case 0:
+				opt = "state";
+				if("작성".indexOf("word") != -1)
+					word = "false%' or state like '%true";
+				else if("작성중".indexOf("word") == -1)
+					word = "false";
+				else
+					word = "true";
+				break;
+			case 1:
+				opt = "company";
+				break;
+			case 2:
+				opt = "business";
+				break;
+			case 3:
+				opt = "kind";
+				break;
+		}
+		String sql = "SELECT count(*) count FROM introduction WHERE " + opt + " LIKE '%" + word + "%'";
+		
+		try {
+			connect();
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.next();
+			total_count = rs.getInt("count");
+			rs.close();
+			disconnect();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return total_count;
+	}
 }

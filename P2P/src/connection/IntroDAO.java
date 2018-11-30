@@ -12,4 +12,6 @@ public interface IntroDAO {
 	public ArrayList<IntroBean> getSubIntro(int currentPage);
 	public void updateIntro(String num, IntroBean intro);
 	public void deleteIntro(String num);
+	public ArrayList<IntroBean> getSearchIntro(int currentPage, int option, String word);
+	public int countSearchIntro(int option, String word);
 }

@@ -21,6 +21,8 @@ public class IntroBean {
 	private String answer_4;
 	private String question_5;
 	private String answer_5;
+	private String search;
+	private int option;
 	
 	public int getCount() {
 		return count;
@@ -129,5 +131,17 @@ public class IntroBean {
 	}
 	public void setAnswer_5(String answer_5) {
 		this.answer_5 = answer_5;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public int getOption() {
+		return option;
+	}
+	public void setOption(int option) {
+		this.option = option;
 	}
 }

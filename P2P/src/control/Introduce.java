@@ -47,15 +47,29 @@ public class Introduce extends HttpServlet {
 		
 		String action = request.getParameter("action");
 		if(action == null || action.equals("list")) {
+			ArrayList<IntroBean> list;
+			IntroBean intro = new IntroBean();
 			String pageNum = request.getParameter("page");
 			if(pageNum == null) {
 				pageNum = "1";
 			}
 			int currentPage = Integer.parseInt(pageNum);
-			ArrayList<IntroBean> list = dao.getSubIntro(currentPage);
+			
+			if(request.getParameter("searchInput") != null) {
+				int option = Integer.parseInt(request.getParameter("searchBy"));
+				String word = request.getParameter("searchInput");
+				list = dao.getSearchIntro(currentPage, option, word);
+				intro.setCount(dao.countSearchIntro(option, word));
+				intro.setOption(option);
+				intro.setSearch(word);
+			}
+			else {
+				list = dao.getSubIntro(currentPage);
+				intro.setCount(dao.countIntro());
+				intro.setSearch("");
+			}
+			
 			request.setAttribute("introlist", list);
-			IntroBean intro = new IntroBean();
-			intro.setCount(dao.countIntro());
 			request.setAttribute("in", intro);
 			address = "/introduce.jsp";
 		} else if(action.equals("view")) {
