@@ -3,7 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 
-<jsp:useBean id="score" class="myinfo.ScoreBean" scope="session" />
+<jsp:useBean id="score" class="myinfo.ScoreInfo" scope="session" />
 
 <html>
 <head>
