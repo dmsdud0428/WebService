@@ -13,14 +13,14 @@ import myinfo.IntroBean;
 public class DBIntroDAO implements IntroDAO {
 
 	private String jdbc_driver = "com.mysql.jdbc.Driver";
-	private String jdbc_ur1 = "jdbc:mysql://localhost:3306/project?characterEncoding=utf8&&serverTimezone=UTC";
+	private String jdbc_url = "jdbc:mysql://localhost:3306/project?characterEncoding=utf8&&serverTimezone=UTC";
 	private Connection conn;
 	private Statement stmt;
 	
 	private void connect() {
 		try {
 			Class.forName(jdbc_driver);
-			conn = DriverManager.getConnection(jdbc_ur1, "user_id", "p2pproject");
+			conn = DriverManager.getConnection(jdbc_url, "user_id", "p2pproject");
 			stmt = conn.createStatement();
 		}catch(Exception e){
 			e.printStackTrace();

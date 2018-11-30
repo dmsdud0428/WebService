@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.sql.*" %>
 <%@page import="java.util.ArrayList"%>
 <jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
 <jsp:useBean id="score" class="myinfo.ScoreInfo" scope="session" />
@@ -156,6 +156,17 @@
 }
 	
 </style>
+<%
+	request.setCharacterEncoding("utf-8");
+	String jdbc_driver = "com.mysql.jdbc.Driver";
+	String jdbc_url = "jdbc:mysql://localhost:3306/project?characterEncoding=utf8&&serverTimezone=UTC";
+	Class.forName(jdbc_driver);
+	Connection conn = DriverManager.getConnection(jdbc_url, "user_id", "p2pproject");
+	
+	String sql = "SELECT * FROM interview LIMIT 5";
+	PreparedStatement stmt = conn.prepareStatement(sql);
+	ResultSet rs = stmt.executeQuery(sql);
+%>
 </head>
 <body onload="displayLineChart();">
 	<div class="layout">
@@ -273,41 +284,59 @@
 							</tr>
 						</table>
 						<div id="interview_review_border">
-								<div id="interview_subject">
-									<img src="Resources/img/pencil.png" /> 면접/후기 게시판
+							<div id="interview_subject">
+								<img src="Resources/img/pencil.png" /> 면접/후기 게시판
+							</div>
+							<div id="interview_table">			
+								<div class="bootstrap-iso">
+									<table class="table table-striped" style="text-align:center;height:200px;border:1px;solid:#dddddd;margin:0px 0px 0px 10px;font-size:10pt">
+			 							<thead style="background-color:#f9f9f9">		 		
+									 	</thead>
+						 				<tbody>
+										<%
+											while(rs.next()) {
+										%>
+						 				<tr id="_tr" onClick="move2('view', '<%= rs.getInt("num") %>')">
+											<td style="text-align:center;"><%=rs.getString("year") %></td>
+											<td style="text-align:center;"><%=rs.getString("company") %></td>
+											<td style="text-align:center;"><%=rs.getString("spec") %></td>
+								 		</tr>
+								 		<%		
+									 		}
+										 	rs.close();
+										 	stmt.close();
+											conn.close();
+									 	%>
+								 		</tbody>
+								 	</table>
 								</div>
-								<div id="interview_table">			
-									<div class="bootstrap-iso">
-										<table class="table table-striped" style="text-align:center;height:200px;border:1px;solid:#dddddd;margin:0px 0px 0px 10px;font-size:10pt">
-			 								<thead style="background-color:#f9f9f9">		 		
-										 		</thead>
-						 						<tbody>
-											 			<%
-											 				for(int i = 0; i < 5; i++) {
-											 			%>
-						 							<tr id="_tr" onClick="location.href='review_view.jsp'">
-											 			<td style="text-align:center;">test</td>
-											 			<td style="text-align:center;">test</td>
-											 			<td style="text-align:center;">test</td>
-										 				<%--
-										 				<td><%= list.get(i).getBbsID() %></td>
-										 				<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
-										 				<td><%= list.get(i).getUserID() %></td>
-										 				<td><%=list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11, 13) + "시" + list.get(i).getBbsDate().substring(14, 16) +  "분" %></td>
-										 				 --%>
-									 				</tr>
-									 					<%		
-										 					}
-										 				%>
-									 		</tbody>
-									 	</table>
-									</div>
-								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	function move2(value, num) {
+		var form = document.createElement("form");
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", "Review");
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "num");
+		hiddenField.setAttribute("value", num);
+		form.appendChild(hiddenField);
+		hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "action");
+		hiddenField.setAttribute("value", value);
+		form.appendChild(hiddenField);
+		document.body.appendChild(form);
+		form.submit();
+	}
+</script>
 </body>
 </html>
