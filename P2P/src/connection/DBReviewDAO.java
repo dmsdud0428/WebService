@@ -60,7 +60,7 @@ public class DBReviewDAO implements ReviewDAO {
 		public void addReview(ReviewBean review){
 			int total_count = countReview();
 			
-			String sql = "INSERT INTO introduction(num, id, year, company, spec, review) VALUES('" +
+			String sql = "INSERT INTO interview(num, id, year, company, spec, review) VALUES('" +
 					(total_count+1) + "','" + review.getId() + "','" + review.getYear() + "','"
 					+ review.getEnterprise() + "','" + review.getSpec() + "','" + review.getContent() + "')";
 			
@@ -187,5 +187,79 @@ public class DBReviewDAO implements ReviewDAO {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+		}
+
+		public ArrayList<ReviewBean> getSearchReview(int currentPage, int option, String word) {
+			int count = countSearchReview(option, word);
+			int pageSize = 15;
+			int startRow = count - (pageSize * (currentPage - 1));
+			int endRow = count - (pageSize * currentPage) + 1;
+			String opt = "";
+			switch(option) {
+				case 0:
+					opt = "year";
+					break;
+				case 1:
+					opt = "company";
+					break;
+				case 2:
+					opt = "spec";
+					break;
+			}
+			String sql = "SELECT * from interview WHERE(" + opt + " LIKE '%" + word + "%') ORDER BY num DESC limit "
+						+ ((currentPage - 1) * 15) + ", 15";
+			ArrayList<ReviewBean> list = new ArrayList<ReviewBean>();
+			
+			try {
+				connect();
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next()) {
+					ReviewBean review = new ReviewBean();
+					review.setNum(rs.getInt("num"));
+					review.setId(rs.getString("id"));
+					review.setYear(rs.getString("year"));
+					review.setEnterprise(rs.getString("company"));
+					review.setSpec(rs.getString("spec"));
+					review.setContent(rs.getString("review"));
+					list.add(review);
+				}
+				rs.close();
+				disconnect();
+			} catch(Exception e) {
+				System.out.println(sql);
+				e.printStackTrace();
+			}
+			
+			return list;
+		}
+
+		public int countSearchReview(int option, String word) {
+			int total_count = 0;
+			String opt = "";
+			switch(option) {
+				case 0:
+					opt = "year";
+					break;
+				case 1:
+					opt = "company";
+					break;
+				case 2:
+					opt = "spec";
+					break;
+			}
+			String sql = "SELECT count(*) count FROM interview WHERE " + opt + " LIKE '%" + word + "%'";
+			
+			try {
+				connect();
+				ResultSet rs = stmt.executeQuery(sql);
+				rs.next();
+				total_count = rs.getInt("count");
+				rs.close();
+				disconnect();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return total_count;
 		}
 }

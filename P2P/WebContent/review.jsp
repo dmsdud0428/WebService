@@ -124,18 +124,18 @@
 										endPage = pageCount;
 									}
 									if(startPage > pageBlock) {
-										%><a href="Review?page=<%=startPage - pageBlock%>">◀ 이전&nbsp;&nbsp;</a><%
+										%><a onclick="move4(<%=startPage - pageBlock%>)" style="cursor:pointer">◀ 이전&nbsp;&nbsp;</a><%
 									}
 									for(int i = startPage; i<= endPage; i++) {
 										if(i == currentPage) {
-											%>&nbsp;<a href="Review?page=<%=i%>" style="color:#9686cc;text-decoration:underline"><%=i%></a>&nbsp;<%
+											%>&nbsp;<span style="color:#9686cc;text-decoration:underline"><%=i%></span>&nbsp;<%
 										}
 										else {
-											%>&nbsp;<a href="Review?page=<%=i%>"><%=i%></a>&nbsp;<%
+											%>&nbsp;<a onclick="move4(<%=i%>)" style="cursor:pointer"><%=i%></a>&nbsp;<%
 										}
 									}
 									if(endPage < pageCount) {
-										%><a href="Review?page=<%=startPage + pageBlock%>">&nbsp;&nbsp;다음 ▶</a><%		
+										%><a onclick="move4(<%=startPage + pageBlock%>)" style="cursor:pointer">&nbsp;&nbsp;다음 ▶</a><%		
 									}
 								}
 							%>
@@ -146,8 +146,8 @@
 								<option value="1">기업</option>
 								<option value="2">스펙</option>
 							</select>
-							<input name="searchInput">
-							<img src="Resources/img/search_button.png" style="height:22px;width:auto;vertical-align:middle"/>
+							<input name="searchInput" />
+							<img src="Resources/img/search_button.png" onclick="move3()" style="cursor:pointer;height:22px;width:auto;vertical-align:middle"/>
 						</div>
 					</div>
 				</div>
@@ -156,6 +156,9 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
+	$("select[name=searchBy]").val("<%=rn.getOption()%>");
+	$("input[name=searchInput]").val("<%=rn.getSearch()%>");
+
 	function move1(value) {
 		var form = document.createElement("form");
 		form.setAttribute("charset", "UTF-8");
@@ -184,6 +187,61 @@
 		hiddenField.setAttribute("name", "action");
 		hiddenField.setAttribute("value", value);
 		form.appendChild(hiddenField);
+		document.body.appendChild(form);
+		form.submit();
+	}
+	function move3() {
+		var form = document.createElement("form");
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", "Review");
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "action");
+		hiddenField.setAttribute("value", "list");
+		form.appendChild(hiddenField);
+		
+		var input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'searchBy';
+		input.value = $("select[name=searchBy]").val();
+		form.appendChild(input);
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'searchInput';
+		input.value = $("input[name=searchInput]").val();
+		form.appendChild(input);
+		
+		document.body.appendChild(form);
+		form.submit();
+	}
+	function move4(page) {
+		var form = document.createElement("form");
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", "Review");
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "action");
+		hiddenField.setAttribute("value", "list");
+		form.appendChild(hiddenField);
+		
+		var input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'page';
+		input.value = page;
+		form.appendChild(input);
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'searchBy';
+		input.value = $("select[name=searchBy]").val();
+		form.appendChild(input);
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'searchInput';
+		input.value = $("input[name=searchInput]").val();
+		form.appendChild(input);
+		
 		document.body.appendChild(form);
 		form.submit();
 	}

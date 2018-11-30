@@ -43,16 +43,29 @@ public class Review extends HttpServlet {
 		if(id == null) id = "null";
 		
 		String action = request.getParameter("action");
-		if(action == null || action.equals("list")) {
+		if(action == null || action.equals("list") ) {
+			ArrayList<ReviewBean> list = null;
+			ReviewBean review = new ReviewBean();
 			String pageNum = request.getParameter("page");
 			if(pageNum == null) {
 				pageNum = "1";
 			}
 			int currentPage = Integer.parseInt(pageNum);
-			ArrayList<ReviewBean> list = dao.getSubReview(currentPage);
+			
+			if(request.getParameter("searchInput") != null) {
+				int option = Integer.parseInt(request.getParameter("searchBy"));
+				String word = request.getParameter("searchInput");
+				list = dao.getSearchReview(currentPage, option, word);
+				review.setCount(dao.countSearchReview(option, word));
+				review.setOption(option);
+				review.setSearch(word);
+			}
+			else {
+				list = dao.getSubReview(currentPage);
+				review.setCount(dao.countReview());
+				review.setSearch("");
+			}
 			request.setAttribute("reviewlist", list);
-			ReviewBean review = new ReviewBean();
-			review.setCount(dao.countReview());
 			request.setAttribute("rn", review);
 			address = "/review.jsp";
 		} else if(action.equals("view")) {
