@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="myinfo.IntroBean" %>
 <jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
+<jsp:useBean id="introlist" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="in" class="myinfo.IntroBean" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +41,7 @@
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
-						<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
+						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
 						<a href="information.jsp">·&nbsp;&nbsp;취업신상정보</a><br>
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
@@ -79,36 +81,32 @@
 							<table class="table table-striped" style="text-align:center;border:1px;solid: #dddddd;margin-bottom:10px;font-size:10pt">
 			 					<thead style="background-color:#f9f9f9">
 									<tr>
-										<th style="text-align: center">상태</th>
+										<th style="text-align: center;width:100px">상태</th>
 										<th style="text-align: center">회사명</th>
-										<th style="text-align: center">직무</th>
-										<th style="text-align: center">형태</th>
-										<th style="text-align: center">작성일</th>
+										<th style="text-align: center;width:180px">직무</th>
+										<th style="text-align: center;width:100px">형태</th>
+										<th style="text-align: center;width:150px">작성일</th>
 									</tr>		 		
 						 		</thead>
 						 		<tbody>
-						 			<%--
 						 			<%
-						 				BbsDAO bbsDAO = new BbsDAO();
-						 				ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
-						 				for(int i=0; i < list.size(); i++){
-						 			%>
-						 			 --%>
-						 			<%
-						 				for(int i = 0; i < 15; i++) {
-						 			%>
-						 			<tr id="_tr" onClick="location.href='introduce_view.jsp'">
-						 				<td>test</td>
-						 				<td>test</td>
-						 				<td>test</td>
-						 				<td>test</td>
-						 				<td>test</td>
-						 				<%--
-						 				<td><%= list.get(i).getBbsID() %></td>
-						 				<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
-						 				<td><%= list.get(i).getUserID() %></td>
-						 				<td><%=list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11, 13) + "시" + list.get(i).getBbsDate().substring(14, 16) +  "분" %></td>
-						 				 --%>
+						 				for(int i = 0; i < introlist.size(); i++) {
+						 					IntroBean intro = (IntroBean)introlist.get(i);
+									%>
+						 			<tr id="_tr" onClick="move2('view', '<%=intro.getNum() %>')">
+						 				<td>
+						 				<%
+						 					if(intro.isState()) { %>
+						 						작성완료
+						 				<%	} else { %>
+						 						작성중
+						 				<%	}
+						 				%>
+						 				</td>
+						 				<td><%=intro.getCompany() %></td>
+						 				<td><%=intro.getBusiness() %></td>
+						 				<td><%=intro.getKind() %></td>
+						 				<td><%=intro.getDay() %></td>
 						 			</tr>
 						 			<%		
 						 				}
@@ -117,19 +115,18 @@
 						 	</table>
 						</div>
 						<div id="write_button" style="height:22.28px;margin-bottom:20px">
-							<a href="introduce_write.jsp"><img src="Resources/img/write_button.png" style="width:60px;height:auto;float:right"/></a>
+							<img src="Resources/img/write_button.png" onclick="move1('write')" style="cursor:pointer;width:60px;height:auto;float:right"/>
 						</div>
 						<div id="page_number" style="margin-bottom:30px">
 							<%
-								int count = 250;
+								int count = in.getCount();
 								int pageSize = 15;
 								String pageNum = request.getParameter("page");
 								if(pageNum == null) {
 									pageNum = "1";
 								}
 								int currentPage = Integer.parseInt(pageNum);
-								int startRow = (currentPage - 1) * pageSize + 1;
-								int endRow = currentPage * pageSize;
+								
 								if(count > 0) {
 									int pageCount = count / pageSize + (count % pageSize == 0?0:1);
 									int pageBlock = 10;
@@ -139,18 +136,18 @@
 										endPage = pageCount;
 									}
 									if(startPage > pageBlock) {
-										%><a href="introduce.jsp?page=<%=startPage - pageBlock%>">◀ 이전&nbsp;&nbsp;</a><%
+										%><a href="Introduce?page=<%=startPage - pageBlock%>">◀ 이전&nbsp;&nbsp;</a><%
 									}
 									for(int i = startPage; i<= endPage; i++) {
 										if(i == currentPage) {
-											%>&nbsp;<a href="introduce.jsp?page=<%=i%>" style="color:#9686cc;text-decoration:underline"><%=i%></a>&nbsp;<%
+											%>&nbsp;<a href="Introduce?page=<%=i%>" style="color:#9686cc;text-decoration:underline"><%=i%></a>&nbsp;<%
 										}
 										else {
-											%>&nbsp;<a href="introduce.jsp?page=<%=i%>"><%=i%></a>&nbsp;<%
+											%>&nbsp;<a href="Introduce?page=<%=i%>"><%=i%></a>&nbsp;<%
 										}
 									}
 									if(endPage < pageCount) {
-										%><a href="introduce.jsp?page=<%=startPage + pageBlock%>">&nbsp;&nbsp;다음 ▶</a><%		
+										%><a href="Introduce?page=<%=startPage + pageBlock%>">&nbsp;&nbsp;다음 ▶</a><%		
 									}
 								}
 							%>
@@ -170,5 +167,39 @@
 			</div>
 		</div>
 	</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	function move1(value) {
+		var form = document.createElement("form");
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", "Introduce");
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "action");
+		hiddenField.setAttribute("value", value);
+		form.appendChild(hiddenField);
+		document.body.appendChild(form);
+		form.submit();
+	}
+	function move2(value, num) {
+		var form = document.createElement("form");
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", "Introduce");
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "num");
+		hiddenField.setAttribute("value", num);
+		form.appendChild(hiddenField);
+		hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "action");
+		hiddenField.setAttribute("value", value);
+		form.appendChild(hiddenField);
+		document.body.appendChild(form);
+		form.submit();
+	}
+</script>
 </body>
 </html>

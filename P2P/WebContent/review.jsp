@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="myinfo.ReviewBean" %>
 <jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
 <jsp:useBean id="reviewlist" class="java.util.ArrayList" scope="request" />
-<jsp:useBean id="r" class="myinfo.ReviewBean" scope="request" />
+<jsp:useBean id="rn" class="myinfo.ReviewBean" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +41,7 @@
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
-						<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
+						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
 						<a href="information.jsp">·&nbsp;&nbsp;취업신상정보</a><br>
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
@@ -107,7 +107,7 @@
 						</div>
 						<div id="page_number" style="margin-bottom:30px">
 							<%
-								int count = r.getCount();
+								int count = rn.getCount();
 								int pageSize = 15;
 								String pageNum = request.getParameter("page");
 								if(pageNum == null) {

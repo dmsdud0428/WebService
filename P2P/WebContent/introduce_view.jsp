@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
+<jsp:useBean id="intro" class="myinfo.IntroBean" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +58,7 @@
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
-						<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
+						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
 						<a href="information.jsp">·&nbsp;&nbsp;취업신상정보</a><br>
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
@@ -94,46 +95,121 @@
 					</div>
 					<div class="article" style="text-align:center">
 						<div class="view_table">
-							<table>
+							<table id="_table">
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">상태</td>
-									<td class="td_body">작성중</td>
+									<td class="td_body"><span id="state"></span></td>
 								</tr>
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">작성일</td>
-									<td class="td_body">2018. 11. 25.</td>
+									<td class="td_body"><jsp:getProperty name="intro" property="day" /></td>
 								</tr>
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">회사명</td>
-									<td class="td_body">삼성</td>
+									<td class="td_body"><jsp:getProperty name="intro" property="company" /></td>
 								</tr>
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">직무</td>
-									<td class="td_body">마케팅</td>
+									<td class="td_body"><jsp:getProperty name="intro" property="business" /></td>
 								</tr>
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">형태</td>
-									<td class="td_body">인턴</td>
+									<td class="td_body"><jsp:getProperty name="intro" property="kind" /></td>
 								</tr>
-								<tr style="border-bottom: 1px solid #dddddd;">
+								<% 
+									int q_num = 0; int a_num = 0; int max;
+						
+									if(intro.getQuestion_5().length() != 0) q_num = 5;
+									else if(intro.getQuestion_4().length() != 0) q_num = 4;
+									else if(intro.getQuestion_3().length() != 0) q_num = 3;
+									else if(intro.getQuestion_2().length() != 0) q_num = 2;
+									else if(intro.getQuestion_1().length() != 0) q_num = 1;
+									
+									if(intro.getAnswer_5().length() != 0) a_num = 5;
+									else if(intro.getAnswer_4().length() != 0) a_num = 4;
+									else if(intro.getAnswer_3().length() != 0) a_num = 3;
+									else if(intro.getAnswer_2().length() != 0) a_num = 2;
+									else if(intro.getAnswer_1().length() != 0) a_num = 1;
+									if(q_num > a_num) max = q_num; else max = a_num;
+								%>
+								<tr class="_q1" style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">질문 1</td>
-									<td class="td_body">어디에서 오셨나요?</td>
+									<td class="td_body">
+										<div id="q1"></div>
+									</td>
 								</tr>
-								<tr>
+								<tr class="_a1" style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">답변 1</td>
-									<td class="td_body" valign="top" style="height:400px">우리집이요</td>
+									<td class="td_body" valign="top" style="height:200px">
+										<div id="a1"></div>
+									</td>
 								</tr>
 							</table>
 						</div>
 						<div class="buttons" style="height:22.28px;float:right;margin-bottom:80px">
-							<a href="introduce_modify.jsp"><img src="Resources/img/modify_button.png"/></a>
-							<img src="Resources/img/delete_button.png"/>
-							<a href="introduce.jsp"><img src="Resources/img/list_button.png"/></a>
+							<img src="Resources/img/modify_button.png" onclick="move('modify')" style="cursor:pointer" />
+							<img src="Resources/img/delete_button.png" onclick="move('delete')" style="cursor:pointer" />
+							<a href="Introduce"><img src="Resources/img/list_button.png"/></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 </div>
+<% session.setAttribute("id", user.getSchoolID()); %>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	if(<%=intro.isState() %>)
+		$('#state').html("작성완료");
+	else
+		$('#state').html("작성중");
+
+	var ni;
+	for(num = 2; num <= <%=max %>; num++) {
+		ni = "<tr class='_q" + num;
+		ni += "' style='border-bottom: 1px solid #dddddd;'>";
+		ni += "<td class='td_head'>질문 " + num + "</td>";
+		ni += "<td class='td_body'><div id='q" + num + "'></div></td>";
+		ni += "</tr>";
+		ni += "<tr class='_a" + num;
+		ni += "' style='border-bottom: 1px solid #dddddd;'>";
+		ni += "<td class='td_head'>답변 " + num + "</td>";
+		ni += "<td class='td_body' valign='top' style='height:200px'>";
+		ni += "<div id='a" + num + "'></div>";
+		ni += "</td>";
+		ni += "</tr>";
+		$("#_table").append(ni);
+	}
+	
+	$("#q1").html("<%=intro.getQuestion_1()%>");
+	$("#a1").html("<%=intro.getAnswer_1()%>");
+	$("#q2").html("<%=intro.getQuestion_2()%>");
+	$("#a2").html("<%=intro.getAnswer_2()%>");
+	$("#q3").html("<%=intro.getQuestion_3()%>");
+	$("#a3").html("<%=intro.getAnswer_3()%>");
+	$("#q4").html("<%=intro.getQuestion_4()%>");
+	$("#a4").html("<%=intro.getAnswer_4()%>");
+	$("#q5").html("<%=intro.getQuestion_5()%>");
+	$("#a5").html("<%=intro.getAnswer_5()%>");
+	
+	function move(value) {
+		var form = document.createElement("form");
+        form.setAttribute("charset", "UTF-8");
+        form.setAttribute("method", "Post");
+        form.setAttribute("action", "Introduce");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "num");
+        hiddenField.setAttribute("value", <%=intro.getNum() %>);
+        form.appendChild(hiddenField);
+        hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "action");
+        hiddenField.setAttribute("value", value);
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+	}
+</script>
 </body>
 </html>

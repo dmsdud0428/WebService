@@ -60,9 +60,10 @@ public class DBReviewDAO implements ReviewDAO {
 		public void addReview(ReviewBean review){
 			int total_count = countReview();
 			
-			String sql = "INSERT INTO interview(num, id, year, company, spec, review) VALUES('" +
-						(total_count+1) + "','" + review.getId() + "','" + review.getYear() + "','"
-						+ review.getEnterprise() + "','" + review.getSpec() + "','" + review.getContent() + "')";
+			String sql = "INSERT INTO introduction(num, id, year, company, spec, review) VALUES('" +
+					(total_count+1) + "','" + review.getId() + "','" + review.getYear() + "','"
+					+ review.getEnterprise() + "','" + review.getSpec() + "','" + review.getContent() + "')";
+			
 			try {	
 				connect();
 				stmt.executeUpdate(sql);
@@ -73,7 +74,7 @@ public class DBReviewDAO implements ReviewDAO {
 		}
 		
 		public ArrayList<ReviewBean> getAllReview() {
-			String sql = "SELECT num, id, year, comany, spec, review FROM interview";
+			String sql = "SELECT * FROM interview";
 			ArrayList<ReviewBean> list = new ArrayList<ReviewBean>();
 			try {
 				connect();
@@ -102,7 +103,7 @@ public class DBReviewDAO implements ReviewDAO {
 			int pageSize = 15;
 			int startRow = count - (pageSize * (currentPage - 1));
 			int endRow = count - (pageSize * currentPage) + 1;
-			String sql = "SELECT num, id, year, company, spec, review from interview WHERE(num <= " + startRow
+			String sql = "SELECT * from interview WHERE(num <= " + startRow
 						+ " AND num >= " + endRow + ") ORDER BY num DESC";
 			ArrayList<ReviewBean> list = new ArrayList<ReviewBean>();
 			try {
@@ -128,7 +129,7 @@ public class DBReviewDAO implements ReviewDAO {
 		}
 		
 		public ReviewBean getReview(String num) {
-			String sql = "SELECT num, id, year, company, spec, review FROM interview WHERE num=" + num;
+			String sql = "SELECT * FROM interview WHERE num=" + num;
 			ReviewBean review = new ReviewBean();
 			try {
 				connect();

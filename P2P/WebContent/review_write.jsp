@@ -67,7 +67,7 @@
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
-						<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
+						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
 						<a href="information.jsp">·&nbsp;&nbsp;취업신상정보</a><br>
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
@@ -103,37 +103,36 @@
 						</h1>
 					</div>
 					<div class="article" style="text-align:center">
-							<div class="view_table">
-								<table>
-									<tr style="border-bottom: 1px solid #dddddd;">
-										<td class="td_head">응시년도</td>
-										<td class="td_body">
-											<select name="year">
-												<% for(int i = 2018; i >= 1980; i--) { %>
-												<option value="<%=i%>"><%= i %></option>
-												<% } %>
-											</select>
-										</td>
-									</tr>
-									<tr style="border-bottom: 1px solid #dddddd;">
-										<td class="td_head">기업</td>
-										<td class="td_body"><input type="text" name="enterprise" /></td>
-									</tr>
-									<tr style="border-bottom: 1px solid #dddddd;">
-										<td class="td_head">스펙</td>
-										<td class="td_body"><input type="text" name="spec" /></td>
-									</tr>
-									<tr>
-										<td class="td_head">후기</td>
-										<td class="td_body" valign="top" style="height:400px"><textarea name="content"></textarea></td>
-									</tr>
-								</table>
-							</div>
-							<div class="buttons" style="height:22.28px;float:right;margin-bottom:80px">
-								<img src="Resources/img/check_button.png" onclick="move()" style="cursor:pointer" />
-								<a href="Review"><img src="Resources/img/cancle_button.png"/></a>
-							</div>
-						</form>
+						<div class="view_table">
+							<table>
+								<tr style="border-bottom: 1px solid #dddddd;">
+									<td class="td_head">응시년도</td>
+									<td class="td_body">
+										<select name="year">
+											<% for(int i = 2018; i >= 1980; i--) { %>
+											<option value="<%=i%>"><%= i %></option>
+											<% } %>
+										</select>
+									</td>
+								</tr>
+								<tr style="border-bottom: 1px solid #dddddd;">
+									<td class="td_head">기업</td>
+									<td class="td_body"><input type="text" name="enterprise" /></td>
+								</tr>
+								<tr style="border-bottom: 1px solid #dddddd;">
+									<td class="td_head">스펙</td>
+									<td class="td_body"><input type="text" name="spec" /></td>
+								</tr>
+								<tr>
+									<td class="td_head">후기</td>
+									<td class="td_body" valign="top" style="height:400px"><textarea name="content"></textarea></td>
+								</tr>
+							</table>
+						</div>
+						<div class="buttons" style="height:22.28px;float:right;margin-bottom:80px">
+							<img src="Resources/img/check_button.png" onclick="move()" style="cursor:pointer" />
+							<a href="Review"><img src="Resources/img/cancle_button.png"/></a>
+						</div>
 					</div>
 				</div>
 			</div>

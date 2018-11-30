@@ -53,7 +53,7 @@ public class Review extends HttpServlet {
 			request.setAttribute("reviewlist", list);
 			ReviewBean review = new ReviewBean();
 			review.setCount(dao.countReview());
-			request.setAttribute("r", review);
+			request.setAttribute("rn", review);
 			address = "/review.jsp";
 		} else if(action.equals("view")) {
 			ReviewBean review = dao.getReview(request.getParameter("num"));

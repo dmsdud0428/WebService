@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
+<jsp:useBean id="intro" class="myinfo.IntroBean" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,7 +83,7 @@
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
-						<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
+						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
 						<a href="information.jsp">·&nbsp;&nbsp;취업신상정보</a><br>
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
@@ -123,31 +124,49 @@
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">상태</td>
 									<td class="td_body">
-										<input type="radio" name="state" value="writing" checked="checked" /> 작성중&nbsp;&nbsp;&nbsp;
-										<input type="radio" name="state" value="writed" /> 작성완료
+										<input type="radio" name="state" value="writing" id="s1" /> 작성중&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="state" value="writed" id="s2" /> 작성완료
 									</td>
 								</tr>
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">작성일</td>
-									<td class="td_body"><input type="date" id="now_date"/></td>
+									<td class="td_body"><input type="date" id="now_date" value="<%=intro.getDay() %>" /></td>
 								</tr>
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">회사명</td>
-									<td class="td_body"><input type="text" name="enterprise" /></td>
+									<td class="td_body"><input type="text" name="enterprise" value="<%=intro.getCompany() %>" /></td>
 								</tr>
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">직무</td>
-									<td class="td_body"><input type="text" name="job" /></td>
+									<td class="td_body"><input type="text" name="job" value="<%=intro.getBusiness() %>" /></td>
 								</tr>
 								<tr style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">형태</td>
 									<td class="td_body">
-										<input type="checkbox" name="job_type" value="신입" /> 신입&nbsp;&nbsp;&nbsp;
-										<input type="checkbox" name="job_type" value="경력" /> 경력&nbsp;&nbsp;&nbsp;
-										<input type="checkbox" name="job_type" value="인턴" /> 인턴&nbsp;&nbsp;&nbsp;
-										<input type="checkbox" name="job_type" value="계약직" /> 계약직
+										<input type="radio" name="job_type" value="신입" id="jt1" /> 신입&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="job_type" value="경력" id="jt2" /> 경력&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="job_type" value="신입/경력" id="jt3" /> 신입/경력&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="job_type" value="인턴" id="jt4" /> 인턴&nbsp;&nbsp;&nbsp;
+										<input type="radio" name="job_type" value="계약직" id="jt5" /> 계약직
 									</td>
 								</tr>
+								<% 
+									int q_num = 0; int a_num = 0; int max;
+						
+									if(intro.getQuestion_5().length() != 0) q_num = 5;
+									else if(intro.getQuestion_4().length() != 0) q_num = 4;
+									else if(intro.getQuestion_3().length() != 0) q_num = 3;
+									else if(intro.getQuestion_2().length() != 0) q_num = 2;
+									else if(intro.getQuestion_1().length() != 0) q_num = 1;
+									
+									if(intro.getAnswer_5().length() != 0) a_num = 5;
+									else if(intro.getAnswer_4().length() != 0) a_num = 4;
+									else if(intro.getAnswer_3().length() != 0) a_num = 3;
+									else if(intro.getAnswer_2().length() != 0) a_num = 2;
+									else if(intro.getAnswer_1().length() != 0) a_num = 1;
+									if(q_num > a_num) max = q_num; else max = a_num;
+								%>
+									
 								<tr class="_q1" style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">질문 1</td>
 									<td class="td_body"><input type="text" name="q1" /></td>
@@ -166,18 +185,75 @@
 							</table>
 						</div>
 						<div class="buttons" style="height:22.28px;float:right;margin-bottom:80px">
-							<img src="Resources/img/modify_button.png"/>
-							<a href="introduce.jsp"><img src="Resources/img/cancle_button.png"/></a>
+							<img src="Resources/img/modify_button.png" onclick="move()" style="cursor:pointer" />
+							<a href="Introduce"><img src="Resources/img/cancle_button.png"/></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 </div>
+<% session.setAttribute("id", user.getSchoolID()); %>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-	document.getElementById('now_date').valueAsDate = new Date();
+	if(<%=intro.isState() %>) {
+		$("#s2").prop("checked", true);
+	} else {
+		$("#s1").prop("checked", true);
+	}
 
+	if("<%=intro.getKind() %>" == "신입") {
+		$("#jt1").prop("checked", true);
+	} else if("<%=intro.getKind() %>" == "경력") {
+		$("#jt2").prop("checked", true);
+	} else if("<%=intro.getKind() %>" == "신경") {
+		$("#jt3").prop("checked", true);
+	} else if("<%=intro.getKind() %>" == "인턴") {
+		$("#jt4").prop("checked", true);
+	} else if("<%=intro.getKind() %>" == "계약직") {
+		$("#jt5").prop("checked", true);
+	}
+
+	var pb = $("#_table tr:last").clone();
+	pb.removeClass();
+	$("#_table tr:last").remove();
+
+	var ni;
+	for(num = 2; num <= <%=max %>; num++) {
+		ni = "<tr class='_q" + num;
+		ni += "' style='border-bottom: 1px solid #dddddd;'>";
+		ni += "<td class='td_head'>질문 " + num + "</td>";
+		ni += "<td class='td_body'><input type='text' name='q" + num + "' /></td>";
+		ni += "</tr>";
+		ni += "<tr class='_a" + num;
+		ni += "' style='border-bottom: 1px solid #dddddd;'>";
+		ni += "<td class='td_head'>답변 " + num + "</td>";
+		ni += "<td class='td_body' valign='top' style='height:200px'>";
+		ni += "<textarea name='a" + num + "' id='answer" + num + "'></textarea>";
+		ni += "<span class='counter' id='cnt" + num + "'>(0 / 1000)</span>";
+		ni += "</td>";
+		ni += "</tr>";
+    	$("#_table").append(ni);
+	}
+	
+	if(<%=max %> != 5)
+		$("#_table").append(pb);
+	
+	$("input[name=q1]").val("<%=intro.getQuestion_1()%>");
+	$("textarea[name=a1]").text("<%=intro.getAnswer_1()%>");
+	$("input[name=q2]").val("<%=intro.getQuestion_2()%>");
+	$("textarea[name=a2]").text("<%=intro.getAnswer_2()%>");
+	$("input[name=q3]").val("<%=intro.getQuestion_3()%>");
+	$("textarea[name=a3]").text("<%=intro.getAnswer_3()%>");
+	$("input[name=q4]").val("<%=intro.getQuestion_4()%>");
+	$("textarea[name=a4]").text("<%=intro.getAnswer_4()%>");
+	$("input[name=q5]").val("<%=intro.getQuestion_5()%>");
+	$("textarea[name=a5]").text("<%=intro.getAnswer_5()%>");
+	
+	for(num = 1; num <= <%=max %>; num++) {
+		$('#cnt'+num).html("("+$("#answer"+num).val().length+" / 1000)");
+	}
+	
 	$(document).on('click', '#plus', function() {
 		var table_len = $("#_table").find("tr").length;
 		var last_a = table_len - 2;
@@ -266,6 +342,71 @@
 	        $('#cnt5').html("(1000 / 1000자)");
 	    }
 	});
+	
+	function move() {
+		var form = document.createElement("form");
+        form.setAttribute("charset", "UTF-8");
+        form.setAttribute("method", "Post");
+        form.setAttribute("action", "Introduce");
+        var state = $(":input:radio[name=state]:checked").val();
+        var enterprise = $('input[name=enterprise]').val();
+        var job = $('input[name=job]').val();
+        var job_type = $(":input:radio[name=job_type]:checked").val();
+		
+        var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "num");
+		hiddenField.setAttribute("value", <%=intro.getNum() %>);
+		form.appendChild(hiddenField);
+		hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "action");
+		hiddenField.setAttribute("value", "modify_check");
+		form.appendChild(hiddenField);
+        
+        var input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'state';
+		input.value = state;
+		form.appendChild(input);
+		
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'enterprise';
+		input.value = enterprise;
+		form.appendChild(input);
+		
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'job';
+		input.value = job;
+		form.appendChild(input);
+		
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'job_type';
+		input.value = job_type;
+		form.appendChild(input);
+		
+		for(var i = 1; i < 6; i++) {
+			input = document.createElement('input');
+			input.type = 'hidden';
+			input.name = 'q' + i;
+			if(typeof $('input[name=q'+ i +']').val() != "undefined")
+				input.value = $('input[name=q'+ i +']').val();
+			form.appendChild(input);
+			
+			input = document.createElement('input');
+			input.type = 'hidden';
+			input.name = 'a' + i;
+			if(typeof $('textarea[name=a'+ i +']').val() != "undefined")
+				input.value = $('textarea[name=a'+ i +']').val();
+			form.appendChild(input);
+		}
+		
+        document.body.appendChild(form);
+        form.submit();
+	}
 </script>
 </body>
 </html>
