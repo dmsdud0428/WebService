@@ -2,7 +2,7 @@ package myinfo;
 
 import java.util.ArrayList;
 
-public class ScoreBean {
+public class ScoreInfo {
 	private String semester;			// 학기
 	private String subject;				// 교과목명
 	private String complete_type;		// 이수구분
@@ -10,6 +10,7 @@ public class ScoreBean {
 	private int design_score;			// 설계학점
 	private double grade;				// 등급
 	private double average;				// 평점평균
+	
 	ArrayList<Score> score_array = new ArrayList<>();		// 평점 평균 빼고 다 집어넣은 리스트
 	ArrayList<Double> average_array = new ArrayList<>();	// 학기별 평점 평균 리스트
 	ArrayList<Major> maverage_array = new ArrayList<>();	// 학기별 전공 평점 평균 리스트
@@ -17,8 +18,9 @@ public class ScoreBean {
 	private double goal;				// 목표 점수
 	private double total_ave;			// 총 평점 평균
 	private double major_ave;			// 전공 평점 평균
-	private int total_sco=0;			// 총 학점
-	private int major_sco=0;			// 전공 학점
+	
+	private int total_sco = 0;			// 총 학점
+	private int major_sco = 0;			// 전공 학점
 	private int cultureE_sco = 0;		// 교양 필수
 	private int msc_sco = 0;			// msc 학점
 	private int majorE_sco = 0;			// 전공 필수

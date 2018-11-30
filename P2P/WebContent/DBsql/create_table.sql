@@ -52,7 +52,7 @@ create table etc (
 create table introduction (
 	num int auto_increment primary key,
 	id char(9),
-	state varchar(10),
+	state tinyint(1) default 0,
 	day date,
 	company varchar(100),
 	business varchar(100),

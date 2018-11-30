@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="myinfo.ReviewBean" %>
-<jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
+<jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
 <jsp:useBean id="reviewlist" class="java.util.ArrayList" scope="request" />
-<jsp:useBean id="r" class="myinfo.ReviewBean" scope="request" />
+<jsp:useBean id="rn" class="myinfo.ReviewBean" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,8 +41,11 @@
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
-						<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
+ 
 						<a href="Information">·&nbsp;&nbsp;취업신상정보</a><br>
+ 
+						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
+ 
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
 					</div>
@@ -61,10 +64,10 @@
 			<div class="right-box" style="line-height:50%">
 				<div id="header" style="width:800px;text-align:right">
 					<div class="head_text" style="margin-top:30px">
-						<b>· 소속 : </b><jsp:getProperty property="major" name="info" />&nbsp;&nbsp;&nbsp;
-						<b>· 학번 : </b><jsp:getProperty property="schoolID" name="info" />&nbsp;&nbsp;&nbsp;
-						<b>· 사용자 : </b><jsp:getProperty property="name" name="info" />&nbsp;&nbsp;&nbsp;
-						<b>· 구분 : </b><jsp:getProperty property="type" name="info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>· 소속 : </b><jsp:getProperty property="major" name="user" />&nbsp;&nbsp;&nbsp;
+						<b>· 학번 : </b><jsp:getProperty property="schoolID" name="user" />&nbsp;&nbsp;&nbsp;
+						<b>· 사용자 : </b><jsp:getProperty property="name" name="user" />&nbsp;&nbsp;&nbsp;
+						<b>· 구분 : </b><jsp:getProperty property="type" name="user" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="logout.jsp"><img id="logout" src="Resources/img/logout_button.png"/></a>
 					</div>
 				</div>
@@ -107,7 +110,7 @@
 						</div>
 						<div id="page_number" style="margin-bottom:30px">
 							<%
-								int count = r.getCount();
+								int count = rn.getCount();
 								int pageSize = 15;
 								String pageNum = request.getParameter("page");
 								if(pageNum == null) {
@@ -124,18 +127,18 @@
 										endPage = pageCount;
 									}
 									if(startPage > pageBlock) {
-										%><a href="Review?page=<%=startPage - pageBlock%>">◀ 이전&nbsp;&nbsp;</a><%
+										%><a onclick="move4(<%=startPage - pageBlock%>)" style="cursor:pointer">◀ 이전&nbsp;&nbsp;</a><%
 									}
 									for(int i = startPage; i<= endPage; i++) {
 										if(i == currentPage) {
-											%>&nbsp;<a href="Review?page=<%=i%>" style="color:#9686cc;text-decoration:underline"><%=i%></a>&nbsp;<%
+											%>&nbsp;<span style="color:#9686cc;text-decoration:underline"><%=i%></span>&nbsp;<%
 										}
 										else {
-											%>&nbsp;<a href="Review?page=<%=i%>"><%=i%></a>&nbsp;<%
+											%>&nbsp;<a onclick="move4(<%=i%>)" style="cursor:pointer"><%=i%></a>&nbsp;<%
 										}
 									}
 									if(endPage < pageCount) {
-										%><a href="Review?page=<%=startPage + pageBlock%>">&nbsp;&nbsp;다음 ▶</a><%		
+										%><a onclick="move4(<%=startPage + pageBlock%>)" style="cursor:pointer">&nbsp;&nbsp;다음 ▶</a><%		
 									}
 								}
 							%>
@@ -146,8 +149,8 @@
 								<option value="1">기업</option>
 								<option value="2">스펙</option>
 							</select>
-							<input name="searchInput">
-							<img src="Resources/img/search_button.png" style="height:22px;width:auto;vertical-align:middle"/>
+							<input name="searchInput" />
+							<img src="Resources/img/search_button.png" onclick="move3()" style="cursor:pointer;height:22px;width:auto;vertical-align:middle"/>
 						</div>
 					</div>
 				</div>
@@ -156,6 +159,9 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
+	$("select[name=searchBy]").val("<%=rn.getOption()%>");
+	$("input[name=searchInput]").val("<%=rn.getSearch()%>");
+
 	function move1(value) {
 		var form = document.createElement("form");
 		form.setAttribute("charset", "UTF-8");
@@ -184,6 +190,61 @@
 		hiddenField.setAttribute("name", "action");
 		hiddenField.setAttribute("value", value);
 		form.appendChild(hiddenField);
+		document.body.appendChild(form);
+		form.submit();
+	}
+	function move3() {
+		var form = document.createElement("form");
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", "Review");
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "action");
+		hiddenField.setAttribute("value", "list");
+		form.appendChild(hiddenField);
+		
+		var input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'searchBy';
+		input.value = $("select[name=searchBy]").val();
+		form.appendChild(input);
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'searchInput';
+		input.value = $("input[name=searchInput]").val();
+		form.appendChild(input);
+		
+		document.body.appendChild(form);
+		form.submit();
+	}
+	function move4(page) {
+		var form = document.createElement("form");
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", "Review");
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "action");
+		hiddenField.setAttribute("value", "list");
+		form.appendChild(hiddenField);
+		
+		var input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'page';
+		input.value = page;
+		form.appendChild(input);
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'searchBy';
+		input.value = $("select[name=searchBy]").val();
+		form.appendChild(input);
+		input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'searchInput';
+		input.value = $("input[name=searchInput]").val();
+		form.appendChild(input);
+		
 		document.body.appendChild(form);
 		form.submit();
 	}

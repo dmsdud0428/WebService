@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
+<jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
 <jsp:useBean id="review" class="myinfo.ReviewBean" scope="request" />
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,7 @@
 
 .view_table .td_body {
 	padding: 15px;
-	text-align:left;
+	text-align: left;
 }
 
 .buttons img {
@@ -58,8 +58,11 @@
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
-						<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
+ 
 						<a href="Information">·&nbsp;&nbsp;취업신상정보</a><br>
+ 
+						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
+ 
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
 					</div>
@@ -78,10 +81,10 @@
 			<div class="right-box" style="line-height:50%">
 				<div id="header" style="width:800px;text-align:right">
 					<div class="head_text" style="margin-top:30px">
-						<b>· 소속 : </b><jsp:getProperty property="major" name="info" />&nbsp;&nbsp;&nbsp;
-						<b>· 학번 : </b><jsp:getProperty property="schoolID" name="info" />&nbsp;&nbsp;&nbsp;
-						<b>· 사용자 : </b><jsp:getProperty property="name" name="info" />&nbsp;&nbsp;&nbsp;
-						<b>· 구분 : </b><jsp:getProperty property="type" name="info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>· 소속 : </b><jsp:getProperty property="major" name="user" />&nbsp;&nbsp;&nbsp;
+						<b>· 학번 : </b><jsp:getProperty property="schoolID" name="user" />&nbsp;&nbsp;&nbsp;
+						<b>· 사용자 : </b><jsp:getProperty property="name" name="user" />&nbsp;&nbsp;&nbsp;
+						<b>· 구분 : </b><jsp:getProperty property="type" name="user" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="logout.jsp"><img id="logout" src="Resources/img/logout_button.png"/></a>
 					</div>
 				</div>
@@ -124,7 +127,7 @@
 			</div>
 		</div>
 </div>
-<% session.setAttribute("id", info.getSchoolID()); %>
+<% session.setAttribute("id", user.getSchoolID()); %>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 	function move(value) {

@@ -9,6 +9,8 @@ public class ReviewBean {
 	private String enterprise;
 	private String spec;
 	private String content;
+	private String search;
+	private int option;
 
 	
 	public int getCount() {
@@ -53,6 +55,16 @@ public class ReviewBean {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public int getOption() {
+		return option;
+	}
+	public void setOption(int option) {
+		this.option = option;
+	}
 }

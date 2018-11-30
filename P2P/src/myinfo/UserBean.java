@@ -2,7 +2,7 @@ package myinfo;
 
 import java.util.ArrayList;
 
-public class InfoBean {
+public class UserBean {
 	private String major;
 	private String schoolID;
 	private String name;

@@ -5,8 +5,8 @@
 
 <jsp:useBean id="login" class="myinfo.LoginBean" scope="request" />
 <jsp:setProperty name="login" property="*" />
-<jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
-<jsp:useBean id="score" class="myinfo.ScoreBean" scope="session" />
+<jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
+<jsp:useBean id="score" class="myinfo.ScoreInfo" scope="session" />
 
 <html>
 <head>
@@ -23,7 +23,7 @@
 				userInfo.add(buf.get(0));
 				buf.remove(0);
 			}
-			info.setInfo(userInfo);
+			user.setInfo(userInfo);
 			score.setScore(buf);
 			out.println("<script>location.href='Main';</script>");
 		}
