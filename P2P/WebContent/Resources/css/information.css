@@ -1,4 +1,4 @@
-#popup1, #popup2, #popup3, #popup4, #popup5, #popup6 {
+#popup1, #popup2, #popup3, #popup4, #popup5, #popup6,#popup7,#popup8,#popup9,#popup10{
 	position: fixed;
 	width: 372px;
 	height: 300px;
@@ -29,6 +29,8 @@
 	align-items: center;
 	padding-bottom: 10px;
 }
+
+
 
 input[name=checkbox] {
 	 vertical-align: middle;

@@ -52,14 +52,14 @@
 		<div class="layout2">
 			<div class="center-box">
 				<div id="logo" style="margin-top:30px">
-					<a href="main.jsp"><img src="Resources/img/logo.png" style="width:152px;height:80px"/></a>
+					<a href="Main"><img src="Resources/img/logo.png" style="width:152px;height:80px"/></a>
 				</div>
 				<div id="menu">
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
 						<a href="introduce.jsp">·&nbsp;&nbsp;자기소개서</a><br>
-						<a href="information.jsp">·&nbsp;&nbsp;취업신상정보</a><br>
+						<a href="Information">·&nbsp;&nbsp;취업신상정보</a><br>
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
 					</div>

@@ -25,7 +25,7 @@
 			}
 			info.setInfo(userInfo);
 			score.setScore(buf);
-			out.println("<script>location.href='main.jsp';</script>");
+			out.println("<script>location.href='Main';</script>");
 		}
 		else { 
 			//session.invalidate();
