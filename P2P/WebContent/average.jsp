@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="myinfo.*"%>
+
 <jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
 <jsp:useBean id="score" class="myinfo.ScoreInfo" scope="session" />
 <!DOCTYPE html>
@@ -176,13 +177,8 @@
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
-
-		
 						<a href="Information">·&nbsp;&nbsp;취업신상정보</a><br>
-
 						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
-
-
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
 					</div>
@@ -291,7 +287,7 @@
 												목표 학점까지 남은 학기동안<br>
 												OO 이수학점 기준<br>
 												평균 OO학점 필요<br>
-												<input id="goal_button" type="button" onclick="popup_open(1)" />
+												<input id="goal_button" type="button" onclick="popup_open(1,0)" />
 										</div>
 									</div>
 								

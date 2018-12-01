@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="myinfo.*"%>
-<jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
 <jsp:useBean id="language" class="myinfo.LanguageBean" scope="request"/>
 <jsp:useBean id="Languagelist" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="License" class="myinfo.LicenseBean" scope="request"/>
@@ -9,7 +8,10 @@
 <jsp:useBean id="Awardlist" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="Career" class="myinfo.CareerBean" scope="request"/>
 <jsp:useBean id="Careerlist" class="java.util.ArrayList" scope="request" />
-
+<jsp:useBean id="Service" class="myinfo.ServiceBean" scope="request"/>
+<jsp:useBean id="Servicelist" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="Etc" class="myinfo.EtcBean" scope="request"/>
+<jsp:useBean id="Etclist" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
 
 <!DOCTYPE html>
@@ -107,22 +109,23 @@
 									<%--확인버튼때문에 폼처리--%>
 										<div class="popup_content">
 											<div style="width: 108px">· 공인시험명</div>
-											<div><input type="text" size="40" name="title" value="" style="width:150px;"/></div>
+											<div><input type="text" size="40" name="Mtitle" value="" style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 등급</div>
-											<div><input type="text" size="40" name="rating" value=""  style="width:150px;"/></div>
+											<div><input type="text" size="40" name="Mrating" value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 점수</div>
-											<div><input type="text" size="40" name="score" value="" style="width:150px;"/></div>
+											<div><input type="text" size="40" name="Mscore" value="" style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 인증날짜</div>
-											<div><input type="date" size="40" name="day" value="" style="width:150px;"/></div>
+											<div><input type="date" size="40" name="Mday" value="" style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 141px; padding: 15px 20px 0px 0px">
+												<input name="Lnum" type="hidden" value="" />
 												<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="Mlanguagepage('languagedmodify')"/></div>
 											<div style="padding: 15px 0px 0px 20px"><input name="closebox" type="button" onclick="popup_close(7)"></div>
 										</div>
@@ -130,7 +133,7 @@
 								<div class="table_title">
 									<div class="pencil"><img src="Resources/img/pencil.png"></div>
 									<div class="title_name"><h3>어학능력</h3></div>
-									<div class="plus"><input name="openbox" type="button" onclick="popup_open(1)"></div>
+									<div class="plus"><input name="openbox" type="button" onclick="popup_open(1,0)"></div>
 								</div>
 								<div class="table_content">
 									<table>
@@ -156,8 +159,7 @@
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getDay() %>	</td>		
 													 
 													 <td>
-													 <input name="Lnum" type="hidden" value="<%=lag.getNum() %>"/>
-													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(7)" /></td>	
+													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(7,<%=lag.getNum() %>)" /></td>	
 													 </tr>	 
 													<%
 								 				} %>
@@ -199,22 +201,23 @@
 										<%--확인버튼때문에 폼처리--%>
 										<div class="popup_content">
 											<div style="width: 108px">· 자격증명</div>
-											<div><input type="text" size="40" name="Ltitle" value=""  style="width:150px;" /></div>
+											<div><input type="text" size="40" name="LMtitle" value=""  style="width:150px;" /></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 발급기관</div>
-											<div><input type="text" size="40" name="Lcompany" value=""  style="width:150px;" /></div>
+											<div><input type="text" size="40" name="LMcompany" value=""  style="width:150px;" /></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 등급</div>
-											<div><input type="text" size="40" name="Lrating" value=""  style="width:150px;"/></div>
+											<div><input type="text" size="40" name="LMrating" value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 날짜</div>
-											<div><input type="date" name="Lday" value=""  style="width:150px;"/></div>
+											<div><input type="date" name="LMday" value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 141px; padding: 15px 20px 0px 0px">
+											<input name="Lnum" type="hidden" value="" />
 											<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="Mlicensepage('licensemodify')"/></div>
 											<div style="padding: 15px 0px 0px 20px"><input name="closebox" type="button" onclick="popup_close(8)"></div>
 										</div>	
@@ -222,7 +225,7 @@
 								<div class="table_title">
 									<div class="pencil"><img src="Resources/img/pencil.png"></div>
 									<div class="title_name"><h3>자격증 취득</h3></div>
-									<div class="plus"><input name="openbox" type="button" onclick="popup_open(2)"></div>
+									<div class="plus"><input name="openbox" type="button" onclick="popup_open(2,0)"></div>
 								</div>
 								<div class="table_content">
 								<table>
@@ -248,7 +251,7 @@
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getDay() %>	</td>		
 													 
 													 <td>
-													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(8)" /></td>	
+													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(8,<%= lag.getNum() %>)" /></td>	
 													 </tr>	 
 													<%
 								 				} %>
@@ -280,40 +283,41 @@
 										</div>
 										<div class="popup_content">
 											<div style="width: 141px; padding: 15px 20px 0px 0px">
-											<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="Awardpage('Awardwrite')" /></div>
+											<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="Awardpage('Awardwirter')" /></div>
 											<div style="padding: 15px 0px 0px 20px"><input name="closebox" type="button" onclick="popup_close(3)"></div>
 										</div>
 								</div>
-									<div id="mask" style="display: none"></div>
+								<div id="mask" style="display: none"></div>
 								<div id="popup9" style="display: none">
 									<div style="padding-bottom: 15px"><h1>수상실적 수정</h1></div>
 									<%--확인버튼때문에 폼처리--%>
 										<div class="popup_content">
 											<div style="width: 108px">· 수상명</div>
-											<div><input type="text" name="Atitle"  value=""  style="width:150px;"/></div>
+											<div><input type="text" name="AMtitle"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 수여기관</div>
-											<div><input type="text" size="40" name="Acompany"  value=""  style="width:150px;"/></div>
+											<div><input type="text" size="40" name="AMcompany"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 등급</div>
-											<div><input type="text" size="40"  name="Arating"  value=""  style="width:150px;"/></div>
+											<div><input type="text" size="40"  name="AMrating"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 수여일</div>
-											<div><input type="date"name="Aday"  value=""  style="width:150px;"/></div>
+											<div><input type="date"name="AMday"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 141px; padding: 15px 20px 0px 0px">
-											<input type="image" name="checkbox" src="Resources/img/check_button.png"  onclick="MAwardpage('Awardwritemodify')"/></div>
+											<input name="Lnum" type="hidden" value="" />
+											<input type="image" name="checkbox" src="Resources/img/check_button.png"  onclick="MAwardpage('Awardmodify')"/></div>
 											<div style="padding: 15px 0px 0px 20px"><input name="closebox" type="button" onclick="popup_close(9)"></div>
 										</div>
 								</div>
 								<div class="table_title">
 									<div class="pencil"><img src="Resources/img/pencil.png"></div>
 									<div class="title_name"><h3>수상실적</h3></div>
-									<div class="plus"><input name="openbox" type="button" onclick="popup_open(3)"></div>
+									<div class="plus"><input name="openbox" type="button" onclick="popup_open(3,0)"></div>
 								</div>
 								<div class="table_content">
 								<table>
@@ -339,41 +343,41 @@
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getDay() %>	</td>		
 													 
 													 <td>
-													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(9)" /></td>	
+													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(9,<%= lag.getNum() %>)" /></td>	
 													 </tr>	 
 													<%
 								 				} %>
 									</table>
 									</div>
 							</div>
+							<div>
 							<div class="career">
 								<div id="mask" style="display: none"></div>
 								<div id="popup4" style="display: none">
 									<div style="padding-bottom: 15px"><h1>재직 및 경력사항</h1></div>
-										<%--확인버튼때문에 폼처리--%>
 										<div class="popup_content">
 											<div style="width: 108px">· 구분</div>
-											<div><input type="text" size="40"  name="kind"  value=""  style="width:150px;"/></div>
+											<div><input type="text" size="40"  name="Ckind"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 근무지</div>
-											<div><input type="text" size="40"  name="company"  value=""  style="width:150px;"/></div>
+											<div><input type="text" size="40"  name="Ccompany"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 담당업무</div>
-											<div><input type="text" size="40"  name="business"  value=""  style="width:150px;"/></div>
+											<div><input type="text" size="40"  name="Cbusiness"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 근무 시작일</div>
-											<div><input type="date"  name="startD"  value=""  style="width:150px;"/></div>
+											<div><input type="date"  name="CstartD"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 근무 종료일</div>
-											<div><input type="date" name="EndD"  value=""  style="width:150px;"/></div>
+											<div><input type="date" name="CendD"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 141px; padding: 15px 20px 0px 0px">
-											<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="Careerpage('Careerwrite')"></div>
+											<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="Careerpage('Careerwirter');" /></div>
 											<div style="padding: 15px 0px 0px 20px"><input name="closebox" type="button" onclick="popup_close(4)"></div>
 										</div>
 								</div>
@@ -383,34 +387,35 @@
 										<%--확인버튼때문에 폼처리--%>
 										<div class="popup_content">
 											<div style="width: 108px">· 구분</div>
-											<div><input type="text" size="40"  name="kind"  value=""  style="width:150px;"/></div>
+											<div><input type="text" size="40"  name="CMkind"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 근무지</div>
-											<div><input type="text" size="40"  name="company"  value=""  style="width:150px;"/></div>
+											<div><input type="text" size="40"  name="CMcompany"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 담당업무</div>
-											<div><input type="text" size="40"  name="business"  value=""  style="width:150px;"/></div>
+											<div><input type="text" size="40"  name="CMbusiness"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 근무 시작일</div>
-											<div><input type="date" name="startD"  value=""  style="width:150px;"/></div>
+											<div><input type="date" name="CMstartD"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 근무 종료일</div>
-											<div><input type="date" name="EndD"  value=""  style="width:150px;"/></div>
+											<div><input type="date" name="CMendD"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 141px; padding: 15px 20px 0px 0px">
-											<input type="image" name="checkbox" src="Resources/img/check_button.png"/ onclick="MCareerpage('Careermodify')"></div>
+											<input name="Lnum" type="hidden" value="" />
+											<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="MCareerpage('Careermodify')" /></div>
 											<div style="padding: 15px 0px 0px 20px"><input name="closebox" type="button" onclick="popup_close(10)"></div>
 										</div>
 								</div>
 								<div class="table_title">
 									<div class="pencil"><img src="Resources/img/pencil.png"></div>
 									<div class="title_name"><h3>재직 및 경력사항</h3></div>
-									<div class="plus"><input name="openbox" type="button" onclick="popup_open(4)"></div>
+									<div class="plus"><input name="openbox" type="button" onclick="popup_open(4,0)"></div>
 								</div>
 								<div class="table_content">
 										<table>
@@ -438,7 +443,7 @@
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getE_day() %>	</td>	
 													 
 													 <td>
-													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(10)" /></td>	
+													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(10,<%= lag.getNum() %>)" /></td>	
 													 </tr>	 
 													<%
 								 				} %>
@@ -450,75 +455,188 @@
 								<div id="mask" style="display: none"></div>
 								<div id="popup5" style="display: none">
 									<div style="padding-bottom: 15px"><h1>봉사활동</h1></div>
-									<%--확인버튼때문에 폼처리--%>
-									<form>
 										<div class="popup_content">
 											<div style="width: 108px">· 활동명</div>
-											<div><input type="text" size="40" name="text"/></div>
+											<div><input type="text" size="40" name="Stitle"   value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 활동기관</div>
-											<div><input type="text" size="40" name="text"/></div>
+											<div><input type="text" size="40" name="Scompany"   value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 봉사구분</div>
-											<div><input type="text" size="40" name="text"/></div>
+											<div><input type="text" size="40" name="Skind"   value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 활동 시작일</div>
-											<div><input type="date" name="date"/></div>
+											<div><input type="date" name="Ssday"   value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 활동 종료일</div>
-											<div><input type="date" name="date"/></div>
+											<div><input type="date" name="Seday"   value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
-											<div style="width: 141px; padding: 15px 20px 0px 0px"><input type="image" name="checkbox" src="Resources/img/check_button.png"/></div>
+											<div style="width: 141px; padding: 15px 20px 0px 0px">
+											<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="Servicepage('Servicewrite')" /></div>
 											<div style="padding: 15px 0px 0px 20px"><input name="closebox" type="button" onclick="popup_close(5)"></div>
 										</div>
-									</form>
+								</div>
+																<div id="mask" style="display: none"></div>
+								<div id="popup11" style="display: none">
+									<div style="padding-bottom: 15px"><h1>봉사활동수정</h1></div>
+										<div class="popup_content">
+											<div style="width: 108px">· 활동명</div>
+											<div><input type="text" size="40" name="SMtitle"   value=""  style="width:150px;"/></div>
+										</div>
+										<div class="popup_content">
+											<div style="width: 108px">· 활동기관</div>
+											<div><input type="text" size="40" name="SMcompany"   value=""  style="width:150px;"/></div>
+										</div>
+										<div class="popup_content">
+											<div style="width: 108px">· 봉사구분</div>
+											<div><input type="text" size="40" name="SMkind"   value=""  style="width:150px;"/></div>
+										</div>
+										<div class="popup_content">
+											<div style="width: 108px">· 활동 시작일</div>
+											<div><input type="date" name="SMsday"   value=""  style="width:150px;"/></div>
+										</div>
+										<div class="popup_content">
+											<div style="width: 108px">· 활동 종료일</div>
+											<div><input type="date" name="SMeday"   value=""  style="width:150px;"/></div>
+										</div>
+										<div class="popup_content">
+											<div style="width: 141px; padding: 15px 20px 0px 0px">
+											<input name="Lnum" type="hidden" value="" />
+											<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="MServicepage('servicemodify')"/></div>
+											<div style="padding: 15px 0px 0px 20px"><input name="closebox" type="button" onclick="popup_close(5)"></div>
+										</div>
 								</div>
 								<div class="table_title">
 									<div class="pencil"><img src="Resources/img/pencil.png"></div>
 									<div class="title_name"><h3>봉사활동</h3></div>
-									<div class="plus"><input name="openbox" type="button" onclick="popup_open(5)"></div>
+									<div class="plus"><input name="openbox" type="button" onclick="popup_open(5,0)"></div>
 								</div>
-								<div class="table_content">활동명 / 활동기관 / 봉사구분 / 활동 시작일 / 활동 종료일 <input name="editbox" type="button" onclick="popup_open(5)" /></div>
+								<div class="table_content">	
+								<table>
+										<thead style="background-color:#f9f9f9">
+											<tr>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">활동</th>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">기관</th>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">구분</th>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">시작일</th>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">종료일</th>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">수정</th>
+											</tr>		 		
+								 		</thead>
+								 		<tbody>
+
+											<%
+								 				for(int i = 0; i < Servicelist.size(); i++) {
+								 					 ServiceBean lag = ( ServiceBean) Servicelist.get(i);
+												%>
+													<tr>
+													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getTitle() %></td> 
+													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getCompany() %></td> 
+													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getKind() %></td>  
+													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getS_day() %>	</td>	
+													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getE_day() %>	</td>	
+													 
+													 <td>
+													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(11,<%= lag.getNum() %>)" /></td>	
+													 </tr>	 
+													<%
+								 				} %>
+									</table>
+							</div>
 							</div>
 							<div class="etc">
 								<div id="mask" style="display: none"></div>
 								<div id="popup6" style="display: none">
 									<div style="padding-bottom: 15px"><h1>기타</h1></div>
 										<%--확인버튼때문에 폼처리--%>
-									<form>
 										<div class="popup_content">
 											<div style="width: 108px">· 활동명</div>
-											<div><input type="text" size="40" name="text"/></div>
+											<div><input type="text" size="40" name="Etitle"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 활동기관</div>
-											<div><input type="text" size="40" name="text"/></div>
+											<div><input type="text" size="40" name="Ecompany"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 활동 시작일</div>
-											<div><input type="date" name="date"/></div>
+											<div><input type="date" name="Esday"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
 											<div style="width: 108px">· 활동 종료일</div>
-											<div><input type="date" name="date"/></div>
+											<div><input type="date" name="Eeday"  value=""  style="width:150px;"/></div>
 										</div>
 										<div class="popup_content">
-											<div style="width: 141px; padding: 15px 20px 0px 0px"><input type="image" name="checkbox" src="Resources/img/check_button.png"/></div>
+											<div style="width: 141px; padding: 15px 20px 0px 0px">
+											<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="Etcpage('etcwriter')"/></div>
 											<div style="padding: 15px 0px 0px 20px"><input name="closebox" type="button" onclick="popup_close(6)"></div>
 										</div>
-									</form>
+								</div>
+								<div id="mask" style="display: none"></div>
+								<div id="popup12" style="display: none">
+									<div style="padding-bottom: 15px"><h1>기타 수정 페이지</h1></div>
+										<%--확인버튼때문에 폼처리--%>
+										<div class="popup_content">
+											<div style="width: 108px">· 활동명</div>
+											<div><input type="text" size="40" name="EMtitle"  value=""  style="width:150px;"/></div>
+										</div>
+										<div class="popup_content">
+											<div style="width: 108px">· 활동기관</div>
+											<div><input type="text" size="40" name="EMcompany"  value=""  style="width:150px;"/></div>
+										</div>
+										<div class="popup_content">
+											<div style="width: 108px">· 활동 시작일</div>
+											<div><input type="date" name="EMsday"  value=""  style="width:150px;"/></div>
+										</div>
+										<div class="popup_content">
+											<div style="width: 108px">· 활동 종료일</div>
+											<div><input type="date" name="EMeday"  value=""  style="width:150px;"/></div>
+										</div>
+										<div class="popup_content">
+											<div style="width: 141px; padding: 15px 20px 0px 0px">
+											<input name="Lnum" type="hidden" value="" />
+											<input type="image" name="checkbox" src="Resources/img/check_button.png" onclick="MEtcpage('etcmodify')"/></div>
+											<div style="padding: 15px 0px 0px 20px"><input name="closebox" type="button" onclick="popup_close(12)"></div>
+										</div>
 								</div>
 								<div class="table_title">
 									<div class="pencil"><img src="Resources/img/pencil.png"></div>
 									<div class="title_name"><h3>기타</h3></div>
-									<div class="plus"><input name="openbox" type="button" onclick="popup_open(6)"></div>
+									<div class="plus"><input name="openbox" type="button" onclick="popup_open(6,0)"></div>
 								</div>
-								<div class="table_content">활동명 / 활동기관 / 활동 시작일 / 활동 종료일		<input name="editbox" type="button" onclick="popup_open(6)" /></div>
+								<div class="table_content">
+								<table>
+										<thead style="background-color:#f9f9f9">
+											<tr>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">활동</th>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">기관</th>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">시작일</th>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">종료일</th>
+												<th style="font-size:8px;text-align: center;width:50px;height:8px">수정</th>
+											</tr>		 		
+								 		</thead>
+								 		<tbody>
+
+											<%
+								 				for(int i = 0; i < Etclist.size(); i++) {
+								 					 EtcBean lag = (EtcBean) Etclist.get(i);
+												%>
+													<tr>
+													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getTitle() %></td> 
+													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getCompany() %></td>   
+													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getS_day() %>	</td>	
+													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getE_day() %>	</td>	
+													 
+													 <td>
+													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(12,<%= lag.getNum() %>)" /></td>	
+													 </tr>	 
+													<%
+								 				} %>
+									</table>
 							</div>
 						</div>
 					</div>
@@ -528,5 +646,6 @@
 	</div>
 <script type="text/javascript" src="Resources/js/information.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 </body>
 </html>

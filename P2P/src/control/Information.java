@@ -17,8 +17,10 @@ import connection.DBInformationDAO;
 import connection.InformationDAO;
 import myinfo.AwardBean;
 import myinfo.CareerBean;
+import myinfo.EtcBean;
 import myinfo.LanguageBean;
 import myinfo.LicenseBean;
+import myinfo.ServiceBean;
 
 /**
  * Servlet implementation class Information
@@ -78,6 +80,16 @@ public class Information extends HttpServlet {
 			CareerBean Clag=new CareerBean();
 			request.setAttribute("Career",Clag);
 		
+			ArrayList<ServiceBean> Slist=dao.getAllService(id);
+			request.setAttribute("Servicelist", Slist);
+			ServiceBean Slag=new ServiceBean();
+			request.setAttribute("Service",Slag);
+			
+			ArrayList<EtcBean> Elist=dao.getAllEtc(id);
+			request.setAttribute("Etclist", Elist);
+			EtcBean Elag=new EtcBean();
+			request.setAttribute("Etc",Elag);
+			
 			address="/information.jsp";
 		}
 		
@@ -111,7 +123,9 @@ public class Information extends HttpServlet {
 				dao.addLanguage(id,title, rating, score, day);
 			}
 			address = "/Information?action=list";
-		}else if(action.equals("languagedmodify")) {
+			
+		}
+		else if(action.equals("languagedmodify")) {
 			
 			System.out.println("languagedmodify");
 			String title=request.getParameter("title");
@@ -120,7 +134,28 @@ public class Information extends HttpServlet {
 			String temp=request.getParameter("day");
 			int num=Integer.parseInt(request.getParameter("num"));
 			
-			System.out.println(num);
+			if(title.equals("")||rating.equals("")||score.equals("")||temp.equals("")) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else if(rating.length()!=1){
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('등급이 너무 큽니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else {
+				Date day=Date.valueOf(request.getParameter("day"));
+				dao.modifyLanguage(id,title, rating, score, day,num);
+			}
 			address = "/Information?action=list";
 		}
 		else if(action.equals("licensewrite")) {
@@ -130,7 +165,6 @@ public class Information extends HttpServlet {
 			String rating=request.getParameter("rating");
 			String company =request.getParameter("company");
 			String temp=request.getParameter("day");
-			System.out.println(title);
 			if(title.equals("")||rating.equals("")||company.equals("")||temp.equals("")) {
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out=response.getWriter();
@@ -146,6 +180,7 @@ public class Information extends HttpServlet {
 			}
 			address = "/Information?action=list";
 		}
+		
 		else if(action.equals("licensemodify")) {
 			System.out.println("languagedmodify");
 			String title=request.getParameter("title");
@@ -154,12 +189,34 @@ public class Information extends HttpServlet {
 			String temp=request.getParameter("day");
 			int num=Integer.parseInt(request.getParameter("num"));
 			
-			System.out.println(num);
-			address = "/Information?action=list";	
+			if(title.equals("")||rating.equals("")||company.equals("")||temp.equals("")) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else if(rating.length()!=1){
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('등급이 너무 큽니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else {
+				Date day=Date.valueOf(request.getParameter("day"));
+				dao.modifyLicense(id,title, rating, company, day,num);
+			}
+			address = "/Information?action=list";
 		}
-		else if(action.equals("Awardwrite")) {
+		
+		else if(action.equals("Awardwirter")) {
 			
-			System.out.println("Awardwrite");
+			System.out.println("Awardwriter");
 			String title=request.getParameter("title");
 			String rating=request.getParameter("rating");
 			String company =request.getParameter("company");
@@ -179,7 +236,9 @@ public class Information extends HttpServlet {
 				dao.addAward(id,title, rating, company, day);
 			}
 			address = "/Information?action=list";
-		}else if(action.equals("Awardmodify")) {
+			
+		}
+		else if(action.equals("Awardmodify")) {
 			System.out.println("Awarddmodify");
 			String title=request.getParameter("title");
 			String rating=request.getParameter("rating");
@@ -187,11 +246,35 @@ public class Information extends HttpServlet {
 			String temp=request.getParameter("day");
 			int num=Integer.parseInt(request.getParameter("num"));
 			
-			System.out.println(num);
-			address = "/Information?action=list";	
-		}else if(action.equals("Careerwrite")) {
+			if(title.equals("")||rating.equals("")||company.equals("")||temp.equals("")) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else if(rating.length()!=1){
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('등급이 너무 큽니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else {
+				Date day=Date.valueOf(request.getParameter("day"));
+				dao.modifyAward(id,title, rating, company, day,num);
+			}
 			
-			System.out.println("Awardwrite");
+			address = "/Information?action=list";
+			
+		}
+		else if(action.equals("Careerwirter")) {
+			
+			System.out.println("Careerwrite");
 			String kind=request.getParameter("kind");
 			String business=request.getParameter("business");
 			String company =request.getParameter("company");
@@ -214,17 +297,138 @@ public class Information extends HttpServlet {
 			}
 			address = "/Information?action=list";
 		}
+		
 		else if(action.equals("Careermodify")) {
-			System.out.println("Awarddmodify");
-			String title=request.getParameter("title");
-			String rating=request.getParameter("rating");
+			System.out.println("careermodify");
+			String kind=request.getParameter("kind");
+			String business=request.getParameter("business");
 			String company =request.getParameter("company");
-			String temp=request.getParameter("day");
+			String temp=request.getParameter("sday");
+			String tmp=request.getParameter("eday");
 			int num=Integer.parseInt(request.getParameter("num"));
 			
-			System.out.println(num);
+			if(kind.equals("")||business.equals("")||company.equals("")||temp.equals("")||tmp.equals("")) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else {
+				Date sday=Date.valueOf(request.getParameter("sday"));
+				Date eday=Date.valueOf(request.getParameter("eday"));
+				dao.modifyCareer(id,kind, company,business, sday,eday,num);
+			}
 			address = "/Information?action=list";	
 		}
+		
+		
+		else if(action.equals("Servicewrite")) {
+			
+			System.out.println("servicewriter");
+			String kind=request.getParameter("kind");
+			String title=request.getParameter("title");
+			String company =request.getParameter("company");
+			String temp=request.getParameter("sday");
+			String tmp=request.getParameter("eday");
+
+			if(kind.equals("")||title.equals("")||company.equals("")||temp.equals("")||tmp.equals("")) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else {
+				Date sday=Date.valueOf(request.getParameter("sday"));
+				Date eday=Date.valueOf(request.getParameter("eday"));
+				dao.addService(id,kind, company,title, sday,eday);
+			}
+			address = "/Information?action=list";
+			
+		}
+		
+		else if(action.equals("servicemodify")) {
+			
+			System.out.println("servicemodify");
+			String kind=request.getParameter("kind");
+			String title=request.getParameter("title");
+			String company =request.getParameter("company");
+			String temp=request.getParameter("sday");
+			String tmp=request.getParameter("eday");
+			int num=Integer.parseInt(request.getParameter("num"));
+			
+			if(kind.equals("")||title.equals("")||company.equals("")||temp.equals("")||tmp.equals("")) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else {
+				Date sday=Date.valueOf(request.getParameter("sday"));
+				Date eday=Date.valueOf(request.getParameter("eday"));
+				dao.modifyService(id,kind, company,title, sday,eday,num);
+			}
+			address = "/Information?action=list";		
+		}
+		else if(action.equals("etcwriter")) {
+			
+			System.out.println("etcewriter");
+			String title=request.getParameter("title");
+			String company =request.getParameter("company");
+			String temp=request.getParameter("sday");
+			String tmp=request.getParameter("eday");
+
+			if(title.equals("")||company.equals("")||temp.equals("")||tmp.equals("")) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else {
+				Date sday=Date.valueOf(request.getParameter("sday"));
+				Date eday=Date.valueOf(request.getParameter("eday"));
+				dao.addEtc(id, company,title, sday,eday);
+			}
+			address = "/Information?action=list";
+			
+		}
+		else if(action.equals("etcmodify")) {
+		
+			System.out.println("etcmodify");
+			String title=request.getParameter("title");
+			String company =request.getParameter("company");
+			String temp=request.getParameter("sday");
+			String tmp=request.getParameter("eday");
+			int num=Integer.parseInt(request.getParameter("num"));
+			
+			if(title.equals("")||company.equals("")||temp.equals("")||tmp.equals("")) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else {
+				Date sday=Date.valueOf(request.getParameter("sday"));
+				Date eday=Date.valueOf(request.getParameter("eday"));
+				dao.modifyEtc(id,company,title, sday,eday,num);
+			}
+			address = "/Information?action=list";		
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}

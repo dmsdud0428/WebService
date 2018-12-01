@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*" %>
 <%@page import="java.util.ArrayList"%>
-<jsp:useBean id="info" class="myinfo.InfoBean" scope="session" />
-<jsp:useBean id="score" class="myinfo.ScoreBean" scope="session" />
-<jsp:useBean id="count" class="java.util.ArrayList" scope="request" />
 
-<jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
 <jsp:useBean id="score" class="myinfo.ScoreInfo" scope="session" />
+<jsp:useBean id="count" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
+
 
 <!DOCTYPE html>
 <html>

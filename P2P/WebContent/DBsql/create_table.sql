@@ -26,7 +26,7 @@ create table award (
 create table career (
 	id char(9) primary key,
 	kind varchar(100),
-	compandy varchar(100),
+	company varchar(100),
 	business varchar(100),
 	s_day date,
 	e_day date

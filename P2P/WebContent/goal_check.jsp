@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
-
 <jsp:useBean id="score" class="myinfo.ScoreInfo" scope="session" />
+
 
 <html>
 <head>

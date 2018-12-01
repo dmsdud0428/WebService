@@ -23,12 +23,13 @@ DROP TABLE IF EXISTS `award`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `award` (
-  `id` char(9) NOT NULL,
+  `id` char(9) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
   `organization` varchar(100) DEFAULT NULL,
   `rating` varchar(1) DEFAULT NULL,
   `day` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `num` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,13 +50,14 @@ DROP TABLE IF EXISTS `career`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `career` (
-  `id` char(9) NOT NULL,
+  `id` char(9) DEFAULT NULL,
   `kind` varchar(100) DEFAULT NULL,
-  `compandy` varchar(100) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
   `business` varchar(100) DEFAULT NULL,
   `s_day` date DEFAULT NULL,
   `e_day` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `num` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -76,12 +78,13 @@ DROP TABLE IF EXISTS `etc`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `etc` (
-  `id` char(9) NOT NULL,
+  `id` char(9) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
   `organization` varchar(100) DEFAULT NULL,
   `s_day` date DEFAULT NULL,
   `e_day` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `num` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -131,7 +134,7 @@ DROP TABLE IF EXISTS `introduction`;
 CREATE TABLE `introduction` (
   `num` int(11) NOT NULL AUTO_INCREMENT,
   `id` char(9) DEFAULT NULL,
-  `state` varchar(10) DEFAULT NULL,
+  `state` tinyint(1) DEFAULT '0',
   `day` date DEFAULT NULL,
   `company` varchar(100) DEFAULT NULL,
   `business` varchar(100) DEFAULT NULL,
@@ -167,12 +170,13 @@ DROP TABLE IF EXISTS `language`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `language` (
-  `id` char(9) NOT NULL,
+  `id` char(9) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
   `rating` varchar(1) DEFAULT NULL,
   `score` double DEFAULT NULL,
   `day` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `num` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -193,12 +197,13 @@ DROP TABLE IF EXISTS `license`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `license` (
-  `id` char(9) NOT NULL,
+  `id` char(9) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
   `organization` varchar(100) DEFAULT NULL,
   `rating` varchar(1) DEFAULT NULL,
   `day` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `num` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -219,13 +224,14 @@ DROP TABLE IF EXISTS `service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `service` (
-  `id` char(9) NOT NULL,
+  `id` char(9) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
   `organization` varchar(100) DEFAULT NULL,
   `kind` varchar(100) DEFAULT NULL,
   `s_day` date DEFAULT NULL,
   `e_day` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `num` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -279,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-29 22:13:48
+-- Dump completed on 2018-12-01 19:50:11
