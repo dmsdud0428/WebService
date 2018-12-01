@@ -13,3 +13,5 @@ alter table language AUTO_INCREMENT=1;
 alter table etc AUTO_INCREMENT=1;
 alter table service AUTO_INCREMENT=1;
 alter table career AUTO_INCREMENT=1;
+alter table interview AUTO_INCREMENT=1;
+alter table introduction AUTO_INCREMENT=1;
