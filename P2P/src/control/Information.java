@@ -109,11 +109,20 @@ public class Information extends HttpServlet {
 				out.println("</script>");
 				return;
 			}
-			else if(rating.length()!=1){
+			else if(!isNumber(rating)||rating.length()>1){
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out=response.getWriter();
 				out.println("<script>");
-				out.println("alert('등급이 너무 큽니다.');");
+				out.println("alert('등급을 다시 입력하세요.등급은 한글자 숫자만 가능합니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else if(!isNumber(score)){
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('점수는 숫자만 입력 가능합니다.');");
 				out.println("history.back();");
 				out.println("</script>");
 				return;
@@ -143,11 +152,20 @@ public class Information extends HttpServlet {
 				out.println("</script>");
 				return;
 			}
-			else if(rating.length()!=1){
+			else if(!isNumber(rating)||rating.length()>1){
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out=response.getWriter();
 				out.println("<script>");
 				out.println("alert('등급이 너무 큽니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else if(!isNumber(score)){
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('점수는 숫자만 입력 가능합니다.');");
 				out.println("history.back();");
 				out.println("</script>");
 				return;
@@ -170,6 +188,15 @@ public class Information extends HttpServlet {
 				PrintWriter out=response.getWriter();
 				out.println("<script>");
 				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else if(!isNumber(rating)||rating.length()>1){
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('등급이 너무 큽니다.');");
 				out.println("history.back();");
 				out.println("</script>");
 				return;
@@ -198,7 +225,7 @@ public class Information extends HttpServlet {
 				out.println("</script>");
 				return;
 			}
-			else if(rating.length()!=1){
+			else if(!isNumber(rating)||rating.length()>1){
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out=response.getWriter();
 				out.println("<script>");
@@ -231,6 +258,15 @@ public class Information extends HttpServlet {
 				out.println("</script>");
 				return;
 			}
+			else if(!isNumber(rating)||rating.length()>1){
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('등급이 너무 큽니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
 			else {
 				Date day=Date.valueOf(request.getParameter("day"));
 				dao.addAward(id,title, rating, company, day);
@@ -255,7 +291,7 @@ public class Information extends HttpServlet {
 				out.println("</script>");
 				return;
 			}
-			else if(rating.length()!=1){
+			else if(!isNumber(rating)||rating.length()>1){
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out=response.getWriter();
 				out.println("<script>");
@@ -431,6 +467,20 @@ public class Information extends HttpServlet {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
+	}
+	
+	public static boolean isNumber(String str) {
+		
+		boolean result=false;
+		
+		try {
+			Double.parseDouble(str);
+			result=true;
+		}
+		catch(Exception e) {}
+			
+		return result;
+		
 	}
 
 }
