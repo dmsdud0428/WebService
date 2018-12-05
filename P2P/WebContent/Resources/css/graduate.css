@@ -1,7 +1,7 @@
 .table {
-	display: flex;
-	align-items: center;
-    justify-content: center;
+	margin-left:10px;
+	margin-right:10px;
+	width:380px;
 }
 
 table.content {
@@ -10,19 +10,48 @@ table.content {
     line-height: 1.5;
     text-align: center;
     border-top: 1px solid #ccc;
-    margin-top: 30px;
 }
 table.content th {
-    width: 150px;
+    width: 130px;
     padding: 10px;
     font-weight: bold;
-    vertical-align: top;
     border-bottom: 1px solid #ccc;
     background: #efefef;
 }
 table.content td {
-    width: 250px;
+    width: 230px;
     padding: 10px;
-    vertical-align: top;
     border-bottom: 1px solid #ccc;
+}
+
+#normal_graph{
+		
+	background-image:url('../img/graph_table.png');
+	width: 785px;
+	height:400px;
+	background-repeat: no-repeat;
+	background-size:785px 400px; 
+	margin-right:10px;
+	margin-bottom:10px;
+		
+}
+#bottom_table{
+	
+	width:600px;
+	height:300px;
+}
+#subject{
+	
+	font-weight:bold; 
+	width:785px;
+	height:40px;
+	font-size:18px;
+	padding:15px 0px 0px 15px;
+	overflow:hidden;
+	
+}
+#graph{
+	width:650px;
+	height:350px;
+	padding:10px 10px 10px 12px;
 }

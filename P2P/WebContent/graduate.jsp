@@ -17,7 +17,7 @@
 <link href="Resources/css/graduate.css" rel="stylesheet">
 <title>졸업요건진단</title>
 </head>
-<body>
+<body onload="nomelChart();engineerChart();">
 	<div class="layout">
 		<div class="left-box">
 		</div>
@@ -30,11 +30,8 @@
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="Graduate">·&nbsp;&nbsp;졸업요건진단</a><br>
-
 						<a href="Information">·&nbsp;&nbsp;취업신상정보</a><br>
-
 						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
-
 						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
 					</div>
@@ -69,108 +66,242 @@
 						</h1>
 					</div>
 					<div class="article">
-						<div class="table">
-							<table class="content">
-								<tr>
-									<th colspan=2 align="center" style="background-color:skyblue">일 반 졸 업 요 건</th>
-								</tr>
-							<%
-							ArrayList<Integer> list = new ArrayList<Integer>();
-							GraduateBean graduate = new GraduateBean();
-							int size = 0; int num=0;
-							list.add(score.getTotal_sco());
-							list.add(score.getMajor_sco());
-							list.add(score.getNecessary_sco());
-							
-							if(user.getYear() <= 2016)
-							{
-								size = graduate2016.size();
-								num = 2016;
-								list.add(score.getCultureE_sco());
-								list.add(score.getMajorE_sco());
-								list.add(score.getMsc_sco());
-							}
-							
-							if(user.getYear() == 2017)
-							{
-								size = graduate2017.size();
-								num = 2017;
-									//2017 졸업요건
-							}
-							if(user.getYear() >= 2018)
-							{
-								size = graduate2018.size();
-								num = 2018;
-									//2018 졸업요건
-							}
-							list.add(score.getBsm_sco());
-							list.add(score.getDesignC_sco());
-							list.add(score.getDesign_sco());
-							list.add(score.getDesignM_sco());
-							%>
-							<%
-						 		for(int i = 0; i < size-4; i++) {
-						 			if(num == 2016)
-						 				graduate = (GraduateBean)graduate2016.get(i);
-						 			else if(num == 2017)
-						 				graduate = (GraduateBean)graduate2017.get(i);
-						 			else if(num == 2018)
-						 				graduate = (GraduateBean)graduate2018.get(i);
-						 			int user_score = list.get(i);
-							%>
-							
-								<tr>
-									<th><%=graduate.getRequirement() %></th>
-									<td class="score"><%=user_score %> / <%=graduate.getScore() %></td>
-									<%
-										if(user_score < graduate.getScore()) { %>
-											<script>
-												var x = document.getElementsByClassName("score");
-												x[<%=i%>].style.color="red";
-											</script>
-									<%	
+						<div id="normal_graph">
+								<div id="subject">	
+									<img src="Resources/img/pencil.png" /> 졸업 요건 그래프
+								</div>
+								<div id="graph">
+									<table>
+										<tr style="width:600px;height:300px;">
+											<td style="width:350px;height:300px;padding:5px 10px 5px 5px;text-align:center;">
+												<canvas id="nomel" width="390px" height="270px" ></canvas>
+												<h3>일반 졸업 요건</h3>
+											</td>
+											<td style="width:350px;height:300px;padding:5px 5px 5px 10px;text-align:center;">
+												<canvas id="engineer" width="350px" height="280px" ></canvas>
+												<h3> 공학 인증 졸업 요건</h3>
+											</td>
+										</tr>
+									</table>
+								</div>
+						</div>
+						<table id="bottom_table">
+							<tr style="width:600px;"><td style="width:380px;height:324px;">
+								<div class="table">
+									<table class="content">
+										<tr>
+											<th colspan=2 align="center" style="background-color:skyblue">일 반 졸 업 요 건</th>
+										</tr>
+										<%
+										ArrayList<Integer> list = new ArrayList<Integer>();
+										GraduateBean graduate = new GraduateBean();
+										int size = 0; int num=0;
+										list.add(score.getTotal_sco());
+										list.add(score.getMajor_sco());
+										list.add(score.getNecessary_sco());
+										
+										if(user.getYear() <= 2016)
+										{
+											size = graduate2016.size();
+											num = 2016;
+											list.add(score.getCultureE_sco());
+											list.add(score.getMajorE_sco());
+											list.add(score.getMsc_sco());
 										}
-									%>
-								</tr>
-							<%
-						 		}
-							%>
-								<tr>
-									<th colspan=2 align="center" style="background-color:skyblue">공 학 인 증 요 건</th>
-								</tr>
-							<%
-								for(int i = size-4; i < size; i++) {
-									if(num == 2016)
-						 				graduate = (GraduateBean)graduate2016.get(i);
-						 			else if(num == 2017)
-						 				graduate = (GraduateBean)graduate2017.get(i);
-						 			else if(num == 2018)
-						 				graduate = (GraduateBean)graduate2018.get(i);
-						 			int user_score = list.get(i);
-							%>
-							
-								<tr>
-									<th><%=graduate.getRequirement() %></th>
-									<td class="score"><%=user_score %> / <%=graduate.getScore() %></td>
-									<%
-										if(user_score < graduate.getScore()) { %>
-											<script>
-												var x = document.getElementsByClassName("score");
-												x[<%=i%>].style.color="red";
-											</script>
-									<%	
+										
+										if(user.getYear() == 2017)
+										{
+											size = graduate2017.size();
+											num = 2017;
+												//2017 졸업요건
 										}
-									%>
-								</tr>
-							<%
-						 		}
-							%>
-							</table>
+										if(user.getYear() >= 2018)
+										{
+											size = graduate2018.size();
+											num = 2018;
+												//2018 졸업요건
+										}
+										list.add(score.getBsm_sco());
+										list.add(score.getDesignC_sco());
+										list.add(score.getDesign_sco());
+										list.add(score.getDesignM_sco());
+										%>
+										<%
+									 		for(int i = 0; i < size-4; i++) {
+									 			if(num == 2016)
+									 				graduate = (GraduateBean)graduate2016.get(i);
+									 			else if(num == 2017)
+									 				graduate = (GraduateBean)graduate2017.get(i);
+									 			else if(num == 2018)
+									 				graduate = (GraduateBean)graduate2018.get(i);
+									 			int user_score = list.get(i);
+										%>
+										
+											<tr>
+												<th><%=graduate.getRequirement() %></th>
+												<td class="score"><%=user_score %> / <%=graduate.getScore() %></td>
+												<%
+													if(user_score < graduate.getScore()) { %>
+														<script>
+															var x = document.getElementsByClassName("score");
+															x[<%=i%>].style.color="red";
+														</script>
+												<%	
+													}
+												%>
+											</tr>
+										<%
+									 		}
+										%>
+										</table>
+									</div>
+									</td>
+									<td style="width:380px;height:232px;">
+										<div class="table">
+										<table class="content">
+											<tr>
+												<th colspan=2 align="center" style="background-color:skyblue">공 학 인 증 요 건</th>
+											</tr>
+										<%
+											for(int i = size-4; i < size; i++) {
+												if(num == 2016)
+									 				graduate = (GraduateBean)graduate2016.get(i);
+									 			else if(num == 2017)
+									 				graduate = (GraduateBean)graduate2017.get(i);
+									 			else if(num == 2018)
+									 				graduate = (GraduateBean)graduate2018.get(i);
+									 			int user_score = list.get(i);
+										%>
+										
+											<tr>
+												<th><%=graduate.getRequirement() %></th>
+												<td class="score"><%=user_score %> / <%=graduate.getScore() %></td>
+												<%
+													if(user_score < graduate.getScore()) { %>
+														<script>
+															var x = document.getElementsByClassName("score");
+															x[<%=i%>].style.color="red";
+														</script>
+												<%	
+													}
+												%>
+											</tr>
+										<%
+									 		}
+										%>
+									</table>
+								</div>
+								</td></tr></table>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script language="JavaScript">
+ 		function nomelChart(){
+	 
+	 		var ctx=document.getElementById("nomel").getContext("2d");
+	 		
+	 		var datas = new Array();
+	 		var datas2= new Array();
+	 		var labelA=new Array();
+	 		var index = 0;
+	 		
+	 		<%for(int i = 0; i < size-4; i++) {
+	 				if(num == 2016)
+	 					graduate = (GraduateBean)graduate2016.get(i);
+	 				else if(num == 2017)
+	 					graduate = (GraduateBean)graduate2017.get(i);
+	 				else if(num == 2018)
+	 					graduate = (GraduateBean)graduate2018.get(i);
+	 				int user_score = list.get(i);
+	 				double temp=(double)user_score;
+	 				double tmp=(double)graduate.getScore();
+	 		%>
+	 				labelA[index]=new String("<%=graduate.getRequirement() %>");
+	 				datas[index]=<%= temp%>;
+	 				datas2[index++]=<%=tmp%>;
+	 		<%
+	 			}
+	 		%>
+	 		
+	 		var nomel=new Chart(ctx, {
+	 			
+	 			type:'bar',
+	 			data:{
+	 				labels:labelA,
+	 				datasets:[{
+	 					
+						label:"나의 학점",
+						backgroundColor:"#fbc658",
+						borderColor:"#fbc658",
+						data:datas
+						
+	 				},{
+	 					
+						label:"필수 학점",
+						backgroundColor:"#51cacf",
+						borderColor:"#51cacf",		
+						data:datas2
+	 				}]	
+	 			}
+	 		});
+	
+ 		}		
+ 		
+ 		function engineerChart(){
+ 			 
+	 		var ctx=document.getElementById("engineer").getContext("2d");
+	 		
+	 		var datas = new Array();
+	 		var datas2= new Array();
+	 		var labelA=new Array();
+	 		var index = 0;
+	 		
+	 		<%for(int i = size-4; i < size; i++) {
+					if(num == 2016)
+		 				graduate = (GraduateBean)graduate2016.get(i);
+		 			else if(num == 2017)
+		 				graduate = (GraduateBean)graduate2017.get(i);
+		 			else if(num == 2018)
+		 				graduate = (GraduateBean)graduate2018.get(i);
+		 			int user_score = list.get(i);
+	 				double temp=(double)user_score;
+	 				double tmp=(double)graduate.getScore();
+		 		%>
+					labelA[index]=new String("<%=graduate.getRequirement() %>");
+	 				datas[index]=<%= temp%>;
+	 				datas2[index++]=<%=tmp%>;
+	 		<%
+	 			}
+	 		%>
+	 		
+	 		var engineer=new Chart(ctx, {
+	 			
+	 			type:'bar',
+	 			data:{
+	 				labels:labelA,
+	 				datasets:[{
+	 					
+						label:"나의 학점",
+						backgroundColor:"#fbc658",
+						borderColor:"#fbc658",
+						data:datas
+						
+	 				},{
+	 					
+						label:"필수 학점",
+						backgroundColor:"#51cacf",
+						borderColor:"#51cacf",		
+						data:datas2
+	 				}]	
+	 			}
+	 		});
+	
+ 		}
+</script>
 </body>
 </html>
