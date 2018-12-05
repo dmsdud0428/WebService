@@ -4,6 +4,10 @@
 <%@page import="myinfo.*"%>
 <jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
 <jsp:useBean id="score" class="myinfo.ScoreInfo" scope="session" />
+<jsp:useBean id="Graduate" class="myinfo.GraduateBean" scope="request"/>
+<jsp:useBean id="graduate2016" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="graduate2017" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="graduate2018" class="java.util.ArrayList" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +29,7 @@
 				<div id="menu">
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
-						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
+						<a href="Graduate">·&nbsp;&nbsp;졸업요건진단</a><br>
 
 						<a href="Information">·&nbsp;&nbsp;취업신상정보</a><br>
 
@@ -68,49 +72,99 @@
 						<div class="table">
 							<table class="content">
 								<tr>
-									<th>총 학점</th>
-									<td><%=score.getTotal_sco()%> / 136</td>
+									<th colspan=2 align="center" style="background-color:skyblue">일 반 졸 업 요 건</th>
 								</tr>
+							<%
+							ArrayList<Integer> list = new ArrayList<Integer>();
+							GraduateBean graduate = new GraduateBean();
+							int size = 0; int num=0;
+							list.add(score.getTotal_sco());
+							list.add(score.getMajor_sco());
+							list.add(score.getNecessary_sco());
+							
+							if(user.getYear() <= 2016)
+							{
+								size = graduate2016.size();
+								num = 2016;
+								list.add(score.getCultureE_sco());
+								list.add(score.getMajorE_sco());
+								list.add(score.getMsc_sco());
+							}
+							
+							if(user.getYear() == 2017)
+							{
+								size = graduate2017.size();
+								num = 2017;
+									//2017 졸업요건
+							}
+							if(user.getYear() >= 2018)
+							{
+								size = graduate2018.size();
+								num = 2018;
+									//2018 졸업요건
+							}
+							list.add(score.getBsm_sco());
+							list.add(score.getDesignC_sco());
+							list.add(score.getDesign_sco());
+							list.add(score.getDesignM_sco());
+							%>
+							<%
+						 		for(int i = 0; i < size-4; i++) {
+						 			if(num == 2016)
+						 				graduate = (GraduateBean)graduate2016.get(i);
+						 			else if(num == 2017)
+						 				graduate = (GraduateBean)graduate2017.get(i);
+						 			else if(num == 2018)
+						 				graduate = (GraduateBean)graduate2018.get(i);
+						 			int user_score = list.get(i);
+							%>
+							
 								<tr>
-									<th>전공 학점</th>
-									<td><%=score.getMajor_sco()%> / 67</td>
+									<th><%=graduate.getRequirement() %></th>
+									<td class="score"><%=user_score %> / <%=graduate.getScore() %></td>
+									<%
+										if(user_score < graduate.getScore()) { %>
+											<script>
+												var x = document.getElementsByClassName("score");
+												x[<%=i%>].style.color="red";
+											</script>
+									<%	
+										}
+									%>
 								</tr>
+							<%
+						 		}
+							%>
 								<tr>
-									<th>교양 학점</th>
-									<td><%=score.getNecessary_sco()%> / 46</td>
+									<th colspan=2 align="center" style="background-color:skyblue">공 학 인 증 요 건</th>
 								</tr>
+							<%
+								for(int i = size-4; i < size; i++) {
+									if(num == 2016)
+						 				graduate = (GraduateBean)graduate2016.get(i);
+						 			else if(num == 2017)
+						 				graduate = (GraduateBean)graduate2017.get(i);
+						 			else if(num == 2018)
+						 				graduate = (GraduateBean)graduate2018.get(i);
+						 			int user_score = list.get(i);
+							%>
+							
 								<tr>
-									<th>필수 교양</th>
-									<td><%=score.getCultureE_sco()%> / 1</td>
+									<th><%=graduate.getRequirement() %></th>
+									<td class="score"><%=user_score %> / <%=graduate.getScore() %></td>
+									<%
+										if(user_score < graduate.getScore()) { %>
+											<script>
+												var x = document.getElementsByClassName("score");
+												x[<%=i%>].style.color="red";
+											</script>
+									<%	
+										}
+									%>
 								</tr>
-								<tr>
-									<th>필수 전공</th>
-									<td><%=score.getMajorE_sco()%> / 4</td>
-								</tr>
-								<tr>
-									<th>msc 교양</th>
-									<td><%=score.getMsc_sco()%> / 24</td>
-								</tr>
-								<tr>
-									<th>공학 인증</th>
-									<td>공학 인증</td>
-								</tr>
-								<tr>
-									<th>bsm 교양</th>
-									<td><%=score.getBsm_sco() %> / 18</td>
-								</tr>
-								<tr>
-									<th>전문 교양</th>
-									<td><%=score.getDesignC_sco() %> / 3</td>
-								</tr>
-								<tr>
-									<th>설계 학점</th>
-									<td><%=score.getDesign_sco() %> / 12</td>
-								</tr>
-								<tr>
-									<th>전공 학점</th>
-									<td><%=score.getDesignM_sco() %> / 60</td>
-								</tr>
+							<%
+						 		}
+							%>
 							</table>
 						</div>
 					</div>

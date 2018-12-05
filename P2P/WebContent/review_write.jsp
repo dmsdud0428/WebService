@@ -66,7 +66,7 @@
 				<div id="menu">
 					<div class="side_text">
 						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
-						<a href="graduate.jsp">·&nbsp;&nbsp;졸업요건진단</a><br>
+						<a href="Graduate">·&nbsp;&nbsp;졸업요건진단</a><br>
  
 						<a href="Information">·&nbsp;&nbsp;취업신상정보</a><br>
  
