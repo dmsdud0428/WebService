@@ -106,7 +106,7 @@
 								<tr class="_q1" style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">질문 1</td>
 									<td class="td_body">
-										<div id="q1"></div>
+										<div id="q1" style="line-height:1.3em"></div>
 									</td>
 								</tr>
 								<tr class="_a1" style="border-bottom: 1px solid #dddddd;">
@@ -140,7 +140,7 @@
 		ni = "<tr class='_q" + num;
 		ni += "' style='border-bottom: 1px solid #dddddd;'>";
 		ni += "<td class='td_head'>질문 " + num + "</td>";
-		ni += "<td class='td_body'><div id='q" + num + "'></div></td>";
+		ni += "<td class='td_body'><div id='q" + num + "' style='line-height:1.3em'></div></td>";
 		ni += "</tr>";
 		ni += "<tr class='_a" + num;
 		ni += "' style='border-bottom: 1px solid #dddddd;'>";
