@@ -167,40 +167,40 @@
 										%>
 										</table>
 									</td>
-										<td style="vertical-align:top">
-											<table class="content" style="width:380px">
+									<td style="vertical-align:top">
+										<table class="content" style="width:380px">
 											<tr>
 												<th colspan=2 align="center" style="background-color:skyblue">공 학 인 증 요 건</th>
 											</tr>
-										<%
-											for(int i = size-4; i < size; i++) {
-												if(num == 2016)
-									 				graduate = (GraduateBean)graduate2016.get(i);
-									 			else if(num == 2017)
-									 				graduate = (GraduateBean)graduate2017.get(i);
-									 			else if(num == 2018)
-									 				graduate = (GraduateBean)graduate2018.get(i);
-									 			int user_score = list.get(i);
-										%>
-										
-											<tr>
-												<th><%=graduate.getRequirement() %></th>
-												<td class="score"><%=user_score %> / <%=graduate.getScore() %></td>
-												<%
-													if(user_score < graduate.getScore()) { %>
-														<script>
-															var x = document.getElementsByClassName("score");
-															x[<%=i%>].style.color="red";
-														</script>
-												<%	
-													}
-												%>
-											</tr>
-										<%
-									 		}
-										%>
-									</table>
-									<img name="complete" src="./Resources/img/complete.PNG" style="text-align:center;font-size:10px;fonc-weight:bold;width:380px;height:auto;margin-top:10px;cursor:pointer" onclick="popup_open(<%= num %>)"/>
+											<%
+												for(int i = size-4; i < size; i++) {
+													if(num == 2016)
+										 				graduate = (GraduateBean)graduate2016.get(i);
+										 			else if(num == 2017)
+										 				graduate = (GraduateBean)graduate2017.get(i);
+										 			else if(num == 2018)
+										 				graduate = (GraduateBean)graduate2018.get(i);
+										 			int user_score = list.get(i);
+											%>
+											
+												<tr>
+													<th><%=graduate.getRequirement() %></th>
+													<td class="score"><%=user_score %> / <%=graduate.getScore() %></td>
+													<%
+														if(user_score < graduate.getScore()) { %>
+															<script>
+																var x = document.getElementsByClassName("score");
+																x[<%=i%>].style.color="red";
+															</script>
+													<%	
+														}
+													%>
+												</tr>
+											<%
+										 		}
+											%>
+										</table>
+										<img name="complete" src="./Resources/img/complete.PNG" style="text-align:center;font-size:10px;fonc-weight:bold;width:380px;height:auto;margin-top:10px;cursor:pointer" onclick="popup_open(<%= num %>)"/>
 									</td>
 								</tr>
 							</table>
