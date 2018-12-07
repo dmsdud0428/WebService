@@ -100,7 +100,7 @@ public class DBInformationDAO implements InformationDAO{
 	@Override
 	public void addLicense(String id, String title, String rating, String company, Date day) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO license(id, title, organization,rating, day) VALUES('" +id+"','"+
+		String sql = "INSERT INTO license(id, title, company,rating, day) VALUES('" +id+"','"+
 				 title + "','" + company + "','" + rating + "','"+day+"')";
 		try {	
 			connect();
@@ -117,7 +117,7 @@ public class DBInformationDAO implements InformationDAO{
 		// TODO Auto-generated method stub
 		String sql = "UPDATE license SET id = '" + id
 		+ "', title = '" + title + "', rating = '" + rating
-		+ "', organization = '" + company + "', day = '" + day + "' WHERE num = " + num;
+		+ "', company = '" + company + "', day = '" + day + "' WHERE num = " + num;
 		try {	
 			connect();
 			stmt.executeUpdate(sql);
@@ -131,7 +131,7 @@ public class DBInformationDAO implements InformationDAO{
 	@Override
 	public ArrayList<LicenseBean> getAllLicense(String id) {
 		// TODO Auto-generated method stub
-		String	sql = "SELECT id, title, organization,rating, day,num FROM license where id='"+id+"'";
+		String	sql = "SELECT id, title, company,rating, day,num FROM license where id='"+id+"'";
 		ArrayList<LicenseBean> list = new ArrayList<LicenseBean>();
 		try {
 			connect();
@@ -141,7 +141,7 @@ public class DBInformationDAO implements InformationDAO{
 				lag.setId(rs.getString("id"));
 				lag.setTitle(rs.getString("title"));
 				lag.setRating(rs.getString("rating"));
-				lag.setCompany(rs.getString("organization"));
+				lag.setCompany(rs.getString("company"));
 				lag.setDay(Date.valueOf(rs.getString("day")));
 				lag.setNum(Integer.parseInt((rs.getString("num"))));
 				list.add(lag);
@@ -157,7 +157,7 @@ public class DBInformationDAO implements InformationDAO{
 	@Override
 	public void addAward(String id, String title, String rating, String company, Date day) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO award(id, title, organization,rating, day) VALUES('" +id+"','"+
+		String sql = "INSERT INTO award(id, title, company,rating, day) VALUES('" +id+"','"+
 				 title + "','" + company + "','" + rating + "','"+day+"')";
 		try {	
 			connect();
@@ -173,7 +173,7 @@ public class DBInformationDAO implements InformationDAO{
 		// TODO Auto-generated method stub
 		String sql = "UPDATE award SET id = '" + id
 		+ "', title = '" + title + "', rating = '" + rating
-		+ "', organization = '" + company + "', day = '" + day + "' WHERE num = " + num;
+		+ "', company = '" + company + "', day = '" + day + "' WHERE num = " + num;
 		try {	
 			connect();
 			stmt.executeUpdate(sql);
@@ -185,7 +185,7 @@ public class DBInformationDAO implements InformationDAO{
 	@Override
 	public ArrayList<AwardBean> getAllAward(String id) {
 		// TODO Auto-generated method stub
-		String	sql = "SELECT id, title, organization,rating, day,num FROM award where id='"+id+"'";
+		String	sql = "SELECT id, title, company,rating, day,num FROM award where id='"+id+"'";
 		ArrayList<AwardBean> list = new ArrayList<AwardBean>();
 		try {
 			connect();
@@ -195,7 +195,7 @@ public class DBInformationDAO implements InformationDAO{
 				lag.setId(rs.getString("id"));
 				lag.setTitle(rs.getString("title"));
 				lag.setRating(rs.getString("rating"));
-				lag.setCompany(rs.getString("organization"));
+				lag.setCompany(rs.getString("company"));
 				lag.setDay(Date.valueOf(rs.getString("day")));
 				lag.setNum(Integer.parseInt((rs.getString("num"))));
 				list.add(lag);
@@ -267,7 +267,7 @@ public class DBInformationDAO implements InformationDAO{
 	@Override
 	public void addService(String id, String kind, String company, String title, Date sday, Date eday) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO service(id, title,organization,kind,s_day,e_day) VALUES('" +id+"','"+
+		String sql = "INSERT INTO service(id, title,company,kind,s_day,e_day) VALUES('" +id+"','"+
 				 title + "','" + company + "','" + kind + "','"+sday+"','"+eday+"')";
 		try {	
 			connect();
@@ -282,7 +282,7 @@ public class DBInformationDAO implements InformationDAO{
 	public void modifyService(String id, String kind, String company, String title, Date sday, Date eday,int num) {
 		// TODO Auto-generated method stub
 		String sql = "UPDATE service SET id = '" + id
-		+ "', title = '" + title + "', organization = '" + company
+		+ "', title = '" + title + "', company = '" + company
 		+ "', kind = '" + kind + "', s_day = '" + sday + "', e_day = '" + eday +"' WHERE num = " + num;
 		try {	
 			connect();
@@ -296,7 +296,7 @@ public class DBInformationDAO implements InformationDAO{
 	@Override
 	public ArrayList<ServiceBean> getAllService(String id) {
 		// TODO Auto-generated method stub
-		String	sql = "SELECT id, title,organization,kind,s_day,e_day,num FROM service where id='"+id+"'";
+		String	sql = "SELECT id, title,company,kind,s_day,e_day,num FROM service where id='"+id+"'";
 		ArrayList<ServiceBean> list = new ArrayList<ServiceBean>();
 		try {
 			connect();
@@ -305,7 +305,7 @@ public class DBInformationDAO implements InformationDAO{
 				ServiceBean lag = new ServiceBean();
 				lag.setId(rs.getString("id"));
 				lag.setKind(rs.getString("kind"));
-				lag.setCompany(rs.getString("organization"));
+				lag.setCompany(rs.getString("company"));
 				lag.setTitle(rs.getString("title"));
 				lag.setS_day(Date.valueOf(rs.getString("s_day")));
 				lag.setE_day(Date.valueOf(rs.getString("e_day")));
@@ -323,7 +323,7 @@ public class DBInformationDAO implements InformationDAO{
 	@Override
 	public void addEtc(String id, String company, String title, Date sday, Date eday) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO etc(id, title,organization,s_day,e_day) VALUES('" +id+"','"+
+		String sql = "INSERT INTO etc(id, title,company,s_day,e_day) VALUES('" +id+"','"+
 				 title + "','" + company +  "','"+sday+"','"+eday+"')";
 		try {	
 			connect();
@@ -336,7 +336,7 @@ public class DBInformationDAO implements InformationDAO{
 	@Override
 	public ArrayList<EtcBean> getAllEtc(String id) {
 		// TODO Auto-generated method stub
-		String	sql = "SELECT id, title,organization,s_day,e_day,num FROM etc where id='"+id+"'";
+		String	sql = "SELECT id, title,company,s_day,e_day,num FROM etc where id='"+id+"'";
 		ArrayList<EtcBean> list = new ArrayList<EtcBean>();
 		try {
 			connect();
@@ -344,7 +344,7 @@ public class DBInformationDAO implements InformationDAO{
 			while(rs.next()) {
 				EtcBean lag = new EtcBean();
 				lag.setId(rs.getString("id"));
-				lag.setCompany(rs.getString("organization"));
+				lag.setCompany(rs.getString("company"));
 				lag.setTitle(rs.getString("title"));
 				lag.setS_day(Date.valueOf(rs.getString("s_day")));
 				lag.setE_day(Date.valueOf(rs.getString("e_day")));
@@ -362,7 +362,7 @@ public class DBInformationDAO implements InformationDAO{
 	public void modifyEtc(String id, String company, String title, Date sday, Date eday,int num) {
 		// TODO Auto-generated method stub
 		String sql = "UPDATE etc SET id = '" + id
-		+ "', title = '" + title + "', organization = '" + company
+		+ "', title = '" + title + "', company = '" + company
 		+ "', s_day = '" + sday + "', e_day = '" + eday +"' WHERE num = " + num;
 		try {	
 			connect();

@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `award`;
 CREATE TABLE `award` (
   `id` char(9) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
-  `organization` varchar(100) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
   `rating` varchar(1) DEFAULT NULL,
   `day` date DEFAULT NULL,
   `num` int(11) NOT NULL AUTO_INCREMENT,
@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS `etc`;
 CREATE TABLE `etc` (
   `id` char(9) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
-  `organization` varchar(100) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
   `s_day` date DEFAULT NULL,
   `e_day` date DEFAULT NULL,
   `num` int(11) NOT NULL AUTO_INCREMENT,
@@ -98,6 +98,32 @@ LOCK TABLES `etc` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `graduate`
+--
+
+DROP TABLE IF EXISTS `graduate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `graduate` (
+  `num` int(11) NOT NULL AUTO_INCREMENT,
+  `year` varchar(4) DEFAULT NULL,
+  `requirement` varchar(20) DEFAULT NULL,
+  `score` int(11) DEFAULT NULL,
+  PRIMARY KEY (`num`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `graduate`
+--
+
+LOCK TABLES `graduate` WRITE;
+/*!40000 ALTER TABLE `graduate` DISABLE KEYS */;
+INSERT INTO `graduate` VALUES (1,'2016','총 학점',136),(2,'2016','전공 학점',67),(3,'2016','교양 학점',46),(4,'2016','필수 교양',1),(5,'2016','필수 전공',4),(6,'2016','msc 교양',24),(7,'2016','bsm 교양',18),(8,'2016','전문 교양',3),(9,'2016','설계 학점',12),(10,'2016','전공 학점',60);
+/*!40000 ALTER TABLE `graduate` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `interview`
 --
 
@@ -112,7 +138,7 @@ CREATE TABLE `interview` (
   `spec` varchar(100) DEFAULT NULL,
   `review` varchar(5000) DEFAULT NULL,
   PRIMARY KEY (`num`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +225,7 @@ DROP TABLE IF EXISTS `license`;
 CREATE TABLE `license` (
   `id` char(9) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
-  `organization` varchar(100) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
   `rating` varchar(1) DEFAULT NULL,
   `day` date DEFAULT NULL,
   `num` int(11) NOT NULL AUTO_INCREMENT,
@@ -226,7 +252,7 @@ DROP TABLE IF EXISTS `service`;
 CREATE TABLE `service` (
   `id` char(9) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
-  `organization` varchar(100) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
   `kind` varchar(100) DEFAULT NULL,
   `s_day` date DEFAULT NULL,
   `e_day` date DEFAULT NULL,
@@ -285,4 +311,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-01 19:50:11
+-- Dump completed on 2018-12-08  0:21:40
