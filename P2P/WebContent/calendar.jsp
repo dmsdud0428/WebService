@@ -8,8 +8,10 @@
 <link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/base.css" rel="stylesheet">
 <title>자격정보/시험일정</title>
-<style>
-</style>
+<%
+	if(user.getName() == null)
+		out.println("<script>alert('로그인하지 않았거나 세션이 만료되었습니다.\\n다시 로그인해주세요.'); location.href='login.jsp';</script>");
+%>
 </head>
 <body>
 	<div class="layout">

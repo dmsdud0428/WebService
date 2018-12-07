@@ -16,6 +16,10 @@
 <link href="Resources/css/base.css" rel="stylesheet">
 <link href="Resources/css/graduate.css" rel="stylesheet">
 <title>졸업요건진단</title>
+<%
+	if(user.getName() == null)
+		out.println("<script>alert('로그인하지 않았거나 세션이 만료되었습니다.\\n다시 로그인해주세요.'); location.href='login.jsp';</script>");
+%>
 </head>
 <body onload="nomelChart();engineerChart();">
 	<div class="layout">
