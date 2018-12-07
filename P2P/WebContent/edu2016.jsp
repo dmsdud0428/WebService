@@ -7,6 +7,6 @@
 <title>2012~2016교육과정</title>
 </head>
 <body>
-	<img src="./Resources/img/edu2016.png"/>
+	<img src="./Resources/img/edu2016.png" style="width:800px;height:auto" />
 </body>
 </html>

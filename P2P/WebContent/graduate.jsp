@@ -90,53 +90,53 @@
 								</div>
 						</div>
 						<table id="bottom_table">
-							<tr style="width:600px;"><td style="width:380px;height:324px;">
-								<div class="table">
+							<tr>
+								<td>
 									<table class="content">
 										<tr>
 											<th colspan=2 align="center" style="background-color:skyblue">일 반 졸 업 요 건</th>
 										</tr>
 										<%
-										ArrayList<Integer> list = new ArrayList<Integer>();
-										GraduateBean graduate = new GraduateBean();
-										int size = 0; int num=0;
-										list.add(score.getTotal_sco());
-										list.add(score.getMajor_sco());
-										list.add(score.getNecessary_sco());
-										list.add(score.getMajorE_sco());
-										
-										if(user.getYear() <= 2016)
-										{
-											size = graduate2016.size();
-											num = 2016;
-											list.add(score.getCultureE_sco());
-											list.add(score.getMsc_sco());
-										}
-										
-										if(user.getYear() == 2017)
-										{
-											size = graduate2017.size();
-											num = 2017;
-											list.add(score.getJinseongae());
-											list.add(score.getLan_sco());
-											list.add(score.getMath_sco());
-											list.add(score.getIdea_sco());
-										}
-										if(user.getYear() >= 2018)
-										{
-											size = graduate2018.size();
-											num = 2018;
-											list.add(score.getJinseongae());
-											list.add(score.getLan_sco());
-											list.add(score.getSW_sco());
-											list.add(score.getMath_sco());
-											list.add(score.getBarun_sco());
+											ArrayList<Integer> list = new ArrayList<Integer>();
+											GraduateBean graduate = new GraduateBean();
+											int size = 0; int num=0;
+											list.add(score.getTotal_sco());
+											list.add(score.getMajor_sco());
+											list.add(score.getNecessary_sco());
+											list.add(score.getMajorE_sco());
 											
-										}
-										list.add(score.getBsm_sco());
-										list.add(score.getDesignC_sco());
-										list.add(score.getDesign_sco());
-										list.add(score.getDesignM_sco());
+											if(user.getYear() <= 2016)
+											{
+												size = graduate2016.size();
+												num = 2016;
+												list.add(score.getCultureE_sco());
+												list.add(score.getMsc_sco());
+											}
+											
+											if(user.getYear() == 2017)
+											{
+												size = graduate2017.size();
+												num = 2017;
+												list.add(score.getJinseongae());
+												list.add(score.getLan_sco());
+												list.add(score.getMath_sco());
+												list.add(score.getIdea_sco());
+											}
+											if(user.getYear() >= 2018)
+											{
+												size = graduate2018.size();
+												num = 2018;
+												list.add(score.getJinseongae());
+												list.add(score.getLan_sco());
+												list.add(score.getSW_sco());
+												list.add(score.getMath_sco());
+												list.add(score.getBarun_sco());
+												
+											}
+											list.add(score.getBsm_sco());
+											list.add(score.getDesignC_sco());
+											list.add(score.getDesign_sco());
+											list.add(score.getDesignM_sco());
 										%>
 										<%
 									 		for(int i = 0; i < size-4; i++) {
@@ -148,7 +148,6 @@
 									 				graduate = (GraduateBean)graduate2018.get(i);
 									 			int user_score = list.get(i);
 										%>
-										
 											<tr>
 												<th><%=graduate.getRequirement() %></th>
 												<td class="score"><%=user_score %> / <%=graduate.getScore() %></td>
@@ -165,15 +164,13 @@
 										<%
 									 		}
 										%>
-										</table>
-									</div>
-									</td>
-									<td style="width:380px;height:232px;margin-up:0px;">
-										<table class="content">
-											<tr><input type="image" name="complete"src="./Resources/img/complete.PNG" style="text-align:center;font-size:10px;fonc-weight:bold;width:380px;height:60px;padding:0px 0px 5px 0px"onclick="popup_open(<%= num %>)"/> </tr>
-											<tr>
-												<th colspan=2 align="center" style="background-color:skyblue">공 학 인 증 요 건</th>
-											</tr>
+									</table>
+								</td>
+								<td style="vertical-align:top">
+									<table class="content" style="width:380px">
+										<tr>
+											<th colspan=2 align="center" style="background-color:skyblue">공 학 인 증 요 건</th>
+										</tr>
 										<%
 											for(int i = size-4; i < size; i++) {
 												if(num == 2016)
@@ -202,10 +199,10 @@
 									 		}
 										%>
 									</table>
-								</div>
-								</td></tr></table>
-							</div>
-						</div>
+									<img name="complete" src="./Resources/img/complete.PNG" style="text-align:center;font-size:10px;fonc-weight:bold;width:380px;height:auto;margin-top:10px;cursor:pointer" onclick="popup_open(<%= num %>)"/>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>

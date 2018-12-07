@@ -1,6 +1,4 @@
 .table {
-	margin-left:10px;
-	margin-right:10px;
 	width:380px;
 }
 
@@ -10,7 +8,6 @@ table.content {
     line-height: 1.5;
     text-align: center;
     border-top: 1px solid #ccc;
-    margin-bottom: 60px;
 }
 table.content th {
     width: 130px;
@@ -37,9 +34,9 @@ table.content td {
 		
 }
 #bottom_table{
-	
-	width:600px;
-	height:300px;
+	width: 785px;
+	margin-bottom: 60px;
+	align: center;
 }
 #subject{
 	

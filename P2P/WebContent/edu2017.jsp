@@ -7,6 +7,6 @@
 <title>17학번 이수 체계도</title>
 </head>
 <body>
-	<img src="./Resources/img/edu2017.png" />
+	<img src="./Resources/img/edu2017.png" style="width:800px;height:auto" />
 </body>
 </html>
