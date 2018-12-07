@@ -6,7 +6,6 @@
 <jsp:useBean id="count" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,100 +66,7 @@
 <link href="Resources/css/bootstrap-iso.css" rel="stylesheet">
 <link href="Resources/css/base.css" rel="stylesheet">
 <title>대시보드</title>
-<style>
-	#all_score_average_graph{
-		
-		background-image:url('./Resources/img/mgraph_table.png');
-		width: 545px;
-		height:400px;
-		background-repeat: no-repeat;
-		background-size:545px 400px; 
-		margin-right:10px;
-		margin-bottom:10px;
-		
-	}
-	#new_information{
-		background-image:url('./Resources/img/info_table.png');
-		width: 223px;
-		height:400px;
-		background-repeat: no-repeat;
-		background-size:223px 400px; 
-		margin-bottom:10px;
-		
-	}
-	#interview_review_border{
-		background-image: url('./Resources/img/board_table.png');
-		width: 785px;
-		height: 270px;
-		background-repeat: no-repeat;
-		background-size: 785px 270px; 
-	}
-	
-	
-	#graph_subject{
-		font-weight:bold; 
-		font-size:18px;
-		width:785px;
-		height:40px;
-		padding:18px 0px 0px 16px;
-		overflow:hidden;
-	}
-	#new_information_subject{
-		font-weight:bold; 
-		font-size:18px;
-		width:210px;
-		height:40px;
-		padding:18px 0px 0px 16px;
-		overflow:hidden;
-	}
-	#interview_subject{
-		font-weight:bold; 
-		font-size:18px;
-		width:785px;
-		height:40px;
-		padding:15px 0px 0px 16px;
-		overflow:hidden;
-	}
-	#all_average_graph{
-		width: 500px;
-		height:300px;
-		padding:20px 10px 14px 25px;
-	
-	}
-	#information_view{
-		
-		width: 210px;
-		height:350px;
-		word-spacing:2px;
-		padding:17px 10px 5px 5px;
-		font-color:#666666;
-	
-	}
-	#interview_table{
-		width: 770px;
-		height: 200px;
-		word-spacing: 2px;
-		padding: 5px 0px 5px 0px;
-		margin-top: 5px;
-		margin-bottom: 60px;
-	}
-	#_tr {
-		background-color: #ffffff;
-	}
-
-	#_tr:hover {
-		background-color: rgba(150,134,204,0.5);
-		cursor: pointer;
-	}
-	#logout {
-		width: 60px;
-		height: auto;
-		vertical-align: middle;
-		cursor: pointer;
-	}
-}
-	
-</style>
+<link href="Resources/css/main.css" rel="stylesheet">
 <%
 	request.setCharacterEncoding("utf-8");
 	String jdbc_driver = "com.mysql.jdbc.Driver";
