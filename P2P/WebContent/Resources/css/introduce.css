@@ -1,0 +1,15 @@
+@charset "EUC-KR";
+#page_number a{
+	font-size: 10pt;
+	color: #566270;
+	text-decoration: none;
+}
+
+#_tr {
+	background-color: #ffffff;
+}
+
+#_tr:hover {
+	background-color: rgba(150,134,204,0.5);
+	cursor: pointer;
+}

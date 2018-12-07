@@ -9,41 +9,12 @@
 <link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/bootstrap-iso.css" rel="stylesheet">
 <link href="Resources/css/base.css" rel="stylesheet">
+<link href="Resources/css/introduce_view.css" rel="stylesheet">
 <title>자기소개서</title>
-<style>
-#page_number a {
-	font-size: 10pt;
-	color: #566270;
-	text-decoration: none;
-}
-
-.view_table table {
-	width: 785px;
-	text-align: center;
-	border-top: 5px solid #dddddd;
-	border-bottom: 5px solid #dddddd;
-	border-collapse: collapse;
-	margin-bottom: 10px;
-	font-size: 10pt;
-}
-
-.view_table .td_head {
-	width: 100px;
-	padding: 15px;
-	background-color: #f9f9f9;
-	text-align: center;
-}
-
-.view_table .td_body {
-	padding: 15px;
-	text-align: left;
-}
-
-.buttons img {
-	height: 22px;
-	width: auto;
-}
-</style>
+<%
+	if(user.getName() == null)
+		out.println("<script>alert('로그인하지 않았거나 세션이 만료되었습니다.\\n다시 로그인해주세요.'); location.href='login.jsp';</script>");
+%>
 </head>
 <body>
 	<div class="layout">

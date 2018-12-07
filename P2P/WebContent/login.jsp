@@ -5,51 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="Resources/img/p2p.ico">
+<link href="Resources/css/login.css" rel="stylesheet">
 <title>P2P</title>
-<style>
-#center {
-	position:absolute;
-	top:0;right:0;bottom:0;left:0;
-	display:-webkit-box;
-	display:-moz-box;
-	display:-ms-flexbox;
-	display:-webkit-flex;
-	display:flex;
-	
-	align-items:center;
-	justify-content:center;
-	-webkit-align-items:center;
-	-webkit-justify-content:center;
-	
-	-webkit-box-pack:center;
-	-webkit-box-align:center;
-	-moz-box-pack:center;
-	-moz-box-align:center;
-	-ms-box-pack:center;
-	-ms-box-align:center;
-}
-
-input[type=text], input[type=password] {
-	border: none;
-	width: 380px;
-	height: 31px;
-	background: transparent;
-	background-image: url('Resources/img/id_box.png');
-	padding: 0px 0px 0px 10px;
-}
-
-input[type=submit] {
-	background-image: url('Resources/img/login_button.png');
-	width: 117px;
-	height: 115px;
-	vertical-align: middle;
-	background-position: 0px 0px;
-    background-repeat: no-repeat;
-    border: 0px;
-    outline: 0;
-    cursor: pointer;
-}
-</style>
 </head>
 <body bgcolor="#e0e3da">
 	<div id="center" align=center>

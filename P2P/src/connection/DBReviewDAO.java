@@ -190,10 +190,6 @@ public class DBReviewDAO implements ReviewDAO {
 		}
 
 		public ArrayList<ReviewBean> getSearchReview(int currentPage, int option, String word) {
-			int count = countSearchReview(option, word);
-			int pageSize = 15;
-			int startRow = count - (pageSize * (currentPage - 1));
-			int endRow = count - (pageSize * currentPage) + 1;
 			String opt = "";
 			switch(option) {
 				case 0:

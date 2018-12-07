@@ -9,6 +9,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	if(user.getName() == null)
+		out.println("<script>alert('로그인하지 않았거나 세션이 만료되었습니다.\\n다시 로그인해주세요.'); location.href='login.jsp';</script>");
+%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script language="JavaScript">
  		function displayLineChart(){
@@ -65,8 +69,11 @@
 <link rel="shortcut icon" href="Resources/img/p2p.ico">
 <link href="Resources/css/bootstrap-iso.css" rel="stylesheet">
 <link href="Resources/css/base.css" rel="stylesheet">
-<title>대시보드</title>
 <link href="Resources/css/main.css" rel="stylesheet">
+<title>대시보드</title>
+
+<link href="Resources/css/main.css" rel="stylesheet">
+
 <%
 	request.setCharacterEncoding("utf-8");
 	String jdbc_driver = "com.mysql.jdbc.Driver";

@@ -22,6 +22,10 @@
 <link href="Resources/css/base.css" rel="stylesheet">
 <link href="Resources/css/information.css" rel="stylesheet">
 <title>취업신상정보</title>
+<%
+	if(user.getName() == null)
+		out.println("<script>alert('로그인하지 않았거나 세션이 만료되었습니다.\\n다시 로그인해주세요.'); location.href='login.jsp';</script>");
+%>
 </head>
 <body>
 	<div class="layout">
@@ -516,7 +520,7 @@
 									<div class="title_name"><h3>봉사활동</h3></div>
 									<div class="plus"><input name="openbox" type="button" onclick="popup_open(5,0)"></div>
 								</div>
-								<div class="table_content">	
+								<div class="table_content" style="margin-bottom:60px">	
 								<table>
 										<thead style="background-color:#f9f9f9">
 											<tr>
@@ -644,6 +648,7 @@
 			</div>
 		</div>
 	</div>
+<% session.setAttribute("id", user.getSchoolID()); %>
 <script type="text/javascript" src="Resources/js/information.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </body>
