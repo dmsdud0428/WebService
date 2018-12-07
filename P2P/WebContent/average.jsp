@@ -172,7 +172,15 @@
 	Connection conn = DriverManager.getConnection(jdbc_url, "user_id", "p2pproject");
 	
 	Statement stmt = conn.createStatement();
-	String sql = "SELECT score FROM graduate where year='" + user.getSchoolID().substring(0, 4) + "' and requirement='총 학점'";
+	int tmp = 0;
+	if(user.getYear()<=2016)
+		tmp = 2016;
+	if(user.getYear()==2017)
+		tmp = 2017;
+	if(user.getYear()>=2018)
+		tmp = 2018;
+	
+	String sql = "SELECT score FROM graduate where year='" + tmp + "' and requirement='총 학점'";
 	ResultSet rs = stmt.executeQuery(sql);
 	rs.next();
 %>
