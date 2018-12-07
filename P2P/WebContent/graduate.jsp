@@ -32,11 +32,11 @@
 				</div>
 				<div id="menu">
 					<div class="side_text">
-						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
+						<a href="Average">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="Graduate">·&nbsp;&nbsp;졸업요건진단</a><br>
 						<a href="Information">·&nbsp;&nbsp;취업신상정보</a><br>
 						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
-						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
+						<a href="Calendar">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 					<div class="title">
 						<h1>
 							졸업요건진단
-							<img src="Resources/img/question.png" title="각 년도별 교육과정에 맞는 졸업 요건을 진단하는 페이지입니다." />
+							<img src="Resources/img/question.png" title="설명을 작성해주세요." />
 						</h1>
 					</div>
 					<div class="article">
@@ -90,53 +90,53 @@
 								</div>
 						</div>
 						<table id="bottom_table">
-							<tr>
-								<td>
+							<tr style="width:600px;"><td style="width:380px;height:324px;">
+								<div class="table">
 									<table class="content">
 										<tr>
 											<th colspan=2 align="center" style="background-color:skyblue">일 반 졸 업 요 건</th>
 										</tr>
 										<%
-											ArrayList<Integer> list = new ArrayList<Integer>();
-											GraduateBean graduate = new GraduateBean();
-											int size = 0; int num=0;
-											list.add(score.getTotal_sco());
-											list.add(score.getMajor_sco());
-											list.add(score.getNecessary_sco());
-											list.add(score.getMajorE_sco());
+										ArrayList<Integer> list = new ArrayList<Integer>();
+										GraduateBean graduate = new GraduateBean();
+										int size = 0; int num=0;
+										list.add(score.getTotal_sco());
+										list.add(score.getMajor_sco());
+										list.add(score.getNecessary_sco());
+										list.add(score.getMajorE_sco());
+										
+										if(user.getYear() <= 2016)
+										{
+											size = graduate2016.size();
+											num = 2016;
+											list.add(score.getCultureE_sco());
+											list.add(score.getMsc_sco());
+										}
+										
+										if(user.getYear() == 2017)
+										{
+											size = graduate2017.size();
+											num = 2017;
+											list.add(score.getJinseongae());
+											list.add(score.getLan_sco());
+											list.add(score.getMath_sco());
+											list.add(score.getIdea_sco());
+										}
+										if(user.getYear() >= 2018)
+										{
+											size = graduate2018.size();
+											num = 2018;
+											list.add(score.getJinseongae());
+											list.add(score.getLan_sco());
+											list.add(score.getSW_sco());
+											list.add(score.getMath_sco());
+											list.add(score.getBarun_sco());
 											
-											if(user.getYear() <= 2016)
-											{
-												size = graduate2016.size();
-												num = 2016;
-												list.add(score.getCultureE_sco());
-												list.add(score.getMsc_sco());
-											}
-											
-											if(user.getYear() == 2017)
-											{
-												size = graduate2017.size();
-												num = 2017;
-												list.add(score.getJinseongae());
-												list.add(score.getLan_sco());
-												list.add(score.getMath_sco());
-												list.add(score.getIdea_sco());
-											}
-											if(user.getYear() >= 2018)
-											{
-												size = graduate2018.size();
-												num = 2018;
-												list.add(score.getJinseongae());
-												list.add(score.getLan_sco());
-												list.add(score.getSW_sco());
-												list.add(score.getMath_sco());
-												list.add(score.getBarun_sco());
-												
-											}
-											list.add(score.getBsm_sco());
-											list.add(score.getDesignC_sco());
-											list.add(score.getDesign_sco());
-											list.add(score.getDesignM_sco());
+										}
+										list.add(score.getBsm_sco());
+										list.add(score.getDesignC_sco());
+										list.add(score.getDesign_sco());
+										list.add(score.getDesignM_sco());
 										%>
 										<%
 									 		for(int i = 0; i < size-4; i++) {
@@ -148,6 +148,7 @@
 									 				graduate = (GraduateBean)graduate2018.get(i);
 									 			int user_score = list.get(i);
 										%>
+										
 											<tr>
 												<th><%=graduate.getRequirement() %></th>
 												<td class="score"><%=user_score %> / <%=graduate.getScore() %></td>
@@ -164,13 +165,15 @@
 										<%
 									 		}
 										%>
-									</table>
-								</td>
-								<td style="vertical-align:top">
-									<table class="content" style="width:380px">
-										<tr>
-											<th colspan=2 align="center" style="background-color:skyblue">공 학 인 증 요 건</th>
-										</tr>
+										</table>
+									</div>
+									</td>
+									<td style="width:380px;height:232px;margin-up:0px;">
+										<table class="content">
+											<tr><input type="image" name="complete"src="./Resources/img/complete.PNG" style="text-align:center;font-size:10px;fonc-weight:bold;width:380px;height:60px;padding:0px 0px 5px 0px"onclick="popup_open(<%= num %>)"/> </tr>
+											<tr>
+												<th colspan=2 align="center" style="background-color:skyblue">공 학 인 증 요 건</th>
+											</tr>
 										<%
 											for(int i = size-4; i < size; i++) {
 												if(num == 2016)
@@ -199,10 +202,10 @@
 									 		}
 										%>
 									</table>
-									<img name="complete" src="./Resources/img/complete.PNG" style="text-align:center;font-size:10px;fonc-weight:bold;width:380px;height:auto;margin-top:10px;cursor:pointer" onclick="popup_open(<%= num %>)"/>
-								</td>
-							</tr>
-						</table>
+								</div>
+								</td></tr></table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
