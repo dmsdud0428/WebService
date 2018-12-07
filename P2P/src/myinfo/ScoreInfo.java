@@ -29,6 +29,14 @@ public class ScoreInfo {
 	private int designM_sco = 0;		// 공학인증 전공 학점
 	private int designC_sco = 0;		// 공학인증 교양 학점
 	
+	private int jinseongae = 0;			// 진성애 학점
+	private int lan_sco = 0;			// 언어와 사고
+	private int math_sco = 0;			// 수리 과학
+	private int idea_sco = 0;			// 창의 융합
+	
+	private int sw_sco = 0;				// sw/창의적 사고
+	private int barun_sco = 0;			// barun 융합
+	
 	public String getSemester() {
 		return semester;
 	}
@@ -125,7 +133,24 @@ public class ScoreInfo {
 			
 			if(s.getSub().equals("공학윤리")||s.getSub().equals("특허와기술개발")||s.getSub().equals("창의적문제해결전략")||s.getSub().equals("인간심리의이해"))
 				designC_sco  += 1;
-				
+			
+			if(s.getCom().equals("진")||s.getCom().equals("성")||s.getCom().equals("애"))
+				jinseongae += s.getSco();
+			
+			if(s.getCom().equals("언어")||s.getCom().equals("사고"))
+				lan_sco += s.getSco();
+			
+			if(s.getCom().equals("수리")||s.getSub().equals("이산수학"))
+				math_sco += s.getSco();
+			
+			if(s.getSub().equals("공학윤리")||s.getSub().equals("특허와기술개발"))
+				idea_sco += s.getSco();
+			
+			if(s.getCom().equals("SW")||s.getCom().equals("창의"))
+				sw_sco += 1;
+			
+			if(s.getCom().equals("문화")||s.getCom().equals("미래")||s.getCom().equals("계발")||s.getCom().equals("사회"))
+				barun_sco += s.getSco();
 		}
 		
 	}
@@ -222,5 +247,29 @@ public class ScoreInfo {
 	
 	public int getDesignC_sco() {
 		return designC_sco;
+	}
+	
+	public int getJinseongae() {
+		return jinseongae;
+	}
+	
+	public int getLan_sco() {
+		return lan_sco;
+	}
+	
+	public int getMath_sco() {
+		return math_sco;
+	}
+	
+	public int getIdea_sco() {
+		return idea_sco;
+	}
+	
+	public int getSW_sco() {
+		return sw_sco;
+	}
+	
+	public int getBarun_sco() {
+		return barun_sco;
 	}
 }

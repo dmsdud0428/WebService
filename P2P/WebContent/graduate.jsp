@@ -99,13 +99,13 @@
 										list.add(score.getTotal_sco());
 										list.add(score.getMajor_sco());
 										list.add(score.getNecessary_sco());
+										list.add(score.getMajorE_sco());
 										
 										if(user.getYear() <= 2016)
 										{
 											size = graduate2016.size();
 											num = 2016;
 											list.add(score.getCultureE_sco());
-											list.add(score.getMajorE_sco());
 											list.add(score.getMsc_sco());
 										}
 										
@@ -113,13 +113,21 @@
 										{
 											size = graduate2017.size();
 											num = 2017;
-												//2017 졸업요건
+											list.add(score.getJinseongae());
+											list.add(score.getLan_sco());
+											list.add(score.getMath_sco());
+											list.add(score.getIdea_sco());
 										}
 										if(user.getYear() >= 2018)
 										{
 											size = graduate2018.size();
 											num = 2018;
-												//2018 졸업요건
+											list.add(score.getJinseongae());
+											list.add(score.getLan_sco());
+											list.add(score.getSW_sco());
+											list.add(score.getMath_sco());
+											list.add(score.getBarun_sco());
+											
 										}
 										list.add(score.getBsm_sco());
 										list.add(score.getDesignC_sco());
