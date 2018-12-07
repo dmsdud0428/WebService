@@ -66,7 +66,7 @@
 					<div class="title">
 						<h1>
 							졸업요건진단
-							<img src="Resources/img/question.png" title="설명을 작성해주세요." />
+							<img src="Resources/img/question.png" title="각 년도별 교육과정에 맞는 졸업 요건을 진단하는 페이지입니다." />
 						</h1>
 					</div>
 					<div class="article">
