@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.sql.*" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="myinfo.*"%>
 
@@ -163,6 +163,19 @@
 	}
 
 </style>
+<%
+	request.setCharacterEncoding("utf-8");
+	String jdbc_driver = "com.mysql.jdbc.Driver";
+	String jdbc_url = 
+			"jdbc:mysql://localhost:3306/project?characterEncoding=utf8&&serverTimezone=UTC";
+	Class.forName(jdbc_driver);
+	Connection conn = DriverManager.getConnection(jdbc_url, "user_id", "p2pproject");
+	
+	Statement stmt = conn.createStatement();
+	String sql = "SELECT score FROM graduate where year='" + user.getSchoolID().substring(0, 4) + "' and requirement='총 학점'";
+	ResultSet rs = stmt.executeQuery(sql);
+	rs.next();
+%>
 </head>
 <body onload="displayLineChart();displayLineChart2();">
 	<div class="layout">
@@ -285,8 +298,13 @@
 									<div id="goal_average">
 										<div id="goal_sentence">
 												목표 학점까지 남은 학기동안<br>
-												OO 이수학점 기준<br>
-												평균 OO학점 필요<br>
+												<%=rs.getInt("score") %> 이수학점 기준<br>
+												평균 <span id="goal_score">00</span>학점 필요<br>
+												<%
+													rs.close();
+													stmt.close();
+													conn.close();
+												%>
 												<input id="goal_button" type="button" onclick="popup_open(1,0)" />
 										</div>
 									</div>
@@ -302,7 +320,17 @@
 	</div>
 <script type="text/javascript" src="Resources/js/popup.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<script language="JavaScript">
+<script>
+	var complete = <%=score.getAverage().size() %>;
+	var empty = 8 - complete;
+	var need = ((<%=score.getGoal() %> * 8 - <%=score.getTotal_ave() %> * complete) / empty).toFixed(2);;
+	if(need > 4.5)
+		need = "4.5+";
+	else if(need < 0)
+		need = "0-";
+	document.getElementById("goal_score").textContent = need;
+
+
  		function displayLineChart(){
 	 
 			var ctx=document.getElementById("average_chart").getContext("2d");
