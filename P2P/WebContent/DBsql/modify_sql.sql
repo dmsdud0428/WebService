@@ -13,5 +13,3 @@ ALTER table award add num int auto_increment PRIMARY KEY;
 ALTER table career add num int auto_increment PRIMARY KEY;
 ALTER table service add num int auto_increment PRIMARY KEY;
 ALTER table etc add num int auto_increment PRIMARY KEY;
-
-ALTER table introduction modify state tinyint(1) default 0;
