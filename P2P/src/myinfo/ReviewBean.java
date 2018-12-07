@@ -53,6 +53,7 @@ public class ReviewBean {
 		return content;
 	}
 	public void setContent(String content) {
+		content = content.replaceAll(System.getProperty("line.separator"), "<br>");
 		this.content = content;
 	}
 	public String getSearch() {
