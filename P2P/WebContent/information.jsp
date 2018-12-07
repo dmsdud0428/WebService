@@ -646,6 +646,5 @@
 	</div>
 <script type="text/javascript" src="Resources/js/information.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
 </body>
 </html>
