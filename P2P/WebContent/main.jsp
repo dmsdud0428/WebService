@@ -138,10 +138,11 @@
 	}
 	#interview_table{
 		width: 770px;
-		height: 320px;
+		height: 200px;
 		word-spacing: 2px;
 		padding: 5px 0px 5px 0px;
 		margin-top: 5px;
+		margin-bottom: 60px;
 	}
 	#_tr {
 		background-color: #ffffff;
@@ -167,7 +168,7 @@
 	Class.forName(jdbc_driver);
 	Connection conn = DriverManager.getConnection(jdbc_url, "user_id", "p2pproject");
 	
-	String sql = "SELECT * FROM interview LIMIT 5";
+	String sql = "SELECT * FROM interview ORDER BY num DESC LIMIT 5";
 	PreparedStatement stmt = conn.prepareStatement(sql);
 	ResultSet rs = stmt.executeQuery(sql);
 %>
@@ -304,9 +305,9 @@
 											while(rs.next()) {
 										%>
 						 				<tr id="_tr" onClick="move2('view', '<%= rs.getInt("num") %>')">
-											<td style="text-align:center;"><%=rs.getString("year") %></td>
-											<td style="text-align:center;"><%=rs.getString("company") %></td>
-											<td style="text-align:center;"><%=rs.getString("spec") %></td>
+											<td style="text-align:center;width:155px"><%=rs.getString("year") %></td>
+											<td style="text-align:center;width:230px"><%=rs.getString("company") %></td>
+											<td style="text-align:center;width:400px"><%=rs.getString("spec") %></td>
 								 		</tr>
 								 		<%		
 									 		}
