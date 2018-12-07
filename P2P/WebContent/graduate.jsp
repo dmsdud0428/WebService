@@ -212,6 +212,7 @@
 		</div>
 	</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<% session.setAttribute("id", user.getSchoolID()); %>
 <script language="JavaScript">
  		function nomelChart(){
 	 

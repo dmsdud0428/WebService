@@ -56,6 +56,7 @@ public class Information extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		String id = (String)session.getAttribute("id");
 		if(id == null) id = "null";
+		
 		String action = request.getParameter("action");
 		
 		if(action==null||action.equals("list")) {
@@ -326,6 +327,15 @@ public class Information extends HttpServlet {
 				out.println("</script>");
 				return;
 			}
+			else if(temp.compareTo(tmp)>0) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('날짜를 다시 입력하여 주세요.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
 			else {
 				Date sday=Date.valueOf(request.getParameter("sday"));
 				Date eday=Date.valueOf(request.getParameter("eday"));
@@ -348,6 +358,15 @@ public class Information extends HttpServlet {
 				PrintWriter out=response.getWriter();
 				out.println("<script>");
 				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else if(temp.compareTo(tmp)>0) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('날짜를 다시 입력하여 주세요.');");
 				out.println("history.back();");
 				out.println("</script>");
 				return;
@@ -375,6 +394,15 @@ public class Information extends HttpServlet {
 				PrintWriter out=response.getWriter();
 				out.println("<script>");
 				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else if(temp.compareTo(tmp)>0) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('날짜를 다시 입력하여 주세요.');");
 				out.println("history.back();");
 				out.println("</script>");
 				return;
@@ -407,6 +435,15 @@ public class Information extends HttpServlet {
 				out.println("</script>");
 				return;
 			}
+			else if(temp.compareTo(tmp)>0) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('날짜를 다시 입력하여 주세요.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
 			else {
 				Date sday=Date.valueOf(request.getParameter("sday"));
 				Date eday=Date.valueOf(request.getParameter("eday"));
@@ -427,6 +464,15 @@ public class Information extends HttpServlet {
 				PrintWriter out=response.getWriter();
 				out.println("<script>");
 				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else if(temp.compareTo(tmp)>0) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('날짜를 다시 입력하여 주세요.');");
 				out.println("history.back();");
 				out.println("</script>");
 				return;
@@ -453,6 +499,15 @@ public class Information extends HttpServlet {
 				PrintWriter out=response.getWriter();
 				out.println("<script>");
 				out.println("alert('모든 내용을 입력하여 주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+				return;
+			}
+			else if(temp.compareTo(tmp)>0) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.println("<script>");
+				out.println("alert('날짜를 다시 입력하여 주세요.');");
 				out.println("history.back();");
 				out.println("</script>");
 				return;
