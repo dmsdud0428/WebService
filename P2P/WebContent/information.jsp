@@ -38,14 +38,11 @@
 				</div>
 				<div id="menu">
 					<div class="side_text">
-						<a href="average.jsp">·&nbsp;&nbsp;총/전공평점평균</a><br>
+						<a href="Average">·&nbsp;&nbsp;총/전공평점평균</a><br>
 						<a href="Graduate">·&nbsp;&nbsp;졸업요건진단</a><br>
-
 						<a href="Information">·&nbsp;&nbsp;취업신상정보</a><br>
-
 						<a href="Introduce">·&nbsp;&nbsp;자기소개서</a><br>
-
-						<a href="calendar.jsp">·&nbsp;&nbsp;자격정보/시험일정</a><br>
+						<a href="Calendar">·&nbsp;&nbsp;자격정보/시험일정</a><br>
 						<a href="Review">·&nbsp;&nbsp;면접/입사후기</a>
 					</div>
 				</div>
@@ -162,8 +159,8 @@
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getScore() %></td>  
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getDay() %>	</td>		
 													 
-													 <td>
-													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(7,<%=lag.getNum() %>)" /></td>	
+													 <td style="text-align:center">
+													 <input name="editbox" type="button" style="margin-top:4px" onclick="popup_open(7,<%=lag.getNum() %>)" /></td>	
 													 </tr>	 
 													<%
 								 				} %>
@@ -254,8 +251,8 @@
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getRating() %></td>  
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getDay() %>	</td>		
 													 
-													 <td>
-													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(8,<%= lag.getNum() %>)" /></td>	
+													 <td style="text-align:center">
+													 <input name="editbox" type="button" style="margin-top:4px" onclick="popup_open(8,<%= lag.getNum() %>)" /></td>	
 													 </tr>	 
 													<%
 								 				} %>
@@ -346,8 +343,8 @@
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getRating() %></td>  
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getDay() %>	</td>		
 													 
-													 <td>
-													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(9,<%= lag.getNum() %>)" /></td>	
+													 <td style="text-align:center">
+													 <input name="editbox" type="button" style="margin-top:4px" onclick="popup_open(9,<%= lag.getNum() %>)" /></td>	
 													 </tr>	 
 													<%
 								 				} %>
@@ -446,8 +443,8 @@
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getS_day() %>	</td>	
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getE_day() %>	</td>	
 													 
-													 <td>
-													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(10,<%= lag.getNum() %>)" /></td>	
+													 <td style="text-align:center">
+													 <input name="editbox" type="button" style="margin-top:4px" onclick="popup_open(10,<%= lag.getNum() %>)" /></td>	
 													 </tr>	 
 													<%
 								 				} %>
@@ -545,8 +542,8 @@
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getS_day() %>	</td>	
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getE_day() %>	</td>	
 													 
-													 <td>
-													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(11,<%= lag.getNum() %>)" /></td>	
+													 <td style="text-align:center">
+													 <input name="editbox" type="button" style="margin-top:4px" onclick="popup_open(11,<%= lag.getNum() %>)" /></td>	
 													 </tr>	 
 													<%
 								 				} %>
@@ -635,8 +632,8 @@
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getS_day() %>	</td>	
 													 <td style="text-align:center;font-size:8px;width:60px;"><%=lag.getE_day() %>	</td>	
 													 
-													 <td>
-													 <input name="editbox" type="button" style="padding-left:5px;" onclick="popup_open(12,<%= lag.getNum() %>)" /></td>	
+													 <td style="text-align:center">
+													 <input name="editbox" type="button" style="margin-top:4px" onclick="popup_open(12,<%= lag.getNum() %>)" /></td>	
 													 </tr>	 
 													<%
 								 				} %>
