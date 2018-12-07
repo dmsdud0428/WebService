@@ -1,29 +1,30 @@
-@charset "EUC-KR";
 #all_average_graph_table{
-		
-	background-image:url('./Resources/img/graph_table.png');
+	background-image:url('../img/graph_table.png');
 	width:785px;
 	height:330px;
 	background-repeat: no-repeat;
 	background-size:785px 330px; 
 	margin-bottom:10px;
-	
 }
+
 #average_graph{
 	width: 740px;
 	height:240px;
 	padding:14px 10px 14px 18px;
 }
+
 #major_graph{
 	width: 740px;
 	height:240px;
 	padding:14px 10px 14px 18px;
 }
+
 #goal_number{
 	height: 120px;
 	padding: 42px 0px 0px 0px;
 	text-align: center;
 }
+
 #goal_sentence{
 	width:230px;
 	height:140px;
@@ -32,43 +33,47 @@
 	line-height: 30px;
 	letter-spacing:1px;
 }
+
 #major_average_graph_table{
-	
-	background-image:url('./Resources/img/graph_table.png');
+	background-image:url('../img/graph_table.png');
 	width:785px;
 	height:330px;
 	background-repeat: no-repeat;
 	background-size:785px 330px; 
 	margin-bottom:10px;
 }
+
 #goal_average_number{
-	background-image:url('./Resources/img/average_table.png');
+	background-image:url('../img/average_table.png');
 	width:160px;
 	height:160px;
 	background-size:160px 160px;
 	margin-right:10px;
-	
 }
+
 #allSocre_average_number{
-	background-image:url('./Resources/img/average_table.png');
+	background-image:url('../img/average_table.png');
 	width:160px;
 	height:160px;
 	background-size:160px 160px;
 	margin-right:10px;
 }
+
 #major_average_number{
-	background-image:url('./Resources/img/average_table.png');
+	background-image:url('../img/average_table.png');
 	width:160px;
 	height:160px;
 	background-size:160px 160px;
 	margin-right:10px;
 }
+
 #goal_average{
-	background-image:url('./Resources/img/goal_background.png');
+	background-image:url('../img/goal_background.png');
 	width:260px;
 	height:160px;
 	background-size:260px 160px;
 }
+
 #graph_subject{
 	font-weight:bold; 
 	width:785px;
@@ -77,6 +82,7 @@
 	padding:12px 0px 0px 16px;
 	overflow:hidden;
 }	
+
 #number_subject{
 	font-weight:bold; 
 	width:160px;
@@ -87,7 +93,7 @@
 }
 
 #goal_button {
-	background-image: url('./Resources/img/goal_button.png');
+	background-image: url('../img/goal_button.png');
 	background-color: rgba(0, 0, 0, 0);
 	width: 75px;
 	height: 22px;
@@ -100,7 +106,7 @@
 	position: fixed;
 	width: 322px;
 	height: 220px;
-	background: url('./Resources/img/plus_background.png');
+	background: url('../img/plus_background.png');
 	top: 50%;
 	left: 50%;
 	margin-left: -186px;
@@ -133,7 +139,7 @@
 	width: 54px;
 	height: 26px;
 	vertical-align: middle;
-	background: url('./Resources/img/cancle_button.png');
+	background: url('../img/cancle_button.png');
 	border: none;
 	cursor: pointer;
 }
@@ -142,7 +148,7 @@
 	width: 54px;
 	height: 26px;
 	vertical-align: middle;
-	background: url('./Resources/img/check_button.png');
+	background: url('../img/check_button.png');
 	border: none;
 	margin-right: 20px;
 	cursor: pointer;
