@@ -115,7 +115,7 @@
 								<tr class="_a1" style="border-bottom: 1px solid #dddddd;">
 									<td class="td_head">답변 1</td>
 									<td class="td_body" valign="top" style="height:200px">
-										<div id="a1"></div>
+										<div id="a1" style="line-height:1.3em"></div>
 									</td>
 								</tr>
 							</table>
@@ -149,7 +149,7 @@
 		ni += "' style='border-bottom: 1px solid #dddddd;'>";
 		ni += "<td class='td_head'>답변 " + num + "</td>";
 		ni += "<td class='td_body' valign='top' style='height:200px'>";
-		ni += "<div id='a" + num + "'></div>";
+		ni += "<div id='a" + num + " style='line-height:1.3em'></div>";
 		ni += "</td>";
 		ni += "</tr>";
 		$("#_table").append(ni);

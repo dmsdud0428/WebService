@@ -84,7 +84,7 @@
 								</tr>
 								<tr>
 									<td class="td_head">후기</td>
-									<td class="td_body" valign="top" style="height:400px"><jsp:getProperty name="review" property="content" /></td>
+									<td class="td_body" valign="top" style="height:400px;line-height:1.3em"><jsp:getProperty name="review" property="content" /></td>
 								</tr>
 							</table>
 						</div>
