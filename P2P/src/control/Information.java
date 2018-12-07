@@ -60,7 +60,6 @@ public class Information extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		if(action==null||action.equals("list")) {
-			System.out.println("list");
 			ArrayList<LanguageBean> list=dao.getAllLanguage(id);
 			request.setAttribute("Languagelist", list);
 			LanguageBean lag=new LanguageBean();
