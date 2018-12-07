@@ -2,6 +2,7 @@ package connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
@@ -60,17 +61,30 @@ public class DBIntroDAO implements IntroDAO {
 		
 		String sql = "INSERT INTO introduction(num, id, state, day, company, business, kind, "
 				+ "question_1, answer_1, question_2, answer_2, question_3, answer_3, question_4, answer_4, question_5, answer_5) "
-				+ "VALUES('" + (total_count+1) + "','" + intro.getId() + "','" + intro.isState() + "','"
-				+ intro.getDay() + "','" + intro.getCompany() + "','" + intro.getBusiness() + "','"
-				+ intro.getKind() + "','" + intro.getQuestion_1() + "','" + intro.getAnswer_1() + "','"
-				+ intro.getQuestion_2() + "','" + intro.getAnswer_2() + "','" 
-				+ intro.getQuestion_3() + "','" + intro.getAnswer_3() + "','" 
-				+ intro.getQuestion_4() + "','" + intro.getAnswer_4() + "','" 
-				+ intro.getQuestion_5() + "','" + intro.getAnswer_5() + "')";
+				+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		try {	
 			connect();
-			stmt.executeUpdate(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, total_count+1);
+			pstmt.setString(2, intro.getId());
+			pstmt.setBoolean(3, intro.isState());
+			pstmt.setString(4, intro.getDay());
+			pstmt.setString(5, intro.getCompany());
+			pstmt.setString(6, intro.getBusiness());
+			pstmt.setString(7, intro.getKind());
+			pstmt.setString(8, intro.getQuestion_1());
+			pstmt.setString(9, intro.getAnswer_1());
+			pstmt.setString(10, intro.getQuestion_2());
+			pstmt.setString(11, intro.getAnswer_2());
+			pstmt.setString(12, intro.getQuestion_3());
+			pstmt.setString(13, intro.getAnswer_3());
+			pstmt.setString(14, intro.getQuestion_4());
+			pstmt.setString(15, intro.getAnswer_4());
+			pstmt.setString(16, intro.getQuestion_5());
+			pstmt.setString(17, intro.getAnswer_5());
+			pstmt.executeUpdate();
+			pstmt.close();
 			disconnect();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -120,12 +134,14 @@ public class DBIntroDAO implements IntroDAO {
 		int pageSize = 15;
 		int startRow = count - (pageSize * (currentPage - 1));
 		int endRow = count - (pageSize * currentPage) + 1;
-		String sql = "SELECT * FROM introduction WHERE(num <= " + startRow
-					+ " AND num >= " + endRow + ") ORDER BY num DESC";
+		String sql = "SELECT * FROM introduction WHERE(num <= ? AND num >= ?) ORDER BY num DESC";
 		ArrayList<IntroBean> list = new ArrayList<IntroBean>();
 		try {
 			connect();
-			ResultSet rs = stmt.executeQuery(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				IntroBean intro = new IntroBean();
 				intro.setNum(rs.getInt("num"));
@@ -149,6 +165,7 @@ public class DBIntroDAO implements IntroDAO {
 				list.add(intro);
 			}
 			rs.close();
+			pstmt.close();
 			disconnect();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -158,11 +175,13 @@ public class DBIntroDAO implements IntroDAO {
 	}
 	
 	public IntroBean getIntro(String num) {
-		String sql = "SELECT * FROM introduction WHERE num=" + num;
+		String sql = "SELECT * FROM introduction WHERE num = ?";
 		IntroBean intro = new IntroBean();
 		try {
 			connect();
-			ResultSet rs = stmt.executeQuery(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			ResultSet rs = pstmt.executeQuery();
 			rs.next();
 			intro.setNum(rs.getInt("num"));
 			intro.setId(rs.getString("id"));
@@ -183,6 +202,7 @@ public class DBIntroDAO implements IntroDAO {
 			intro.setQuestion_5(rs.getString("question_5"));
 			intro.setAnswer_5(rs.getString("answer_5"));
 			rs.close();
+			pstmt.close();
 			disconnect();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -192,17 +212,30 @@ public class DBIntroDAO implements IntroDAO {
 	}
 	
 	public void updateIntro(String num, IntroBean intro) {
-		String sql = "UPDATE introduction SET state = '" + intro.isState() + "', company = '" + intro.getCompany()
-					+ "', business = '" + intro.getBusiness() + "', kind = '" + intro.getKind()
-					 + "', question_1 = '" + intro.getQuestion_1()  + "', answer_1 = '" + intro.getAnswer_1()
-					 + "', question_2 = '" + intro.getQuestion_2()  + "', answer_2 = '" + intro.getAnswer_2()
-					 + "', question_3 = '" + intro.getQuestion_3()  + "', answer_3 = '" + intro.getAnswer_3()
-					 + "', question_4 = '" + intro.getQuestion_4()  + "', answer_4 = '" + intro.getAnswer_4()
-					 + "', question_5 = '" + intro.getQuestion_5()  + "', answer_5 = '" + intro.getAnswer_5()
-					+ "' WHERE num = " + num;
+		String sql = "UPDATE introduction SET state = ?, company = ?, business = ?, kind = ?"
+					 + ", question_1 = ?, answer_1 = ?, question_2 = ?, answer_2 = ?"
+					 + ", question_3 = ?, answer_3 = ?, question_4 = ?, answer_4 = ?"
+					 + ", question_5 = ?, answer_5 = ? WHERE num = ?";
 		try {	
 			connect();
-			stmt.executeUpdate(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setBoolean(1, intro.isState());
+			pstmt.setString(2, intro.getCompany());
+			pstmt.setString(3, intro.getBusiness());
+			pstmt.setString(4, intro.getKind());
+			pstmt.setString(5, intro.getQuestion_1());
+			pstmt.setString(6, intro.getAnswer_1());
+			pstmt.setString(7, intro.getQuestion_2());
+			pstmt.setString(8, intro.getAnswer_2());
+			pstmt.setString(9, intro.getQuestion_3());
+			pstmt.setString(10, intro.getAnswer_3());
+			pstmt.setString(11, intro.getQuestion_4());
+			pstmt.setString(12, intro.getAnswer_4());
+			pstmt.setString(13, intro.getQuestion_5());
+			pstmt.setString(14, intro.getAnswer_5());
+			pstmt.setString(15, num);
+			pstmt.executeUpdate();
+			pstmt.close();
 			disconnect();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -210,11 +243,14 @@ public class DBIntroDAO implements IntroDAO {
 	}
 	
 	public void deleteIntro(String num) {
-		String sql = "DELETE FROM introduction WHERE num = " + num;
+		String sql = "DELETE FROM introduction WHERE num = ?";
 		
 		try {	
 			connect();
-			stmt.executeUpdate(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			pstmt.executeUpdate();
+			pstmt.close();
 			disconnect();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -224,11 +260,14 @@ public class DBIntroDAO implements IntroDAO {
 	}
 	
 	public void modifyNumber(String num) {
-		String sql = "UPDATE introduction SET num = num - 1 WHERE num >" + num;
+		String sql = "UPDATE introduction SET num = num - 1 WHERE num > ?";
 		
 		try {	
 			connect();
-			stmt.executeUpdate(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			pstmt.executeUpdate();
+			pstmt.close();
 			disconnect();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -236,14 +275,10 @@ public class DBIntroDAO implements IntroDAO {
 	}
 
 	public ArrayList<IntroBean> getSearchIntro(int currentPage, int option, String word) {
-		int count = countSearchIntro(option, word);
-		int pageSize = 15;
-		int startRow = count - (pageSize * (currentPage - 1));
-		int endRow = count - (pageSize * currentPage) + 1;
-		String opt = "";
+		String sql = "";
 		switch(option) {
 			case 0:
-				opt = "state";
+				sql = "SELECT * from introduction WHERE(state LIKE ?) ORDER BY num DESC limit ?, 15";
 				if("작성".indexOf("word") != -1)
 					word = "false%' or state like '%true";
 				else if("작성중".indexOf("word") == -1)
@@ -252,22 +287,23 @@ public class DBIntroDAO implements IntroDAO {
 					word = "true";
 				break;
 			case 1:
-				opt = "company";
+				sql = "SELECT * from introduction WHERE(company LIKE ?) ORDER BY num DESC limit ?, 15";
 				break;
 			case 2:
-				opt = "business";
+				sql = "SELECT * from introduction WHERE(business LIKE ?) ORDER BY num DESC limit ?, 15";
 				break;
 			case 3:
-				opt = "kind";
+				sql = "SELECT * from introduction WHERE(kind LIKE ?) ORDER BY num DESC limit ?, 15";
 				break;
 		}
-		String sql = "SELECT * from introduction WHERE(" + opt + " LIKE '%" + word + "%') ORDER BY num DESC limit "
-					+ ((currentPage - 1) * 15) + ", 15";
 		ArrayList<IntroBean> list = new ArrayList<IntroBean>();
 		
 		try {
 			connect();
-			ResultSet rs = stmt.executeQuery(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + word + "%");
+			pstmt.setInt(2, ((currentPage - 1) * 15));
+			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				IntroBean intro = new IntroBean();
 				intro.setNum(rs.getInt("num"));
@@ -291,6 +327,7 @@ public class DBIntroDAO implements IntroDAO {
 				list.add(intro);
 			}
 			rs.close();
+			pstmt.close();
 			disconnect();
 		} catch(Exception e) {
 			System.out.println(sql);
@@ -302,10 +339,10 @@ public class DBIntroDAO implements IntroDAO {
 
 	public int countSearchIntro(int option, String word) {
 		int total_count = 0;
-		String opt = "";
+		String sql = "";
 		switch(option) {
 			case 0:
-				opt = "state";
+				sql = "SELECT count(*) count FROM introduction WHERE state LIKE ?";
 				if("작성".indexOf("word") != -1)
 					word = "false%' or state like '%true";
 				else if("작성중".indexOf("word") == -1)
@@ -314,23 +351,25 @@ public class DBIntroDAO implements IntroDAO {
 					word = "true";
 				break;
 			case 1:
-				opt = "company";
+				sql = "SELECT count(*) count FROM introduction WHERE company LIKE ?";
 				break;
 			case 2:
-				opt = "business";
+				sql = "SELECT count(*) count FROM introduction WHERE business LIKE ?";
 				break;
 			case 3:
-				opt = "kind";
+				sql = "SELECT count(*) count FROM introduction WHERE kind LIKE ?";
 				break;
 		}
-		String sql = "SELECT count(*) count FROM introduction WHERE " + opt + " LIKE '%" + word + "%'";
 		
 		try {
 			connect();
-			ResultSet rs = stmt.executeQuery(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + word + "%");
+			ResultSet rs = pstmt.executeQuery();
 			rs.next();
 			total_count = rs.getInt("count");
 			rs.close();
+			pstmt.close();
 			disconnect();
 		} catch(Exception e) {
 			e.printStackTrace();
