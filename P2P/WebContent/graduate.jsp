@@ -166,11 +166,9 @@
 									 		}
 										%>
 										</table>
-									</div>
 									</td>
-									<td style="width:380px;height:232px;margin-up:0px;">
-										<table class="content">
-											<tr><input type="image" name="complete"src="./Resources/img/complete.PNG" style="text-align:center;font-size:10px;fonc-weight:bold;width:380px;height:60px;padding:0px 0px 5px 0px"onclick="popup_open(<%= num %>)"/> </tr>
+										<td style="vertical-align:top">
+											<table class="content" style="width:380px">
 											<tr>
 												<th colspan=2 align="center" style="background-color:skyblue">공 학 인 증 요 건</th>
 											</tr>
@@ -202,6 +200,10 @@
 									 		}
 										%>
 									</table>
+									<img name="complete" src="./Resources/img/complete.PNG" style="text-align:center;font-size:10px;fonc-weight:bold;width:380px;height:auto;margin-top:10px;cursor:pointer" onclick="popup_open(<%= num %>)"/>
+									</td>
+								</tr>
+							</table>
 								</div>
 								</td></tr></table>
 							</div>
