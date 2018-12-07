@@ -75,7 +75,7 @@
 					<div class="title">
 						<h1>
 							취업신상정보
-							<img src="Resources/img/question.png" title="설명을 작성해주세요." />
+							<img src="Resources/img/question.png" title="어학능력, 자격증 취득, 수상실적, 재직 및 경력사항, 봉사활동, 기타 등을 정리할 수 있는 페이지입니다." />
 						</h1>
 					</div>
 					<div class="article">

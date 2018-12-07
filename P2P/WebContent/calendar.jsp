@@ -58,7 +58,7 @@
 					<div class="title">
 						<h1>
 							자격정보 / 시험일정
-							<img src="Resources/img/question.png" title="설명을 작성해주세요." />
+							<img src="Resources/img/question.png" title="자격 시험 일정을 보여주며, 클릭 시 자세한 내용을 확인 가능합니다." />
 						</h1>
 					</div>
 					<div class="article">

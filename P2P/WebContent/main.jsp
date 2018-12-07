@@ -134,7 +134,7 @@
 					<div class="title">
 						<h1>
 							대시보드
-							<img src="Resources/img/question.png" title="설명을 작성해주세요." />
+							<img src="Resources/img/question.png" title="총 평점 평균 그래프와 취업 신상 정보, 면접/후기 게시판의 최근글을 한눈에 볼 수 있도록 요약한 페이지입니다." />
 						</h1>
 					</div>
 					<div class="article">

@@ -86,7 +86,7 @@
 					<div class="title">
 						<h1>
 							총 / 전공 평점평균
-							<img src="Resources/img/question.png" title="설명을 작성해주세요." />
+							<img src="Resources/img/question.png" title="총 평점 평균과 전공 평점 평균을 그래프로 확인할 수 있으며, 목표 평점 평균에 따른 필요 학점을 계산합니다." />
 						</h1>
 					</div>
 					<div class="article">

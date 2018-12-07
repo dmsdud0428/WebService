@@ -63,7 +63,7 @@
 					<div class="title">
 						<h1>
 							자기소개서
-							<img src="Resources/img/question.png" title="설명을 작성해주세요." />
+							<img src="Resources/img/question.png" title="자기소개서 작성이 가능한 페이지입니다." />
 						</h1>
 					</div>
 					<div class="article" style="text-align:center">
