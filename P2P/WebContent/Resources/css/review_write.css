@@ -1,0 +1,42 @@
+#page_number a {
+	font-size: 10pt;
+	color: #566270;
+	text-decoration: none;
+}
+
+.view_table table {
+	width: 785px;
+	text-align: center;
+	border-top: 5px solid #dddddd;
+	border-bottom: 5px solid #dddddd;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+	font-size: 10pt;
+}
+
+.view_table .td_head {
+	width: 100px;
+	padding: 15px;
+	background-color: #f9f9f9;
+	text-align: center;
+}
+
+.view_table .td_body {
+	padding: 5px;
+	text-align:left;
+}
+
+.view_table input {
+	width: 645px;
+}
+
+.view_table textarea {
+	width: 645px;
+	height: 390px;
+	resize: none;
+}
+
+.buttons img, input[type=Image] {
+	height: 22px;
+	width: auto;
+}
