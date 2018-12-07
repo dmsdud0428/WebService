@@ -2,6 +2,7 @@ package connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -60,13 +61,19 @@ public class DBReviewDAO implements ReviewDAO {
 		public void addReview(ReviewBean review){
 			int total_count = countReview();
 			
-			String sql = "INSERT INTO interview(num, id, year, company, spec, review) VALUES('" +
-					(total_count+1) + "','" + review.getId() + "','" + review.getYear() + "','"
-					+ review.getEnterprise() + "','" + review.getSpec() + "','" + review.getContent() + "')";
+			String sql = "INSERT INTO interview(num, id, year, company, spec, review) VALUES(?,?,?,?,?,?)";
 			
 			try {	
 				connect();
-				stmt.executeUpdate(sql);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, total_count+1);
+				pstmt.setString(2, review.getId());
+				pstmt.setString(3, review.getYear());
+				pstmt.setString(4, review.getEnterprise());
+				pstmt.setString(5, review.getSpec());
+				pstmt.setString(6, review.getContent());
+				pstmt.executeUpdate();
+				pstmt.close();
 				disconnect();
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -103,12 +110,14 @@ public class DBReviewDAO implements ReviewDAO {
 			int pageSize = 15;
 			int startRow = count - (pageSize * (currentPage - 1));
 			int endRow = count - (pageSize * currentPage) + 1;
-			String sql = "SELECT * from interview WHERE(num <= " + startRow
-						+ " AND num >= " + endRow + ") ORDER BY num DESC";
+			String sql = "SELECT * from interview WHERE(num <= ? AND num >= ?) ORDER BY num DESC";
 			ArrayList<ReviewBean> list = new ArrayList<ReviewBean>();
 			try {
 				connect();
-				ResultSet rs = stmt.executeQuery(sql);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, endRow);
+				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()) {
 					ReviewBean review = new ReviewBean();
 					review.setNum(rs.getInt("num"));
@@ -120,6 +129,7 @@ public class DBReviewDAO implements ReviewDAO {
 					list.add(review);
 				}
 				rs.close();
+				pstmt.close();
 				disconnect();
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -129,11 +139,13 @@ public class DBReviewDAO implements ReviewDAO {
 		}
 		
 		public ReviewBean getReview(String num) {
-			String sql = "SELECT * FROM interview WHERE num=" + num;
+			String sql = "SELECT * FROM interview WHERE num = ?";
 			ReviewBean review = new ReviewBean();
 			try {
 				connect();
-				ResultSet rs = stmt.executeQuery(sql);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, num);
+				ResultSet rs = pstmt.executeQuery();
 				rs.next();
 				review.setNum(rs.getInt("num"));
 				review.setId(rs.getString("id"));
@@ -142,6 +154,7 @@ public class DBReviewDAO implements ReviewDAO {
 				review.setSpec(rs.getString("spec"));
 				review.setContent(rs.getString("review"));
 				rs.close();
+				pstmt.close();
 				disconnect();
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -151,12 +164,17 @@ public class DBReviewDAO implements ReviewDAO {
 		}
 		
 		public void updateReview(String num, ReviewBean review) {
-			String sql = "UPDATE interview SET year = '" + review.getYear()
-						+ "', company = '" + review.getEnterprise() + "', spec = '" + review.getSpec()
-						+ "', review = '" + review.getContent() + "' WHERE num = " + num;
+			String sql = "UPDATE interview SET year = ?, company = ?, spec = ?, review = ? WHERE num = ?";
 			try {	
 				connect();
-				stmt.executeUpdate(sql);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, review.getYear());
+				pstmt.setString(2, review.getEnterprise());
+				pstmt.setString(3, review.getSpec());
+				pstmt.setString(4, review.getContent());
+				pstmt.setString(5, num);
+				pstmt.executeUpdate();
+				pstmt.close();
 				disconnect();
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -164,11 +182,14 @@ public class DBReviewDAO implements ReviewDAO {
 		}
 		
 		public void deleteReview(String num) {
-			String sql = "DELETE FROM interview WHERE num = " + num;
+			String sql = "DELETE FROM interview WHERE num = ?";
 			
 			try {	
 				connect();
-				stmt.executeUpdate(sql);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, num);
+				pstmt.executeUpdate();
+				pstmt.close();
 				disconnect();
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -178,11 +199,14 @@ public class DBReviewDAO implements ReviewDAO {
 		}
 		
 		public void modifyNumber(String num) {
-			String sql = "UPDATE interview SET num = num - 1 WHERE num >" + num;
+			String sql = "UPDATE interview SET num = num - 1 WHERE num > ?";
 			
 			try {	
 				connect();
-				stmt.executeUpdate(sql);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, num);
+				pstmt.executeUpdate();
+				pstmt.close();
 				disconnect();
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -190,25 +214,26 @@ public class DBReviewDAO implements ReviewDAO {
 		}
 
 		public ArrayList<ReviewBean> getSearchReview(int currentPage, int option, String word) {
-			String opt = "";
+			String sql = null;
 			switch(option) {
 				case 0:
-					opt = "year";
+					sql = "SELECT * from interview WHERE year LIKE ? ORDER BY num DESC limit ?, 15";
 					break;
 				case 1:
-					opt = "company";
+					sql = "SELECT * from interview WHERE company LIKE ? ORDER BY num DESC limit ?, 15";
 					break;
 				case 2:
-					opt = "spec";
+					sql = "SELECT * from interview WHERE spec LIKE ? ORDER BY num DESC limit ?, 15";
 					break;
 			}
-			String sql = "SELECT * from interview WHERE(" + opt + " LIKE '%" + word + "%') ORDER BY num DESC limit "
-						+ ((currentPage - 1) * 15) + ", 15";
 			ArrayList<ReviewBean> list = new ArrayList<ReviewBean>();
 			
 			try {
 				connect();
-				ResultSet rs = stmt.executeQuery(sql);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + word + "%");
+				pstmt.setInt(2, ((currentPage - 1) * 15));
+				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()) {
 					ReviewBean review = new ReviewBean();
 					review.setNum(rs.getInt("num"));
@@ -220,9 +245,9 @@ public class DBReviewDAO implements ReviewDAO {
 					list.add(review);
 				}
 				rs.close();
+				pstmt.close();
 				disconnect();
 			} catch(Exception e) {
-				System.out.println(sql);
 				e.printStackTrace();
 			}
 			
@@ -231,26 +256,28 @@ public class DBReviewDAO implements ReviewDAO {
 
 		public int countSearchReview(int option, String word) {
 			int total_count = 0;
-			String opt = "";
+			String sql = null;
 			switch(option) {
 				case 0:
-					opt = "year";
+					sql = "SELECT count(*) count FROM interview WHERE year LIKE ?";
 					break;
 				case 1:
-					opt = "company";
+					sql = "SELECT count(*) count FROM interview WHERE company LIKE ?";
 					break;
 				case 2:
-					opt = "spec";
+					sql = "SELECT count(*) count FROM interview WHERE spec LIKE ?";
 					break;
 			}
-			String sql = "SELECT count(*) count FROM interview WHERE " + opt + " LIKE '%" + word + "%'";
 			
 			try {
 				connect();
-				ResultSet rs = stmt.executeQuery(sql);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + word + "%");
+				ResultSet rs = pstmt.executeQuery();
 				rs.next();
 				total_count = rs.getInt("count");
 				rs.close();
+				pstmt.close();
 				disconnect();
 			} catch(Exception e) {
 				e.printStackTrace();

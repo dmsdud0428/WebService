@@ -55,7 +55,6 @@ public class Main extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		if(action==null||action.equals("list")) {
-			System.out.println("list");
 			ArrayList<Integer> list=dao.count(id);
 			request.setAttribute("count", list);
 			address="/main.jsp";
