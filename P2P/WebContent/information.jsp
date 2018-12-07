@@ -520,7 +520,7 @@
 									<div class="title_name"><h3>봉사활동</h3></div>
 									<div class="plus"><input name="openbox" type="button" onclick="popup_open(5,0)"></div>
 								</div>
-								<div class="table_content">	
+								<div class="table_content" style="margin-bottom:60px">	
 								<table>
 										<thead style="background-color:#f9f9f9">
 											<tr>
