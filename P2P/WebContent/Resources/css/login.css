@@ -25,12 +25,12 @@ input[type=text], input[type=password] {
 	width: 380px;
 	height: 31px;
 	background: transparent;
-	background-image: url('Resources/img/id_box.png');
+	background-image: url('../img/id_box.png');
 	padding: 0px 0px 0px 10px;
 }
 
 input[type=submit] {
-	background-image: url('Resources/img/login_button.png');
+	background-image: url('../img/login_button.png');
 	width: 117px;
 	height: 115px;
 	vertical-align: middle;
