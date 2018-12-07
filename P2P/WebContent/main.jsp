@@ -6,7 +6,6 @@
 <jsp:useBean id="count" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="user" class="myinfo.UserBean" scope="session" />
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,6 +71,9 @@
 <link href="Resources/css/base.css" rel="stylesheet">
 <link href="Resources/css/main.css" rel="stylesheet">
 <title>대시보드</title>
+
+<link href="Resources/css/main.css" rel="stylesheet">
+
 <%
 	request.setCharacterEncoding("utf-8");
 	String jdbc_driver = "com.mysql.jdbc.Driver";

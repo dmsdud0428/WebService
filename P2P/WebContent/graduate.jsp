@@ -168,9 +168,9 @@
 										</table>
 									</div>
 									</td>
-									<td style="width:380px;height:232px;">
-										<div class="table">
+									<td style="width:380px;height:232px;margin-up:0px;">
 										<table class="content">
+											<tr><input type="image" name="complete"src="./Resources/img/complete.PNG" style="text-align:center;font-size:10px;fonc-weight:bold;width:380px;height:60px;padding:0px 0px 5px 0px"onclick="popup_open(<%= num %>)"/> </tr>
 											<tr>
 												<th colspan=2 align="center" style="background-color:skyblue">공 학 인 증 요 건</th>
 											</tr>
@@ -212,8 +212,10 @@
 		</div>
 	</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script type="text/javascript" src="Resources/js/graduate.js"></script>
 <% session.setAttribute("id", user.getSchoolID()); %>
-<script language="JavaScript">
+<script>
+
  		function nomelChart(){
 	 
 	 		var ctx=document.getElementById("nomel").getContext("2d");

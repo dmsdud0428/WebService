@@ -13,10 +13,12 @@
 <link href="Resources/css/base.css" rel="stylesheet">
 <link href="Resources/css/average.css" rel="stylesheet">
 <title>총 평점 평균</title>
+
 <%
 	if(user.getName() == null)
 		out.println("<script>alert('로그인하지 않았거나 세션이 만료되었습니다.\\n다시 로그인해주세요.'); location.href='login.jsp';</script>");
 %>
+
 <%
 	request.setCharacterEncoding("utf-8");
 	String jdbc_driver = "com.mysql.jdbc.Driver";
